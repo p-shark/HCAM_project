@@ -1,0 +1,649 @@
+input::-webkit-inner-spin-button {	/* input type=number 인 경우 위아래버튼 없애기 */
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+
+#div_content {
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 150px;
+	width: 1100px;
+}
+	#div_left {
+		display: inline-block;
+		vertical-align: top;	/* inline-block으로 설정 시 상단 고정 */
+		width: 245px;
+	}
+		/* 지도 api 공간 */
+		#bl_map_space {
+			width: 245px;
+			height: 120px;
+		}
+			#map_image {
+				width: 245px;
+				height: 120px;
+			}
+				#map_image #img1 {
+					position: absolute;
+					width: 245px;
+					height: 120px;
+				}
+				#map_image #img2 {
+					position: absolute;
+					margin-top: 25px;
+					margin-left: 110px;
+					width: 30px;
+				    height: 50px;
+				}
+				#map_image span {
+					position: absolute;
+					margin-top: 80px;
+					margin-left: 55px;
+					width: 245px;
+				    height: 20px;
+				    font-weight: bold;
+				    font-size: 12pt;
+				    color: #3c3c3c;
+				}
+				#map_image span:hover {
+					color: var(--color-blue);
+				}
+		/* 텍스트 검색 공간 */
+		#bl_search_space {
+			margin-top: 15px;
+			width: 245px;
+			height: 40px;
+		}
+			.div_seacrch {
+				float: left;
+				width: 240px;
+				height: 30px;
+				border: 1px solid #747474;
+				border-radius: 20px;
+			}
+				/* search_section icon, input */
+				.left_search_input {
+					float: left;
+					margin-top: 5px;
+					margin-left: 10px; 
+					width: 190px;
+					height: 20px;
+					border: none;
+					border-radius: 5px;
+					line-height: 30px;
+				}
+				.left_search_input:focus {
+					outline: none;
+				}
+				.lctName_sec_icon {
+					margin-top: 6px;
+					margin-right: 15px;
+					float: right;
+					width: 15px;
+					height: 15px;
+					line-height: 20px;
+				}
+					.lctName_sec_icon a {
+						cursor: pointer;
+					}
+		/* 요금 검색 조건 */
+		#bl_fee_space {
+			margin-top: 10px;
+			width: 245px;
+			height: 130px;
+		}
+			/* 요금 검색 텍스트 */
+			#fee_text_space1 {
+				margin: 0 auto;
+				width: 230px;
+				height: 40px;
+			}
+				#fee_text_space1 div {
+					width: 230px;
+					height: 40px;
+				}
+					#fee_text_space1 div p:first-child {
+						margin: 0;
+						font-weight: bold;
+					}
+					#fee_text_space1 div p:last-child {
+						margin: 0;
+						margin-top: 5px;
+						font-size: 8.5pt;
+						font-weight: bold;
+					}
+			/* 요금 슬라이더 */
+			#fee_slider_space {
+				margin: 0 auto;
+				margin-top: 5px;
+				width: 245px;
+				height: 20px;
+			}
+				#fee_slider_space div {
+					width: 230px;
+					height: 20px;
+				}
+					#fee_slider_space input {
+						width: 240px;
+					}
+			/* 이상 이하 텍스트 */
+			#fee_text_space2 {
+				margin: 0 auto;
+				margin-top: 5px;
+				width: 235px;
+				height: 20px;
+			}
+				#fee_text_space2 div {
+					width: 230px;
+					height: 20px;
+				}
+					#fee_text_space2 div span:first-child {
+						float: left;
+						font-size: 8pt;
+						font-weight: bold;
+					}
+					#fee_text_space2 div span:last-child {
+						float: right;
+						font-size: 8pt;
+						font-weight: bold;
+					}
+			/* 이상 이하 요금 */
+			#fee_minMax_space {
+				margin: 0 auto;
+				margin-top: 5px;
+				width: 235px;
+				height: 40px;
+			}
+				#fee_minMax_space div:first-child {
+					float: left;
+					width: 100px;
+					height: 25px;
+					border: 1px solid #747474;
+				}
+				#fee_minMax_space div:last-child {
+					float: right;
+					width: 100px;
+					height: 25px;
+					border: 1px solid #747474;
+				}
+					#fee_minMax_space input {
+						float: left;
+						margin-top: 2px;
+						margin-left: 3px;
+						width: 68px;
+						height: 20px;
+						border: none;
+						line-height: 30px;
+						text-align: right;
+					}
+					#fee_minMax_space input:focus {
+						outline: none;
+					}
+					#fee_minMax_space img {
+						margin-top: 3px;
+						margin-left: 3px;
+						float: left;
+						width: 18px;
+						height: 18px;
+						line-height: 20px;
+					}
+		/* line */
+		.div_line {
+			margin-top: 15px;
+			margin-bottom: 15px;
+			min-width: 1px;
+		    width: 245px;
+		    height: 1px;
+		    flex: 1 1 0%;
+		    border-bottom: 1px solid rgb(221, 223, 226);
+		}
+		/* left search 영역 */
+		.bl_space {
+			margin-top: 15px;
+			width: 250px;
+		}
+			.bl_title {
+				margin: 0 auto;
+				margin-top: 5px;
+				width: 230px;
+			}
+				.bl_title span {
+					font-weight: bold;
+				}
+			/* 호텔 성급 체크박스 */
+			.bl_checkboxes_grade {
+				margin: 0 auto;
+				margin-top: 5px;
+				width: 230px;
+			}
+				.bl_checkboxes_grade input {
+					margin-top: 7px;
+				}
+				.bl_checkboxes_grade input:first-child {
+					margin-top: 5px;
+				}
+			/* 텍스트 체크박스 */
+			.bl_checkboxes_text {
+				margin: 0 auto;
+				margin-top: 5px;
+				width: 230px;
+			}
+				.bl_checkboxes_text input {
+					margin-top: 7px;
+					position: relative;
+        			top: 1px;
+				}
+				.bl_checkboxes_text input:first-child {
+					margin-top: 5px;
+				}
+				.bl_checkboxes_text label {
+					position: relative;
+        			top: -1px;
+				}
+		
+	/* 검색 결과 div */
+	#div_right {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 10px;
+		width: 840px;
+	}
+		/* 검색 정렬 조건 */
+		#right_top {
+			width: 840px;
+			height: 70px;
+		}
+		#right_top_ul {
+			width: 840px;
+			height: 45px;
+			text-align: center;
+			border: 1px solid #dddfe2;
+			border-radius: 5px;
+		}
+			#right_top_ul div {
+				display: inline-block;
+				width: 178px;
+				height: 45px;
+			}
+				#right_top_ul div:first-child {
+					width: 108px;
+					background-color: rgb(248, 247, 249);
+					border-radius: 5px 0px 0px 5px;
+					border-right: 1px solid #dddfe2;
+				}
+			#right_top_ul div li {
+				margin-top: 5px;
+				width: 178px;
+				height: 35px;
+				line-height: 35px; 
+				border-right: 1px solid #dddfe2;
+			}
+			#right_top_ul div:first-child li {
+				width: 108px;
+				border-right: none;
+				color: rgb(115, 115, 115);
+			}
+			#right_top_ul div:last-child li {
+				border-right: none;
+			}
+				#right_top_ul input {
+					display: none;
+				}
+				#right_top_ul label {
+					color: #2a2a2e;
+					cursor: pointer;
+				}
+				#right_top_ul label:hover{
+					font-weight: bold;
+					color: var(--color-blue);
+				}
+				#right_top_ul input:checked + label {
+					font-weight: bold;
+					color: var(--color-blue);
+				}
+		/* 검색 결과 text */
+		#right_middle {
+			margin-bottom: 10px;
+			height: 30px;
+		}
+			#right_middle div{
+				display: inline-block;
+			}
+			#right_middle div:nth-child(1) {
+				margin-right: 10px;
+				vertical-align: top;
+			}
+			#right_middle div:nth-child(3) {
+				margin-left: 10px;
+				vertical-align: top;
+			}
+			#right_middle .middle_line {
+				margin: 0px;
+				min-width: 1px;
+			    width: 360px;
+			    height: 10px;
+			    flex: 1 1 0%;
+			    border-bottom: 1px solid rgb(221, 223, 226);
+			}
+		/* 검색 결과 내용 */
+		#right_content {
+			width: 840px;
+		}
+		#right_content:hover {
+			cursor: pointer;
+		}
+			#right_content .each_content {
+				margin-bottom: 20px;
+				width: 840px;
+				border: 1px solid #dddfe2;
+				border-radius: 8px;
+				box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%);
+			}
+			#right_content .each_content:nth-child(odd) {
+				background-color: #EBF0FC;
+			}
+				/* 사진 */
+				.content_left {
+					display: inline-block;
+					vertical-align: top;
+					width: 290px;
+					height: 250px;
+				}
+					.content_left .div_main_image {
+						width: 290px;
+						height: 200px;
+					}
+						.content_left .div_main_image img {
+							width: 290px;
+							height: 200px;
+							border-radius: 8px 0 0 0;
+						}
+					.content_left .div_sub_image {
+						margin-top: 5px;
+						width: 290px;
+						height: 48px;
+					}
+						.content_left .div_sub_image img {
+							width: 68.95px;
+							height: 44.5px;
+						}
+						.content_left .div_sub_image img:first-child {
+							border-radius: 0 0 0 8px;
+						}
+				/* 호텔 소개 */
+				.content_center {
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					margin-right: 10px;
+					width: 300px;
+					height: 250px;
+				}
+					.hotelName {
+						margin-top: 10px;
+					}
+						.hotelName font{
+							font-size: 13pt;
+							font-weight: bold
+						}
+						.hotelName font:hover {
+							text-decoration: underline;
+							color: #00ADFF;
+						}
+					.hotelGrade {
+						float: left;
+						margin-top: 10px;
+					}
+						.star_icon {
+							/* margin: -5px; */
+							margin-top: -3px;
+							margin-bottom: -3px;
+							margin-left: -5px;
+							margin-right: -5px;
+							padding: 0;
+							width: 21px;
+							height: 21px;
+							filter: invert(73%) sepia(49%) saturate(1688%) hue-rotate(338deg) brightness(102%) contrast(103%);
+						}
+					.hotelLct {
+						float: left;
+						margin-top: 8px;
+						margin-left: 5px;
+						margin-bottom: 7px;
+						font-weight: bold;
+						color: var(--color-blue);
+					}
+						.hotelLct div {
+							float: left;
+						}
+							.hotelLct div img {
+								width: 21px;
+								height: 21px;
+								filter: invert(55%) sepia(89%) saturate(2542%) hue-rotate(197deg) brightness(98%) contrast(98%);
+							}
+					.hotelFct {
+						clear: left;
+					}
+						.hotelFct div {
+							float: left;
+							margin-right: 5px;
+							padding: 2px;
+							border: 1px solid #dddfe2;
+							font-weight: bold;
+						}
+					
+				/* 호텔 요금 및 객실예약버튼 */
+				.content_right {
+					display: inline-block;
+					vertical-align: top;
+					width: 219px;
+					height: 250px;
+					border-left: 1px solid #dddfe2;
+				}
+					/* 리뷰 */
+					.content_right .content_review {
+						margin-top: 10px;
+						width: 219px;
+						height: 40px;
+					}
+						.content_review .review_right {
+							float: right;
+						}
+							.review_right div {
+								margin-right: 10px;
+								padding-left: 7px;	/* 글자 가운데 맞춤 */
+								width: 30px;		/* 글자 가운데 맞춤 */
+								height: 37px;
+								line-height: 40px;
+								font-weight: bold;
+								font-size: 11pt;
+								color: var(--color-white);
+								background-color: rgb(62, 108, 234);
+								border-radius: 40px 40px 40px 0px;
+							}
+						.content_review .review_left {
+							float: right;
+							margin-right: 5px;
+						}
+							.review_left div:first-child {
+								font-size: 11pt;
+								text-align: right;
+							}
+							.review_left div:last-child {
+								color: rgb(112, 112, 112);
+							}
+					/* 남은 객실 */
+					.content_right .content_remain {
+						margin-top: 10px;
+						width: 219px;
+						height: 25px;
+					}
+						.content_remain div{
+							float: right;
+							margin-right: 10px;
+							padding: 1px 4px 2px; 4px;
+							border-radius: 2px;
+							font-size: 9pt;
+							color: var(--color-white);
+							background-color: rgb(225, 45, 45);
+						}
+					/* 1박당 요금 시작가 */
+					.content_right .content_priceText {
+						margin-top: 5px;
+						width: 219px;
+						height: 15px;
+					}
+						.content_priceText div {
+							float: right;
+							margin-right: 10px;
+							font-size: 8pt;
+							color: rgb(112, 112, 112);
+						}
+					/* 가격 */
+					.content_right .content_price {
+						margin-top: 5px;
+						width: 219px;
+						height: 25px;
+					}
+						.content_price div {
+							float: right;
+							margin-right: 10px;
+							font-weight: bold;
+							font-size: 14pt;
+							color: #737373;
+							/* 대각선 */
+							background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" style="stroke:rgb(255,0,0); stroke-width:2" /></svg>');
+						}
+					/* 할인된 가격 */
+					.content_right .content_disPrice {
+						margin-top: 5px;
+						width: 219px;
+						height: 25px;
+					}
+						.content_disPrice div {
+							float: right;
+							margin-right: 10px;
+							font-weight: bold;
+							font-size: 14pt;
+							color: #e12d2d;
+						}
+					/* 예약무료취소 */
+					.content_right .content_freeText {
+						margin-top: 2px;
+						width: 219px;
+						height: 20px;
+					}
+						.content_freeText div {
+							float: right;
+							margin-right: 10px;
+							font-size: 9pt;
+							color: rgb(40, 135, 28);
+						}
+					/* 객실 선택 */
+					.content_right .content_btn_room {
+						margin-top: 5px;
+						width: 219px;
+					}
+						.content_btn_room button {
+							float: right;
+							padding: 12px 14px 12px 14px;
+							margin-right: 10px;
+							border: none;
+							border-radius: 4px;
+							color: var(--color-white);
+							background-color: rgb(62, 108, 234);
+							box-shadow: rgb(0 0 0 / 20%) 0px 1px 3px 1px;
+						}
+						.content_btn_room button:hover {
+							opacity: 0.75;
+						}
+							.content_btn_room button div {
+								float: left;
+							}
+							.content_btn_room button div:first-child {
+							}
+							.content_btn_room button div:last-child {
+								margin-left: 5px;
+								margin-top: 3px;
+							}
+							.content_btn_room button svg {
+								filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(21deg) brightness(111%) contrast(101%);
+							}
+				
+				#pageList {
+					margin: auto;
+					width: 500px;
+					text-align: center;
+				}
+			/* 호텔 더보기 */
+			#right_content .append_hotel {
+				margin-top: 50px;
+				width: 840px;
+				height: 40px;
+				text-align: center;
+			}
+				.append_hotel button {
+					display: inline-block;
+					width: 840px;
+					height: 40px;
+					border-radius: 10px;
+					border: 1.5px solid #514F4F;
+					color: #514F4F;
+					font-weight: bold;
+				}
+				
+/* Top 버튼 */
+#myBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #5392F9;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}		
+#myBtn:hover {
+  background-color: #555;
+}
+				
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 1000px;
+}
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}

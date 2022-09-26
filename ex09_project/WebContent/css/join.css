@@ -1,0 +1,111 @@
+input::-webkit-inner-spin-button {	/* input type=number 인 경우 위아래버튼 없애기 */
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+
+#joinBox {
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+	width: 600px;
+}
+	#join_table {
+		border-collapse: collapse;
+		margin-left: auto; 
+		margin-right: auto;
+	}
+		/* 회원가입 */
+		#join_table tr:first-child {
+			height: 70px;
+			border-bottom: 1px solid black;
+		}
+		/* 회원가입 버튼 tr */
+		#join_table tr:last-child {
+			height: 100px;
+		}
+			#join_table td {
+				line-height: 200%;
+			}
+			#join_table tr:first-child td {
+				font-weight: bold;
+				font-size: 18pt;
+				height: 40px;
+				text-align: center;
+				/*border-bottom: 2px solid;*/
+			}
+			#join_table button,
+			#join_table input[type="submit"] {
+				width: 120px;
+				height: 30px;
+				background-color: var(--color-blue);
+				border: 0;
+				color: white;
+				letter-spacing: 0.1em;
+				font-weight: bold;
+				border-radius: 4px;
+			}
+			#join_table #btn_join {
+					width:565px; 
+					height: 40px; 
+					font-size: 12pt;
+				}
+			#join_table select {
+				width: 120px;
+				height: 30px;
+				border: 1px solid darkgray;
+				border-radius: 5px;
+			}
+			#join_table input[type=checkbox] {
+				accent-color: red;
+				vertical-align: middle;
+			}
+			#join_table input[type=text]
+			,input[type=password] {
+				border: 1px solid darkgray;
+				border-radius: 4px;
+			}
+			.td_text {
+				width: 140px;
+				height: 50px;
+				font-weight: bold;
+			}
+			input {
+				margin: 0;
+				padding: 0;
+			}
+			input:focus {
+				outline:none;
+				box-shadow: 0px 0px 4px #3399ff;
+			}
+			.input93 {
+				margin-right: 0;
+				width: 93px;
+				height: 28px;
+				text-align: center;
+			}
+			.input193 {
+				margin-right: 0;
+				width: 193px;
+				height: 28px;
+			}
+			.input169 {
+				margin-right: 0;
+				width: 169.5px;
+				height: 28px;
+			}
+			.input294 {
+				margin-right: 0;
+				width: 294px;
+				height: 28px;
+			}
+			.span_red {
+				width: 294px;
+				color: red;
+				font-size: 8pt;
+				letter-spacing: 0;
+			}
+			.span_hidden {
+				display: none;
+			}

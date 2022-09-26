@@ -1,0 +1,180 @@
+#loginBox {
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+	width: 440px;
+}
+	#login_table {
+		border-collapse: collapse;
+		margin-left: auto; 
+		margin-right: auto;
+	}
+		/* 로그인 */
+		#login_table tr:nth-child(1) {
+			height: 100px;
+			border-bottom: 1px solid black;
+		}
+		#login_table tr:nth-child(2) {
+			height: 15px;
+		}
+		#login_table tr:nth-child(3),
+		#login_table tr:nth-child(4),
+		#login_table tr:nth-child(5),
+		#login_table tr:nth-child(6)
+		{
+			height: 45px;
+		}
+		#login_table tr:nth-child(10),
+		#login_table tr:nth-child(11)
+		{
+			height: 55px;
+		}
+		#login_table tr:nth-child(7),
+		#login_table tr:nth-child(9),
+		#login_table tr:nth-child(12)
+		{
+			height: 100px;
+		}
+			#login_table td {
+				line-height: 200%;
+			}
+			#login_table tr:first-child td {
+				font-weight: bold;
+				font-size: 18pt;
+				height: 40px;
+				text-align: center;
+				/*border-bottom: 2px solid;*/
+			}
+			/* 로그인 실패 시 나타남 */
+			.div_wrong {
+				margin-top: 15px;
+				width: 440px;
+				height: 55px;
+				font-size: 10.5pt;
+				letter-spacing: 0;
+				border-left: 5px solid rgb(225, 45, 45);
+			    border-top-color: rgb(225, 45, 45);
+			    border-right-color: rgb(225, 45, 45);
+			    border-bottom-color: rgb(225, 45, 45);
+			    box-shadow: 0px 0px 5px #BABABA;
+			}
+				.div_wrong div:first-child {
+					float: left;
+					margin-top: 19px;
+					padding-left: 10px;
+					width: 20px;
+					height: 20px;
+				}
+				.div_wrong div:last-child {
+					float: left;
+					margin-top: 15px;
+					padding-left: 2px;
+					width: 400px;
+					height: 20px;
+				}
+					.div_wrong div img {
+						width: 18px; 
+						height: 18px;
+					}
+			/* 회원가입, 비밀번호를 잊으셨나요? a 태그 */
+			#login_table td a {
+				font-size: 11pt;
+				color: var(--color-blue);
+			}
+			/* 회원가입 버튼 */
+			#login_table #btn_login {
+				width: 440px; 
+				height: 40px; 
+				font-size: 12pt;
+				font-weight: bold;
+				letter-spacing: 0.1em;
+				border: 0;
+				border-radius: 4px;
+				color: white;
+				background-color: var(--color-blue);
+			}
+			#login_table input[type=text]
+			,input[type=password] {
+				border: 1px solid darkgray;
+				border-radius: 4px;
+			}
+			.td_text {
+				font-weight: bold;
+			}
+				#td_float div {
+					float: left;
+				}
+				#td_float div:first-child {
+					margin-right: 10px;
+				}
+				#td_float div:last-child {
+					margin-left: 10px;
+				}
+					.div_line {
+						margin: 0px;
+						min-width: 1px;
+					    width: 114px;
+					    height: 13px;
+					    flex: 1 1 0%;
+					    border-bottom: 1px solid rgb(221, 223, 226);
+					}
+				#btn_google {
+					width: 440px;
+					height: 40px;
+					background-color: var(--color-white);
+					border: 1px solid var(--color-blue);
+					border-radius: 4px;
+					color: var(--color-blue);
+					font-weight: bold;
+				}
+				#btn_naver {
+					margin-right: 5px;
+					width: 213px;
+					height: 40px;
+					background-color: var(--color-white);
+					border: 1px solid var(--color-blue);
+					border-radius: 4px;
+					color: var(--color-blue);
+					font-weight: bold;
+				}
+				#btn_kakao {
+					margin-left: 5px;
+					width: 213px;
+					height: 40px;
+					background-color: var(--color-white);
+					border: 1px solid var(--color-blue);
+					border-radius: 4px;
+					color: var(--color-blue);
+					font-weight: bold;
+				}
+
+			input {
+				margin: 0;
+				padding: 0;
+			}
+			input:focus {
+				outline:none;
+				box-shadow: 0px 0px 4px #3399ff;
+			}
+			.input93 {
+				margin-right: 0;
+				width: 93px;
+				height: 28px;
+				text-align: center;
+			}
+			.input193 {
+				margin-right: 0;
+				width: 193px;
+				height: 28px;
+			}
+			.input169 {
+				margin-right: 0;
+				width: 169.5px;
+				height: 28px;
+			}
+			.input294 {
+				margin-right: 0;
+				width: 440px;
+				height: 28px;
+			}

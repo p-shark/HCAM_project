@@ -1,0 +1,215 @@
+select:focus {
+	outline:none;
+}
+			
+#contentBox {
+	font-family: "Roboto","Arial","Nanum Gothic","Malgun Gothic","맑은 고딕","Dotum","돋움","Apple SD Gothic Neo","AppleGothic",sans-serif;
+	margin: 0 auto;
+	margin-bottom: 100px;
+	padding: 0;
+	width: 1200px;
+}
+	#content_title {
+		margin-top: 50px;
+		margin-bottom: 20px;
+		width: 100%;
+		height: 40px; 
+		text-align: center;
+	}
+		#content_title h1 {
+			margin-bottom: 0px;
+		}
+	#content_btn {
+		width: 100%;
+		height: 30px;
+	}
+		#content_btn #div_left {
+			float: left;
+			margin-left: 37px;
+			border-radius: 3px;
+		}
+		#content_btn select {
+			width: 120px;
+			height: 25px;
+		}
+		#content_btn #div_right {
+			float: right;
+			margin-right: 39px;
+		}
+			#div_right .div_seacrch {
+				float: left;
+				width: 200px;
+				height: 28px;
+				border: 1px solid #747474;
+				border-radius: 5px;
+			}
+				/* search_section icon, input */
+				.search_sec_icon {
+					margin-top: 6px;
+					margin-right: 5px;
+					float: right;
+					width: 15px;
+					height: 15px;
+				}
+					.search_sec_icon a {
+						cursor: pointer;
+					}
+				.search_sec_input {
+					float: left;
+					margin-top: 3px;
+					margin-left: 5px; 
+					width: 160px;
+					height: 20px;
+					border: none;
+					border-radius: 5px;
+				}
+				.search_sec_input:focus {
+					outline: none;
+				}
+		#content_btn #btn_write {
+			margin-left: 20px;
+			width: 100px;
+			height: 30px;
+			background-color: var(--color-black);
+			border: none;
+			border: 1px solid var(--color-black);
+			border-radius: 3px;
+			color: var(--color-white);
+			cursor: pointer;
+		}
+		#content_btn #btn_write:hover {
+			color: var(--color-black);
+			background-color: var(--color-white);
+			transition-duration: 0.3s;
+		}
+	#content_each {
+		width: 1200px;
+	}
+		#content_each ul {
+			margin-top: 5px;
+		}
+			#content_each ul li {
+				display: inline-block;
+				margin-top: 30px;
+				margin-left: 37px;
+				width: 250px;
+				height: 450px;
+			}
+				.box {
+					position: relative;
+				}
+					.boxTop {
+						position: relative;
+					}
+						.boxTop a {
+							cursor: pointer;
+							color: #747474;
+						}
+						.boxTop img{
+							width: 250px;
+							height: 250px;
+						}
+						.span_best {
+							position: absolute;
+						    z-index: 91;
+						    top: -2px;
+						    right: -2px;
+						    width: 38px;
+						    height: 40px;
+						    line-height: 40px;
+						    padding: 0 4 0 4px;
+						    background: rgba(165,21,21,0.95);
+						    color: #fff;
+						    letter-spacing: 0.5px;
+						    font-size: 11px;
+						    box-shadow: 0 2px 1px rgb(0 0 0 / 17%);
+						   	text-align: center;
+						}
+					.boxBottom {
+						position: relative;
+					}
+						.div_title {
+							width: 250px;
+							height: 57px;
+							overflow: hidden;
+						}
+							.div_title a {
+								color: #747474;
+								font-size: 11pt;
+							}
+							.boxBottom p {
+								margin-top: 14px;
+								margin-bottom: 10px;
+								padding: 0;
+								font-weight: bold;
+							}
+						.div_content {
+							width: 250px;
+							height: 35px;
+							font-size:13px;
+							color:#999999;
+							overflow: hidden;
+						}
+						.div_line {
+							margin: 0px;
+							margin-top: 5px;
+							margin-bottom: 10px;
+							min-width: 1px;
+						    width: 250px;
+						    height: 1px;
+						    flex: 1 1 0%;
+						    border-bottom: 1px solid rgb(221, 223, 226);
+						}
+						.icon {
+							margin-top: 15px;
+							width: 250px;
+						}
+						.icon .icon_name {
+							width: 250px;
+							height: 30px;
+							line-height: 20px;
+						}
+							.icon .icon_name div:first-child {
+								float: left;
+								width: 200px;
+								height: 30px;
+								overflow: hidden;
+							}
+							.icon .icon_name #div_update {
+								float: right;
+							}
+								#div_update #btn_update {
+									width: 50px;
+									height: 30px;
+									color: #90949c;
+								}
+								#div_update #btn_update:hover {
+									color: red;
+								}
+						.icon .icon_left {
+							width: 250px;
+							height: 30px;
+						}
+							.icon .icon_left div {
+								display: inline-block;
+								margin-top: 5px;
+								margin-right: 10px;
+							}
+								.icon .icon_left div .fa-heart {
+									margin-right: 2px;
+									color: #f25555;
+								}
+								.icon .icon_left div .fa-comment-dots {
+									margin-right: 2px;
+									color: #909090;
+								}
+								.icon .icon_left div span {
+									color: #909090;
+								}
+	#pageList {
+		margin: 0 auto;
+		margin-top: 40px;
+		width: 500px;
+		text-align: center;
+	}
+							
