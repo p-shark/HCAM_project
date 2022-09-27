@@ -287,7 +287,7 @@
 		};
 	    
 		$.ajax({
-			url: "view/HCAM_hotelMainBySearching.jsp",
+			url: "hotelMainBySearching.ho",
 			type:'POST',
 			dataType: "text",
 			async:false,

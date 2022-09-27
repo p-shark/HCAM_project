@@ -1,10 +1,8 @@
+<%@page import="vo.PageInfo"%>
 <%@page import="java.util.Map"%>
 <%@page import="vo.HotelDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.TreeMap"%>
-<%@page import="dao.HotelDAO"%>
-<%@page import="static db.JdbcUtil.*"%>
-<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean class="dao.CommonDAO" id="commonDao"></jsp:useBean>
@@ -18,66 +16,24 @@
 		mem_no = Integer.parseInt(String.valueOf(session.getAttribute("mem_no")));
 	}
 	
-	TreeMap<Integer, String> searchList = new TreeMap<>();
-	searchList.put(1, request.getParameter("select01"));
-	searchList.put(2, request.getParameter("select02"));
-	searchList.put(3, request.getParameter("top_chkIn"));
-	searchList.put(4, request.getParameter("top_chkOut"));
-	searchList.put(5, request.getParameter("lctName"));
-	searchList.put(6, request.getParameter("min_fee"));
-	searchList.put(7, request.getParameter("max_fee"));
-	searchList.put(8, request.getParameter("grade01"));
-	searchList.put(9, request.getParameter("grade02"));
-	searchList.put(10, request.getParameter("grade03"));
-	searchList.put(11, request.getParameter("service01"));
-	searchList.put(12, request.getParameter("service02"));
-	searchList.put(13, request.getParameter("service03"));
-	searchList.put(14, request.getParameter("service04"));
-	searchList.put(15, request.getParameter("service05"));
-	searchList.put(16, request.getParameter("review_score"));
-	searchList.put(17, request.getParameter("sortBy"));
-	/* 
-	// 배열 받기
-	String[] gradeValues = request.getParameterValues("gradeValues[]");
-	String[] serviceValues = request.getParameterValues("serviceValues[]");
-	String[] reviewValues = request.getParameterValues("reviewValues[]"); 
-	*/
-	
-	// 페이지 처리를 위한 변수
-	int pageNo = 1;
-	int limit = 10;
-	// pageNo는 searchList map에 안 담고 파라미터를 따로 분리해서 던짐
-	if(request.getParameter("pageNo") != null) {
-		pageNo = Integer.parseInt(request.getParameter("pageNo"));
-	}
-	
-	// db connection
-	Connection conn = getConnection();
-	
-	HotelDAO hotelDAO = HotelDAO.getInstance();
-	hotelDAO.setConnection(conn);
-	
-	int listCount = 0;
-	/* 페이지 처리를 위한 호텔 count */
-	listCount = hotelDAO.getListCountBySearching(searchList);
-	
 	/* 좌측 검색 조건에 따른 호텔 정보 */
-	ArrayList<HotelDTO> hotelList = hotelDAO.getHotelBysearch(searchList, pageNo, limit);
+	ArrayList<HotelDTO> hotelList = (ArrayList<HotelDTO>) request.getAttribute("hotelList");
 	
 	/* 좌측 검색 조건에 따른 호텔 부가정보 */
-	ArrayList<TreeMap<String, String>> hotelAdnInfos = hotelDAO.getHotelAdnInfoBySearch(searchList, pageNo, limit);
+	ArrayList<TreeMap<String, String>> hotelAdnInfos = (ArrayList<TreeMap<String, String>>) request.getAttribute("hotelAdnInfos");
 	
-	int nowPage = pageNo;
-	int maxPage = (int) ((double)listCount/limit + 0.95);
-	int startPage = (((int) ((double)pageNo / 10 + 0.9)) - 1) * 10 + 1;
-	int endPage = startPage+10-1;
+	// 페이징 처리
+	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 	
-	if (endPage > maxPage) {
-		endPage = maxPage;
-	}
+	int pageNo = 1;
 	
-	// JdbcUtil이랑 hotelDao에서 DB connection을 하기때문에 안 닫으면 서버가 죽어버림..
-	close(conn);
+	// 페이징 처리를 위한 변수
+	int listCount=pageInfo.getListCount();
+	int nowPage=pageInfo.getPage();
+	int maxPage=pageInfo.getMaxPage();
+	int startPage=pageInfo.getStartPage();
+	int endPage=pageInfo.getEndPage();
+	
 %>
 <!DOCTYPE html>
 <html>

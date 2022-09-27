@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.HotelListTotalAction;
+import action.HotelMainBySearchingAction;
 import action.ShareBoardByCtgryAction;
 import action.ShareBoardDeleteAction;
 import action.ShareBoardDetailAction;
@@ -54,6 +55,14 @@ public class HaFrontController extends HttpServlet {
 		}*/
 		if(command.equals("/hotelMain.ho")){
 			action = new HotelListTotalAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/hotelMainBySearching.ho")) {
+			action = new HotelMainBySearchingAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {

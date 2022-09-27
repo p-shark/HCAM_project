@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.HotelListService;
+import service.HotelService;
 import vo.ActionForward;
 import vo.HotelDTO;
 import vo.PageInfo;
@@ -55,7 +55,7 @@ public class HotelListTotalAction implements Action{
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		HotelListService hotelSvc = new HotelListService();
+		HotelService hotelSvc = new HotelService();
 		
 		/* 페이지 처리를 위한 호텔 count */
 		int listCount = hotelSvc.getListCount(select01, select02, chekIn, checOut);
