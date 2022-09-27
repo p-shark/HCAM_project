@@ -15,7 +15,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	 <!-- css -->
-	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 	<title></title>
@@ -28,7 +28,7 @@
   	width: 100%;
 	height: 70px;
 	top: 0px;
-	background-color: #f6f5ef;
+	background-color: #FFF;
 }
 	.search_section_line {
 		margin: 0 auto;
@@ -43,6 +43,26 @@
 				float: left;
 				margin-top: 10px;
 				height: 50px;
+			}
+			#line_ctg{
+				float: left;
+			}
+			#line_ctg span svg:first-child{
+				
+				width: 30px;
+			    height: 30px;
+			    margin-top: 5px;
+			    background-color: blue;
+			}
+			#line_ctg span:nth-child(2){
+				width: 30px;
+			    height: 30px;
+				font-size: 16px;
+			    font-weight: 500;
+			    line-height: 20px;
+			    letter-spacing: -0.3px;
+			    color: rgb(51, 51, 51);
+			    background-color: red;
 			}
 			/* 장소: 검색어 */
 			.search_section_line li:nth-child(1) {
@@ -94,7 +114,7 @@
 						height: 50px;
 						border: 1px solid #5f0080;
 						border-radius: 5px;
-						background-color: #f6f5ef;
+						background-color: #FFF;
 						color: black;
 						cursor: pointer;
 					}
@@ -108,7 +128,7 @@
 				margin-left: 30px;
 			}
 			.search_section_line li div svg{
-				background-color: #f6f5ef;
+				background-color: #FFF;
 			}
 			
 		/* footer */
@@ -175,14 +195,21 @@
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="../HCAM_header.jsp"/>
 	<!-- header_dateLine -->
 	<div class="search_line">
 		<section class="search_section_line">
 			<form name="top_searching_line_form">
 				<ul>
 					<li>
-					카테고리
+						<div id="line_ctg">
+							<span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+  									<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+								</svg>
+							</span>
+							<span>카테고리</span>
+						</div>
 					</li>
 					<li>
 						<div class="search_section_line_icon">
@@ -223,17 +250,17 @@
 			<form action="">
 				<div class="fade-in-box">
 					<div>&nbsp;&nbsp;&nbsp;Shopping with<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HCAM's Market</div>			
-					<div><img class="box box-1" alt="fruit" src="image/market/fruits.png"/></div>
-					<div><img class="box box-2" alt="meat" src="image/market/meat.png"/></div>
-					<div><img class="box box-3" alt="campingItems" src="image/market/campingItems.png"/></div>
-					<div>&nbsp;&nbsp;&nbsp;캠핑장에서도 쇼핑한 물건을<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;받아볼 수 있는 편리한 서비스</div>
+					<div><img class="box box-1" alt="fruit" src="../image/market/fruits.png"/></div>
+					<div><img class="box box-2" alt="meat" src="../image/market/meat.png"/></div>
+					<div><img class="box box-3" alt="campingItems" src="../image/market/campingItems.png"/></div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with HCAM's Camping item</div>
 				</div>
 			</form>
 		</div>
 	</section>	
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../HCAM_footer.jsp"/>
 	
 	<%
 		commonDao.dbClose();

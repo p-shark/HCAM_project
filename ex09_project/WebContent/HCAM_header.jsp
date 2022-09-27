@@ -36,11 +36,12 @@
 					<div><li><a href="hotelMain.ho">호텔</a></li></div>
 					<div><li><a href="campingMain.co">캠핑</a></li></div>
 					<div><li><a href="">액티비티</a></li></div>
-					<div><li><a href="marketMain.co">마켓</a></li></div>
+					<div><li><a href="view/HCAM_marketMain.jsp">마켓</a></li></div>
 					<div><li><a href="shareBoard.ho">여행리뷰</a></li></div>
 					<div><li><a href="">이벤트/쿠폰</a></li></div>
 					<div><li><a href="noticeMain.co">고객센터</a></li></div>
-					<div><li><a href="">렌터카</a></li></div>
+					<div><li><a href="sang.do?command=sawon">렌터카</a></li></div>
+					
 				</ul>
 			</div>
 			<div id="header_right">

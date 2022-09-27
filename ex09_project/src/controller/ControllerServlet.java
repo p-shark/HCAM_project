@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
 
+import impl.MarketImpl;
 import impl.SawonImpl;
 
 public class ControllerServlet extends HttpServlet{
@@ -28,6 +29,12 @@ public class ControllerServlet extends HttpServlet{
 			} 
 			else if(command.equals("carMain")){
 				inter = SawonImpl.instance();
+				viewName = inter.showData(request, response);
+				viewName = "view/"+viewName;
+				request.getRequestDispatcher(viewName).forward(request, response);
+			}
+			else if(command.equals("MarketMain")){
+				inter = MarketImpl.instance();
 				viewName = inter.showData(request, response);
 				viewName = "view/"+viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);

@@ -42,7 +42,7 @@
 			width: 100%;
 			padding: 40px 0px 100px 30px;
 			margin: 0px auto;
-			height: 600px;
+			min-height: 710px;
 			border: 1px soild black;
 		}
 		#total_left{
