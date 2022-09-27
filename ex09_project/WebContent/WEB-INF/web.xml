@@ -9,4 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet-mapping>
+  	<servlet-name>commandServlet</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>commandServlet</servlet-name>
+  	<servlet-class>controller.ControllerServlet</servlet-class>
+  </servlet>
 </web-app>
