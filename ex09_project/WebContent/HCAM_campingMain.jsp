@@ -8,7 +8,7 @@
     pageEncoding="UTF-8"%>
 <jsp:useBean class="dao.CommonDAO" id="commonDao"></jsp:useBean>
 <jsp:useBean class="dao.HcamFileDAO" id="fileDao"></jsp:useBean>
-<%  /* 하이 */
+<%  
 	/* 코드별 공통코드 전체 조회 */
 	TreeMap<String, String> commCodes = commonDao.getCodeAllByCode("CCD01");
 	
