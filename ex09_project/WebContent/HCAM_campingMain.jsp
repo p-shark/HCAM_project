@@ -21,12 +21,11 @@
 	int startPage=pageInfo.getStartPage();
 	int endPage=pageInfo.getEndPage();
 	
-	
-	
 	/* select box 의 option 값을 가져온 값 */
 	String optionValue = (String) request.getAttribute("optionValue");
 	ArrayList<CampingDTO> campingLists =(ArrayList<CampingDTO>)request.getAttribute("campingLists");
 	
+	/* 쟁구리 */
 	/* 공지사항에 캠핑 공지사항 가져오기 */
 	ArrayList<NoticeBoardDTO> noticeLists = (ArrayList<NoticeBoardDTO>)noticeDao.getAllnoticeLists(1, 6);
 	
