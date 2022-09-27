@@ -69,7 +69,7 @@
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 	<title>Insert title here</title>
 	
 	

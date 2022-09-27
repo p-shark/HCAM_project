@@ -43,7 +43,7 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <!-- icon -->
 <script src="https://kit.fontawesome.com/ae515d5c73.js" crossorigin="anonymous"></script>
 <title>Insert title here</title>
@@ -264,7 +264,7 @@
 	function fn_callAjaxHeart(hlk_kubun, hlk_no, hlk_useYn) {
 		
 		$.ajax({
-			url: "HCAM_heartChange.jsp",
+			url: "view/HCAM_heartChange.jsp",
 			type:'POST',
 			dataType: "text",
 			async:false,
@@ -340,7 +340,7 @@
 	
 	/* 대댓글 팝업 오픈 */
 	function fn_openPopup(kubun, sbc_no, shb_no, sbc_RE_GRP, sbc_RE_LEV, sbc_RE_SEQ) {
-		
+		//alert(kubun + " / " + sbc_no + " / " + shb_no + " / " + sbc_RE_GRP + " / " + sbc_RE_LEV + " / " + sbc_RE_SEQ);
 		var url = "";
 		// 댓글 새로 작성
 		if(kubun == "insert") {
@@ -359,7 +359,7 @@
 </script>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="../include/HCAM_header.jsp"/>
 	
 	<input type="hidden" name="mem_no" value="<%=mem_no%>">			<!-- 로그인한 mem_no -->
 	<input type="hidden" name="shb_no" value="<%=shb_no%>">			<!-- 게시판 No -->
@@ -470,7 +470,7 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 	
 	<%
 		commonDao.dbClose();

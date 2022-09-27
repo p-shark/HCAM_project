@@ -56,7 +56,7 @@ public class QuestionListTotalAction implements Action{
 		
 		/* 이동할 주소경로 넘기기 */
 		ActionForward forward = new ActionForward();
-		forward.setPath("/HCAM_memberQuestion.jsp");
+		forward.setPath("/view/HCAM_memberQuestion.jsp");
 		return forward; // 이동할 경로를 vo 의 ActionForward 메소드를 사용해서 주소를 담아준다. 담은 주소를 controller 에 넘기기
 		
 	}

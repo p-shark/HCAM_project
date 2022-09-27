@@ -34,7 +34,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<title>문의사항 작성하기</title>
 	<style type="text/css">
@@ -228,7 +228,7 @@ function fn_regiList(){
 
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="../include/HCAM_header.jsp"/>
 	<!-- section -->
 	<section>
 		<form method="post" enctype="multipart/form-data"  action="memberQuestionUpdate02.co" onsubmit="return fn_regiList();">
@@ -312,7 +312,7 @@ function fn_regiList(){
 	</section>
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 	
 </body>
 </html>

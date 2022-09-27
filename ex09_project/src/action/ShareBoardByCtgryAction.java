@@ -82,7 +82,7 @@ public class ShareBoardByCtgryAction implements Action{
 		commonDao.dbClose();
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("HCAM_shareBoardByCtgry.jsp");
+		forward.setPath("view/HCAM_shareBoardByCtgry.jsp");
 		return forward;
 	}
 

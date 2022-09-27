@@ -38,7 +38,7 @@ public class ShareCommentWriteAction implements Action{
 		request.setAttribute("comments", comments);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("HCAM_shareCommentByChaging.jsp");
+		forward.setPath("/view/HCAM_shareCommentByChaging.jsp");
 		return forward;
 	}
 

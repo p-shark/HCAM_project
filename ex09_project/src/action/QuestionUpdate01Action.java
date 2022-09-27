@@ -40,7 +40,7 @@ public class QuestionUpdate01Action implements Action{
 		request.setAttribute("list", list);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("HCAM_memberQuestionUpdate.jsp");
+		forward.setPath("view/HCAM_memberQuestionUpdate.jsp");
 		return forward;
 		
 		//한글 깨짐 방지

@@ -11,6 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <title>Insert title here</title>
 <style>
 	div {
@@ -27,7 +28,7 @@
 		border: none;
 		border-radius: 5px;
 		background-color: var(--color-blue);
-		color: white;
+		color: var(--color-white);
 		cursor: pointer;
 	}
 	svg {

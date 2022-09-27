@@ -40,10 +40,13 @@ public class CmFrontController extends HttpServlet {
 		ActionForward forward=null;
 		Action action=null;
 		
+		// path가 .jsp로 넘어오지 않고 .co로 넘어오는 경우 command값에 /view가 같이 넘어와서 제거해줘야함
+		command = command.replace("/view", "");
+		
 		/* DB작업을 안하면 이렇게 쓰면 됨 */
 		if(command.equals("/marketMain.co")){
 			forward=new ActionForward();
-			forward.setPath("/HCAM_marketMain.jsp");
+			forward.setPath("/view/HCAM_marketMain.jsp");
 		}
 		/* DB작업을 하면 아래와 같이 */
 		else if(command.equals("/campingMain.co")){
@@ -72,7 +75,7 @@ public class CmFrontController extends HttpServlet {
 		}
 		else if(command.equals("/memberQuestionWrite01.co")){
 			forward=new ActionForward();
-			forward.setPath("/HCAM_memberQuestionWrite.jsp");
+			forward.setPath("/view/HCAM_memberQuestionWrite.jsp");
 		}
 		else if(command.equals("/memberQuestionWrite02.co")){
 			action = new QuestionWriteAction();	//QuestionListallAction 부르고 action 안에 담기

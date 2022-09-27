@@ -50,8 +50,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/common.css">
-<link rel="stylesheet" type="text/css" href="css/hotelMain.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/hotelMain.css">
 <!-- kakaoMap api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ba53fbf9c283e34734ca1b92dfbf253&libraries=services"></script>
 <title>Insert title here</title>
@@ -124,7 +124,7 @@
 		}
 		else {
 			$.ajax({
-				url: "HCAM_mainSelectbox.jsp",
+				url: "view/HCAM_mainSelectbox.jsp",
 				type:'POST',
 				dataType: "text",
 				async:false,
@@ -287,7 +287,7 @@
 		};
 	    
 		$.ajax({
-			url: "HCAM_hotelMainBySearching.jsp",
+			url: "view/HCAM_hotelMainBySearching.jsp",
 			type:'POST',
 			dataType: "text",
 			async:false,
@@ -310,7 +310,7 @@
 </script>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="../include/HCAM_header.jsp"/>
 	
 	<input type="hidden" name="today" value="<%=today %>">			<!-- 현재일자 -->
 	<input type="hidden" name="tomorrow" value="<%=tomorrow %>">	<!-- 다음날일자 -->
@@ -727,7 +727,7 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 	
 	<%
 		commonDao.dbClose();

@@ -20,7 +20,7 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <!-- icon -->
 <script src="https://kit.fontawesome.com/ae515d5c73.js" crossorigin="anonymous"></script>
 <title>Insert title here</title>
@@ -100,7 +100,7 @@
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="../include/HCAM_header.jsp"/>
 	
 	<div id="div_content">
 		<div id="board_info">
@@ -116,7 +116,7 @@
 		</div>
 	</div>
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 	
 	<%
 		commonDao.dbClose();

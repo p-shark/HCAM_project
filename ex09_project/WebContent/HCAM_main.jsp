@@ -28,14 +28,14 @@
 	<!-- slide -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-	<script type="text/javascript" src="slick/slick.min.js"></script>
-	<script type="text/javascript" src="slick/slick.js"></script>
-	<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/slick/slick.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/slick/slick.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick-theme.css"/>
     <!-- icon -->
 	<script src="https://kit.fontawesome.com/ae515d5c73.js" crossorigin="anonymous"></script>
     <!-- css -->
-	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 	<title></title>
 	<style type="text/css">
 		/* 상단 content */
@@ -984,7 +984,7 @@
 		}
 		else {
 			$.ajax({
-				url: "HCAM_mainSelectbox.jsp",
+				url: "view/HCAM_mainSelectbox.jsp",
 				type:'POST',
 				dataType: "text",
 				async:false,
@@ -1000,7 +1000,7 @@
 		}
 	}
 	
-	/* Top 국가 select박스 변경될 시 */
+	/* main 국가 select박스 변경될 시 */
 	function fn_chgHotelSelectbox(NationCode) {
 		if($('#htl_select01 option:selected').val() == "") {
 			//$('#select02').val("").prop("selected", true);
@@ -1009,7 +1009,7 @@
 		}
 		else {
 			$.ajax({
-				url: "HCAM_mainSelectbox.jsp",
+				url: "view/HCAM_mainSelectbox.jsp",
 				type:'POST',
 				dataType: "text",
 				async:false,
@@ -1159,7 +1159,7 @@
 </script>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="include/HCAM_header.jsp"/>
 	
 	<input type="hidden" name="today" value="<%=today %>">			<!-- 현재일자 -->
 	<input type="hidden" name="tomorrow" value="<%=tomorrow %>">	<!-- 다음날일자 -->
@@ -1690,7 +1690,7 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="include/HCAM_footer.jsp"/>
 	
 	<%
 		commonDao.dbClose();

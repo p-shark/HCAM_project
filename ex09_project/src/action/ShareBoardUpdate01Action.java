@@ -38,7 +38,7 @@ public class ShareBoardUpdate01Action implements Action{
 		request.setAttribute("board", board);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("HCAM_shareBoardUpdate.jsp");
+		forward.setPath("/view/HCAM_shareBoardUpdate.jsp");
 		return forward;
 	}
 

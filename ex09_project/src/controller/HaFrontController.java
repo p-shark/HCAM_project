@@ -45,6 +45,9 @@ public class HaFrontController extends HttpServlet {
 		ActionForward forward=null;
 		Action action=null;
 		
+		// path가 .jsp로 넘어오지 않고 .ho로 넘어오는 경우 command값에 /view가 같이 넘어와서 제거해줘야함 
+		command = command.replace("/view", "");
+		
 		/*if(command.equals("/hotelMain.ho")){
 			forward=new ActionForward();
 			forward.setPath("/test02.jsp");
@@ -58,6 +61,7 @@ public class HaFrontController extends HttpServlet {
 			}
 		}
 		else if(command.equals("/shareBoard.ho")) {
+			
 			action = new ShareBoardTotalAction();
 			try {
 				forward=action.execute(request, response);
@@ -83,7 +87,7 @@ public class HaFrontController extends HttpServlet {
 		}
 		else if(command.equals("/shareBoardWrite01.ho")){
 			forward=new ActionForward();
-			forward.setPath("/HCAM_shareBoardWrite.jsp");
+			forward.setPath("/view/HCAM_shareBoardWrite.jsp");
 		}
 		else if(command.equals("/shareBoardWrite02.ho")){
 			action = new ShareBoardWriteAction();

@@ -20,7 +20,7 @@ public class ShareCommentPopupSaveAction implements Action{
 		ShareBoardService boardSvc = new ShareBoardService();
 		
 		ShbCommentDTO comment = new ShbCommentDTO();
-		
+		System.out.println(kubun);
 		if("insert".equals(kubun)) {
 			comment.setMem_no(Integer.parseInt(request.getParameter("mem_no")));
 			comment.setSbc_no(Integer.parseInt(request.getParameter("sbc_no")));

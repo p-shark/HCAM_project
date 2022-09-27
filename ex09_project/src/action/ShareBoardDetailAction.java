@@ -32,7 +32,7 @@ public class ShareBoardDetailAction implements Action{
 		request.setAttribute("comments", comments);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("HCAM_shareBoardDetail.jsp");
+		forward.setPath("view/HCAM_shareBoardDetail.jsp");
 		return forward;
 	}
 

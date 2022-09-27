@@ -12,8 +12,8 @@
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="css/common.css">
-	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 	<title>로그인</title>
 </head>
 <script>
@@ -53,7 +53,7 @@
 </script>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="../include/HCAM_header.jsp"/>
 	
 	<div id="loginBox">
 		<form name="form_login" method="POST" action="HCAM_memberLoginResult01.jsp" onsubmit="return fn_login();">
@@ -66,7 +66,7 @@
 						<td colspan="2">
 							<div class="div_wrong">
 								<div>
-									<img src="image/icon/wrong_x2.png">
+									<img src="../image/icon/wrong_x2.png">
 								</div>
 								<div>회원정보가 존재하지 않거나 비밀번호가 일치하지 않습니다.</div>
 							</div>
@@ -121,19 +121,19 @@
 				<tr>
 					<td colspan="2">
 						<button type="button" id="btn_google" onclick="fn_goWebsite('google');">
-							<img src="image/icon/google.png" style="width: 25px; height: 25px;">
+							<img src="../image/icon/google.png" style="width: 25px; height: 25px;">
 						</button>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<button type="button" id="btn_naver" onclick="fn_goWebsite('naver');">
-							<img src="image/icon/naver.png" style="width: 18px; height: 18px;">
+							<img src="../image/icon/naver.png" style="width: 18px; height: 18px;">
 						</button>
 					</td>
 					<td>
 						<button type="button" id="btn_kakao" onclick="fn_goWebsite('kakao');">
-							<img src="image/icon/kakao.png" style="width: 18px; height: 18px;">
+							<img src="../image/icon/kakao.png" style="width: 18px; height: 18px;">
 						</button>
 					</td>
 				</tr>
@@ -145,6 +145,6 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 </body>
 </html>

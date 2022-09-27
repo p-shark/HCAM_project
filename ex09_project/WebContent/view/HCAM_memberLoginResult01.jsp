@@ -21,7 +21,7 @@
 </head>
 <body>
 	<% if(mem_no != 0) { %>
-			<script>location.href = "HCAM_main.jsp"; </script>
+			<script>location.href = "${pageContext.request.contextPath}/HCAM_main.jsp"; </script>
 	<% }else { 
 			/* 회원정보가 없는 경우 id값 파라미터로 던짐 */
 			String view = "HCAM_memberLogin.jsp?id=" +id; 

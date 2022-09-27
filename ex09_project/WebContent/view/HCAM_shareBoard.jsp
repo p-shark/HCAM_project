@@ -45,8 +45,8 @@
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="css/common.css">
-	<link rel="stylesheet" type="text/css" href="css/shareBoard.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/shareBoard.css">
 	<!-- icon -->
 	<script src="https://kit.fontawesome.com/ae515d5c73.js" crossorigin="anonymous"></script>
 </head>
@@ -133,7 +133,7 @@
 </script>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="../include/HCAM_header.jsp"/>
 	
 	<input type="hidden" name="mem_no" value="<%=mem_no%>">			<!-- 로그인한 mem_no -->
 	<div id="contentBox">
@@ -258,7 +258,7 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 	
 	<%
 		commonDao.dbClose();

@@ -86,7 +86,7 @@ public class CampingListallAction implements Action{
 
 		/* 이동할 주소경로 넘기기 */
 		ActionForward forward = new ActionForward();
-		forward.setPath("/HCAM_campingMain.jsp");
+		forward.setPath("/view/HCAM_campingMain.jsp");
 		return forward; // 이동할 경로를 vo 의 ActionForward 메소드를 사용해서 주소를 담아준다. 담은 주소를 controller 에 넘기기
 		
 	}

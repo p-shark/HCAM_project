@@ -46,7 +46,7 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <title>Insert title here</title>
 <style>
 	#body_content {
@@ -122,6 +122,7 @@
 	function fn_callAjaxComment(comment) {
 		
 		var allData = {
+			"kubun" : $("input[name='kubun']").val(),
 			"mem_no" : $("input[name='mem_no']").val(),
 			"sbc_no" : $("input[name='sbc_no']").val(),
 			"shb_no" : $("input[name='shb_no']").val(),

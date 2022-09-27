@@ -195,7 +195,7 @@
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="../HCAM_header.jsp"/>
+	<jsp:include page="../include/HCAM_header.jsp"/>
 	<!-- header_dateLine -->
 	<div class="search_line">
 		<section class="search_section_line">
@@ -260,7 +260,7 @@
 	</section>	
 	
 	<!-- footer -->
-	<jsp:include page="../HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 	
 	<%
 		commonDao.dbClose();

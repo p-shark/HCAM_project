@@ -65,7 +65,7 @@ public class ShareBoardTotalAction implements Action{
 		commonDao.dbClose();
 				
 		ActionForward forward = new ActionForward();
-		forward.setPath("HCAM_shareBoard.jsp");
+		forward.setPath("view/HCAM_shareBoard.jsp");
 		return forward;
 	}
 

@@ -7,7 +7,7 @@
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <title>Insert title here</title>
 <style type="text/css">
 	#findPwBox {
@@ -181,7 +181,7 @@
 </script>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="../include/HCAM_header.jsp"/>
 	
 	<div id="findPwBox">
 		<form name="form_findPw" method="POST" onsubmit="fn_findPw();">
@@ -195,19 +195,19 @@
 				<tr>
 					<td colspan="2">
 						<button type="button" id="btn_google" onclick="fn_goWebsite('google');">
-							<img src="image/icon/google.png" style="width: 25px; height: 25px;">
+							<img src="../image/icon/google.png" style="width: 25px; height: 25px;">
 						</button>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<button type="button" id="btn_naver" onclick="fn_goWebsite('naver');">
-							<img src="image/icon/naver.png" style="width: 18px; height: 18px;">
+							<img src="../image/icon/naver.png" style="width: 18px; height: 18px;">
 						</button>
 					</td>
 					<td>
 						<button type="button" id="btn_kakao" onclick="fn_goWebsite('kakao');">
-							<img src="image/icon/kakao.png" style="width: 18px; height: 18px;">
+							<img src="../image/icon/kakao.png" style="width: 18px; height: 18px;">
 						</button>
 					</td>
 				</tr>
@@ -256,6 +256,6 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 </body>
 </html>

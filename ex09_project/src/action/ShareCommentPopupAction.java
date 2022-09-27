@@ -48,7 +48,7 @@ public class ShareCommentPopupAction implements Action{
 		request.setAttribute("sbc_content", sbc_content);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("HCAM_shareCommentPopup.jsp");
+		forward.setPath("/view/HCAM_shareCommentPopup.jsp");
 		return forward;
 	}
 

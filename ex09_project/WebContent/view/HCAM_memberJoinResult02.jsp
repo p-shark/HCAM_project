@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <!-- icon -->
 <script src="https://kit.fontawesome.com/ae515d5c73.js" crossorigin="anonymous"></script>
 <title>Insert title here</title>
@@ -36,7 +36,7 @@
 </head>
 <script>
 	function fn_closeJoin(){
-		window.opener.location.href="HCAM_main.jsp";
+		window.opener.location.href="${pageContext.request.contextPath}/HCAM_main.jsp";
 		window.close();
 		
 	}

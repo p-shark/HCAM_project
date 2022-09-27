@@ -1,6 +1,5 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.TreeMap"%>
-<%@page import="vo.SharingBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean class="dao.CommonDAO" id="commonDao"></jsp:useBean>
@@ -15,34 +14,26 @@
 	if(session.getAttribute("mem_no") != null) {
 		mem_no = Integer.parseInt(String.valueOf(session.getAttribute("mem_no")));
 	}
-	
-	int shb_no = (Integer) request.getAttribute("shb_no");
-	/* 게시글 파일명 조회 */
-	String fileName = (String) request.getAttribute("fileName");
-	/* 파일경로 조회 */
-	String filePath = (String) request.getAttribute("filePath");
-	
-	/* 게시글 조회  */
-	SharingBoardDTO board = (SharingBoardDTO) request.getAttribute("board");
-	
+
 	/* 코드별 공통코드 전체 조회 */
 	TreeMap<String, String> commCodes = commonDao.getCodeAllByCode("SHB01");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="css/common.css">
-	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+	<title>게시글 작성</title>
 	<style type="text/css">
 		section{
 			width: 100%;
 			padding: 40px 0px 100px 30px;
 			margin: 0px auto;
-			height: 755px;
+			height: 600px;
 			border: 1px soild black;
 		}
 		#total_center{
@@ -117,7 +108,7 @@
 			margin-top: 10px;
 			margin-bottom: 10px;
 			width: 800px;
-			height: 175px;
+			height: 20px;
 		}
 		#bt_cam_pic{
 			display: inline-block;
@@ -149,44 +140,12 @@
 		    background-color: var(--color-blue);
 		    font-weight: 500;
 		    border-radius: 5px;
-		}		 
-		#btn_update{
-		    width: 160px;
-		    height: 56px;
-		    margin-top: 15px;
-		    margin-right: 10px;
-		    padding: 0px 10px;
-		    text-align: center;
-		    font-size: 16px;
-		    line-height: 20px;
-		    color: white;
-		    cursor: pointer;
-		    border: 1px solid rgb(221, 221, 221);
-		    background-color: var(--color-blue);
-		    font-weight: 500;
-		    border-radius: 5px;
-		}	
-		#btn_delete {
-			width: 160px;
-		    height: 56px;
-		    margin-top: 15px;
-		    padding: 0px 10px;
-		    text-align: center;
-		    font-size: 16px;
-		    line-height: 20px;
-		    color: white;
-		    cursor: pointer;
-		    border: 1px solid rgb(221, 221, 221);
-		    background-color: #F63434;
-		    font-weight: 500;
-		    border-radius: 5px;
-		}	    
+		}		    
 
 	</style>
 </head>
 <script>
-	// 수정
-	function fn_updateBoard() {
+	function fn_writeBoard() {
 		var title = document.getElementsByName("title")[0].value;
 		var content = document.getElementsByName("content")[0].value;
 		
@@ -199,14 +158,6 @@
 		}
 		
 		return result;
-	}
-	
-	// 삭제
-	function fn_deleteBoard(shb_no, fileName) {
-		var result = confirm("정말 삭제하시겠습니끼?");
-		if(result == true) {
-			location.href = "shareBoardDelete.ho?shb_no=" + shb_no + "&fileName=" + fileName;
-		}
 	}
 	
 	// **************************  썸네일은 여러개 볼 수 있는데 업로드는 하나만 됨. 추후 수정 예정  ******************************
@@ -250,11 +201,11 @@
 </script>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
-	
+	<jsp:include page="../include/HCAM_header.jsp"/>
+	<!-- section -->
 	<section>
-		<form action="shareBoardUpdate02.ho" method="post" enctype="multipart/form-data" onsubmit="return fn_updateBoard();">
-			<input type="hidden" name="shb_no" value="<%=board.getShb_no() %>">
+		<form action="shareBoardWrite02.ho" method="post" enctype="multipart/form-data" onsubmit="return fn_writeBoard();">
+			<input type="hidden" name="mem_no" value="<%=mem_no %>">
 			<div id="total_center">
 				<div id="title_head">
 					<table>
@@ -265,12 +216,7 @@
 									<select name="category" class="selectBox">
 										<% 
 											for(Map.Entry<String, String> code : commCodes.entrySet()) { 
-												if(code.getKey().equals(board.getShb_ctgry())) {
-													out.println("<option value='" + code.getKey() + "' selected>" + code.getValue() + "</option>");
-												}
-												else {
-													out.println("<option value='" + code.getKey() + "'>" + code.getValue() + "</option>");
-												}
+												out.println("<option value='" + code.getKey() + "'>" + code.getValue() + "</option>");
 											}
 										%>
 									</select>
@@ -281,22 +227,20 @@
 							<tr>
 								<td colspan="2">제목<span class="redStar"> *</span></td>
 								<td colspan="5">
-									<input type="text" class="inputBox" name="title" placeholder="제목을 입력해주세요" value="<%=board.getShb_title()%>">
+									<input type="text" class="inputBox" name="title" placeholder="제목을 입력해주세요">
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2">내용<span class="redStar"> *</span></td>
 								<td colspan="5">
-									<textarea class="inputBox_context" name="content"><%=board.getShb_content()%></textarea>
+									<textarea class="inputBox_context" name="content"></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2"></td>
 								<td colspan="5">
-									<input type="file" name="filename" accept="uploadFile/*" onchange="setThumbnail(event);" multiple>
-									<div id="image_container">
-										<img alt="" src="<%=filePath %>" style="width: 150px; height: 150px; margin-top: 5px; margin-right: 5px;">
-									</div>
+									<input type="file" name="filename" accept="uploadFile/*" onchange="setThumbnail(event);" multiple required>
+									<div id="image_container"></div>
 									<!-- <button type="button" name="bt_attachPic" id="bt_cam">
 										<span id="bt_cam_pic"></span>
 									</button> -->
@@ -315,8 +259,7 @@
 						</div>
 					</table>
 					<div id="regLine">
-						<input type="submit" value="수정" id="btn_update">
-						<input type="button" value="삭제" id="btn_delete" onclick="fn_deleteBoard('<%=board.getShb_no()%>', '<%=fileName %>');">
+						<input type="submit" value="등록" id="bt_reg">
 					</div>	
 				</div>
 			</div>
@@ -324,7 +267,7 @@
 	</section>
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 	
 	<%
 		commonDao.dbClose();

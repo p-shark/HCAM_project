@@ -87,7 +87,7 @@ public class HotelListTotalAction implements Action{
 		request.setAttribute("hotelAdnInfos", hotelAdnInfos);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("HCAM_hotelMain.jsp");
+		forward.setPath("view/HCAM_hotelMain.jsp");
 		return forward;
 	}
 

@@ -8,10 +8,10 @@
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 	<!-- js -->
-	<script type="text/javascript" src="js/common.js" ></script> 
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js" ></script> 
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="css/common.css">
-	<link rel="stylesheet" type="text/css" href="css/join.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/join.css">
 	<!-- 주소 api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<title>회원가입</title>
@@ -31,7 +31,7 @@
 </script>
 <body>
 	<!-- header -->
-	<jsp:include page="HCAM_header.jsp"/>
+	<jsp:include page="../include/HCAM_header.jsp"/>
 	
 	<div id="joinBox">
 		<form name="form_join" method="POST" action="HCAM_memberJoinResult01.jsp" onsubmit="return fn_join();">
@@ -242,7 +242,7 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="HCAM_footer.jsp"/>
+	<jsp:include page="../include/HCAM_footer.jsp"/>
 	
 </body>
 </html>

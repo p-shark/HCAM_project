@@ -21,7 +21,7 @@
 <script>
 	/* 로그아웃 */
 	function fn_logout() {
-		var url = "HCAM_memberLogout.jsp";
+		var url = "${pageContext.request.contextPath}/view/HCAM_memberLogout.jsp";
 		var title = "popupOpener";
 		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=500,height=300,top=100,left=500";
 		window.open(url, title, "width=500, height=380, top=100, left=500");
@@ -32,11 +32,11 @@
 		<nav id="header_nav">
 			<div id="header_left">
 				<ul>
-					<div><li><a href="HCAM_main.jsp"><img id="logo" src="image/logo/logo4.png"></a></li></div>
+					<div><li><a href="${pageContext.request.contextPath}/HCAM_main.jsp"><img id="logo" src="${pageContext.request.contextPath}/image/logo/logo4.png"></a></li></div>
 					<div><li><a href="hotelMain.ho">호텔</a></li></div>
 					<div><li><a href="campingMain.co">캠핑</a></li></div>
 					<div><li><a href="">액티비티</a></li></div>
-					<div><li><a href="view/HCAM_marketMain.jsp">마켓</a></li></div>
+					<div><li><a href="${pageContext.request.contextPath}/HCAM_marketMain.jsp">마켓</a></li></div>
 					<div><li><a href="shareBoard.ho">여행리뷰</a></li></div>
 					<div><li><a href="">이벤트/쿠폰</a></li></div>
 					<div><li><a href="noticeMain.co">고객센터</a></li></div>
@@ -53,8 +53,8 @@
 						<li class="btn_mypage" onclick="fn_logout();"><button>로그아웃</button></li>
 					<% }else { %>
 						<li id="btn_mgr"><button>매니저</button></li>
-						<li id="btn_login"><button onclick="location.href='HCAM_memberLogin.jsp'">로그인</button></li>
-						<li id="btn_join"><button onclick="location.href='HCAM_memberJoin.jsp'">회원가입</button></li>
+						<li id="btn_login"><button onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberLogin.jsp'">로그인</button></li>
+						<li id="btn_join"><button onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberJoin.jsp'">회원가입</button></li>
 					<% } %>
 				</ul>
 			</div>
