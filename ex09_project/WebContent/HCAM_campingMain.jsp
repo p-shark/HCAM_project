@@ -21,6 +21,8 @@
 	int startPage=pageInfo.getStartPage();
 	int endPage=pageInfo.getEndPage();
 	
+	
+	
 	/* select box 의 option 값을 가져온 값 */
 	String optionValue = (String) request.getAttribute("optionValue");
 	ArrayList<CampingDTO> campingLists =(ArrayList<CampingDTO>)request.getAttribute("campingLists");
