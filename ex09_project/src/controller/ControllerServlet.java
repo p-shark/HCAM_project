@@ -28,10 +28,8 @@ public class ControllerServlet extends HttpServlet{
 				request.getRequestDispatcher(viewName).forward(request, response);
 			} 
 			else if(command.equals("carMain")){
-				inter = SawonImpl.instance();
-				viewName = inter.showData(request, response);
-				viewName = "view/"+viewName;
-				request.getRequestDispatcher(viewName).forward(request, response);
+				viewName = "view/HCAM_rentACarMain.jsp";
+				response.sendRedirect(viewName);
 			}
 			else if(command.equals("MarketMain")){
 				inter = MarketImpl.instance();

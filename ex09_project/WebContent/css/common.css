@@ -57,31 +57,31 @@ header {
 			line-height: 60px;
 			/*margin: 15px 10px 15px 30px;*/
 		}
-		#header_left div:nth-child(1) {
+		#header_left #goMain {
 			margin-top: -4px;
 			margin-right: 5px;
 			height: 64px;
 		}
-		#header_left div:nth-child(2) {
+		#header_left #goHotel {
 			margin-left: 0px;
 		}
-		#header_left div:nth-child(2)
-		,#header_left div:nth-child(3)
-		,#header_left div:nth-child(5) {
+		#header_left #goHotel
+		,#header_left #goCamping
+		,#header_left #goMarket {
 			width: 30px;
 		}
-		#header_left div:nth-child(4)
-		,#header_left div:nth-child(6) {
+		#header_left #goActivity
+		,#header_left #goShareBoard {
 			width: 55px;
 		}
-		#header_left div:nth-child(7) {
+		#header_left #goEvent {
 			width: 75px;
 		}
-		#header_left div:nth-child(8) {
+		#header_left #goNotice {
 			width: 60px;
 		}
 		/* 렌터카 (완성되면 자리이동 예정) */
-		#header_left div:nth-child(9) {
+		#header_left #goCar {
 			width: 40px;
 		}
 		#header_left div:hover {
@@ -150,7 +150,7 @@ header {
 
 /* footer */
 footer {
-	margin-top: 40px;
+	/* margin-top: 40px; */
 	width: 100%;
 	height: 210px;
 	background-color: #E9EBEE;

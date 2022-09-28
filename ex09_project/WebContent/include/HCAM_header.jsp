@@ -32,16 +32,15 @@
 		<nav id="header_nav">
 			<div id="header_left">
 				<ul>
-					<div><li><a href="${pageContext.request.contextPath}/HCAM_main.jsp"><img id="logo" src="${pageContext.request.contextPath}/image/logo/logo4.png"></a></li></div>
-					<div><li><a href="hotelMain.ho">호텔</a></li></div>
-					<div><li><a href="campingMain.co">캠핑</a></li></div>
-					<div><li><a href="">액티비티</a></li></div>
-					<div><li><a href="${pageContext.request.contextPath}/HCAM_marketMain.jsp">마켓</a></li></div>
-					<div><li><a href="shareBoard.ho">여행리뷰</a></li></div>
-					<div><li><a href="">이벤트/쿠폰</a></li></div>
-					<div><li><a href="noticeMain.co">고객센터</a></li></div>
-					<div><li><a href="sang.do?command=sawon">렌터카</a></li></div>
-					
+					<div id="goMain"><li><a href="${pageContext.request.contextPath}/HCAM_main.jsp"><img id="logo" src="${pageContext.request.contextPath}/image/logo/logo4.png"></a></li></div>
+					<div id="goHotel"><li><a href="hotelMain.ho">호텔</a></li></div>
+					<div id="goCamping"><li><a href="campingMain.co">캠핑</a></li></div>
+					<div id="goActivity"><li><a href="">액티비티</a></li></div>
+					<div id="goCar"><li><a href="carMain.do?command=carMain">렌터카</a></li></div>
+					<div id="goMarket"><li><a href="${pageContext.request.contextPath}/HCAM_marketMain.jsp">마켓</a></li></div>
+					<div id="goShareBoard"><li><a href="shareBoard.ho">여행리뷰</a></li></div>
+					<div id="goEvent"><li><a href="">이벤트/쿠폰</a></li></div>
+					<div id="goNotice"><li><a href="noticeMain.co">고객센터</a></li></div>
 				</ul>
 			</div>
 			<div id="header_right">
