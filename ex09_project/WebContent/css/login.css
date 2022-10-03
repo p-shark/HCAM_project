@@ -53,10 +53,10 @@
 				height: 55px;
 				font-size: 10.5pt;
 				letter-spacing: 0;
-				border-left: 5px solid rgb(225, 45, 45);
-			    border-top-color: rgb(225, 45, 45);
-			    border-right-color: rgb(225, 45, 45);
-			    border-bottom-color: rgb(225, 45, 45);
+				border-left: 5px solid var(--color-red);
+			    border-top-color: var(--color-red);
+			    border-right-color: var(--color-red);
+			    border-bottom-color: var(--color-red);
 			    box-shadow: 0px 0px 5px #BABABA;
 			}
 				.div_wrong div:first-child {

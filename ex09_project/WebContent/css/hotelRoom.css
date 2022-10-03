@@ -1,0 +1,715 @@
+/* 상단 검색바 중 체크인, 체크아웃 날짜 새로 세팅 */
+.search_section li:nth-child(3) input {
+	padding: 17px 0 15px 0;
+}
+.search_section li:nth-child(4) input {
+	padding: 17px 0 15px 0;
+}
+
+#div_content {
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 150px;
+	width: 1100px;
+}
+	/* 이미지 박스 */
+	#div_content #div_image {
+	
+	}
+		#div_image #image_main {
+			position: relative;
+			display: inline-block;
+		}
+			#div_image #image_main img {
+				width: 452.9px;
+				height: 301px;
+				border-radius: 8px 0 0 8px;
+			}
+			/* 찜하기 */
+			#div_image #image_main #div_heart {
+				color: inherit;
+			    fill: inherit;
+			    display: flex;
+			    position: absolute;
+			    top: 12px;
+			    left: 12px;
+			    z-index: 1;
+			}
+				#div_heart #heart_shape {
+					background: rgb(255, 255, 255);
+				    border-radius: 100%;
+				    color: inherit;
+				    fill: inherit;
+				    cursor: pointer;
+				    top: 12px;
+				    left: 0px;
+				    right: 16px;
+				    z-index: 1;
+				    width: 50px;
+				    height: 50px;
+				}
+				#heart_shape .fa-heart {
+					margin-top: 12px;
+					margin-left: 12px;
+					color: #f25555;
+				}
+		#div_image #image_sub {
+			display: inline-block;
+			vertical-align: top;
+		}
+			#image_sub img {
+				width: 211px;
+				height: 149px;
+			}
+			#image_sub #image_sub01 img:last-child {
+				border-radius: 0 8px 0 0;
+			}
+			#image_sub #image_sub02 img:last-child {
+				border-radius: 0 0 8px 0;
+			}
+	/* ankor 박스 */
+	#div_ankor {
+		margin-top: 10px;
+		width: 1100px;
+		height: 60px;
+		border: 1px solid rgb(221, 223, 226);
+		border-radius: 4px;
+	}
+		/* 왼쪽 영역 */
+		#div_ankor #left_ankor {
+			display: inline-block;
+			width: 750px;
+			height: 60px;
+			text-align: center;
+		}
+			#left_ankor ul li {
+				float: left;
+				padding: 20px 0 14px;
+				height: 22px;
+				color: #4e4e4e;
+			}
+			#left_ankor ul li:nth-child(1),
+			#left_ankor ul li:nth-child(3) {
+				margin-left: 15px;
+				margin-right: 15px;
+				width: 30px;
+			}
+			#left_ankor ul li:nth-child(2) {
+				margin-left: 15px;
+				margin-right: 15px;
+				width: 110px;
+			}
+			#left_ankor ul li:nth-child(4) {
+				margin-left: 15px;
+				margin-right: 15px;
+				width: 60px; 
+			}
+				#left_ankor ul li a {
+					font-size: 11pt;
+					color: #4e4e4e;
+				}
+				#left_ankor ul li:hover {
+					border-bottom: 4px solid var(--color-blue);
+				}
+				#left_ankor ul li a:hover {
+					color: var(--color-blue);
+				}
+		/* 오른쪽 영역 */
+		#div_ankor #right_ankor {
+			float: right;
+			width: 280px;
+			height: 60px;
+		}
+			#right_ankor div {
+				display: inline-block;
+			}
+			#right_ankor #ankor_fee {
+				width: 150px;
+				height: 60px;
+				line-height: 55px;
+			}
+				#ankor_fee span:nth-child(1) {
+					font-size: 8pt;
+					color: #4e4e4e;
+				}
+				#ankor_fee span:nth-child(2) {
+					font-size: 11pt;
+					font-weight: bold;
+					color: #e12d2d;
+				}
+				#ankor_fee span:nth-child(3) {
+					font-size: 17pt;
+					color: #e12d2d;
+				}
+			#right_ankor #ankor_btn {
+				margin-left: 10px;
+			}
+				#right_ankor #ankor_btn a {
+					padding: 7px;
+					color: var(--color-white);
+					background-color: var(--color-blue);
+					border-radius: 4px;
+					font-weight: bold;
+				}
+	/* 호텔 개요,특징 정보 */
+	#div_hotelInfo {
+		margin-top: 10px;
+		width: 1105px;
+	}
+		#div_hotelInfo #left_hotelInfo {
+			display: inline-block;
+			vertical-align: top;
+			width: 800px;
+		}
+			/* 테두리 라인 */
+			.div_border {
+				border: 1px solid rgb(221, 223, 226);
+				border-radius: 5px;
+			}
+			/* 호텔 제목,위치,소개 */
+			#div_hotelTitle {
+				
+			}
+				/* 호텔 아이콘 */
+				#div_hotelTitle #hotel_icon {
+					padding: 15px 15px 0 15px;
+				} 
+					#hotel_icon .sale_icon {
+						width: 40px;
+						height: 40px;
+					}
+				
+				/* 호텔명 */
+				#div_hotelTitle #hotel_name {
+					padding: 5px 15px 5px 15px;
+				} 
+					#div_hotelTitle #hotel_name span:nth-child(1){
+						font-size: 18pt;
+						font-weight: bold;
+					} 
+						.star_icon {
+							/* margin: -5px; */
+							margin-top: -5px;
+							margin-bottom: -5px;
+							margin-left: -5px;
+							margin-right: -5px;
+							padding: 0;
+							width: 25px;
+							height: 25px;
+							filter: invert(73%) sepia(49%) saturate(1688%) hue-rotate(338deg) brightness(102%) contrast(103%);
+						}
+				/* 호텔 위치 */
+				#div_hotelTitle #hotel_lct {
+					padding: 0 15px 5px 15px;
+					font-size: 10.5pt;
+				}
+				/* line */
+				.div_line {
+					margin: 10px 15px 10px 15px;
+					min-width: 1px;
+				    width: 770px;
+				    height: 1px;
+				    flex: 1 1 0%;
+				    border-bottom: 1px solid rgb(221, 223, 226);
+				}
+				/* 호텔 소개 */
+				#div_hotelTitle #hotel_intro {
+					padding: 2px 15px 15px 15px;
+				}
+			/* 편의시설/서비스 박스 */
+			#div_hotelfeature {
+				margin-top: 10px;
+			}
+				#featcher_title {
+					padding: 15px 15px 0 15px;
+					font-size: 13pt;
+				}
+				#featcher_icon {
+					margin-top: 20px;
+					margin-bottom: 20px;
+					text-align: center;
+				}
+					#brkf_icon {
+						display: inline-block;
+						margin-right: 118px;
+					}
+					#pool_icon {
+						display: inline-block;
+						margin-right: 118px;
+					}
+					#parking_icon {
+						display: inline-block;
+						margin-right: 118px;
+					}
+					#conv_icon {
+						display: inline-block;
+						margin-right: 118px;
+					}
+					#lugg_icon {
+						display: inline-block;
+					}
+		
+		#div_hotelInfo #right_hotelInfo {
+			display: inline-block;
+			vertical-align: top;
+			width: 298px;
+		}
+			/* 호텔 리뷰 */
+			#right_hotelInfo #hotelInfo_review {
+				padding-bottom: 10px;
+				height: 145px;
+			}
+				.review_left {
+					padding: 10px 0 0 10px;
+					float: left;
+				}
+					.review_left .review_total {
+						margin-right: 10px;
+						padding-left: 12px;	/* 글자 가운데 맞춤 */
+						width: 35px;		/* 글자 가운데 맞춤 */
+						height: 47px;
+						line-height: 50px;
+						font-weight: bold;
+						font-size: 11pt;
+						color: var(--color-white);
+						background-color: rgb(62, 108, 234);
+						border-radius: 40px 40px 0px 40px;
+					}
+				.review_right {
+					padding: 10px 0 0 10px;
+				}
+					.review_right div:first-child {
+						font-size: 12pt;
+					}
+					.review_right div:last-child {
+						margin-top: 5px;
+						color: var(--color-blue);
+						font-weight: bold;
+					}
+				#hotelInfo_review .review_detail {
+					margin-top: 15px;
+					margin-left: 10px;
+				}
+					#hotelInfo_review .review_detail .review_each {
+						float: left;
+						margin-right: 10px;
+					}
+						#hotelInfo_review .review_eachSub div {
+							float: left;
+						}
+						#hotelInfo_review .review_eachSub div:last-child {
+							float: right;
+							margin-right: 5px;
+							color: var(--color-blue);
+							font-size: 11pt;
+							font-weight: bold;
+						}
+			/* 호텔 위치 */
+			#right_hotelInfo #hotelInfo_lct {
+				margin-top: 10px;
+				padding: 10px 0 10px 25px;
+			}
+				/* 지도 api 공간 */
+				#bl_map_space {
+					width: 245px;
+					height: 90px;
+				}
+					#map_image {
+						width: 245px;
+						height: 90px;
+					}
+						#map_image #img1 {
+							position: absolute;
+							width: 245px;
+							height: 90px;
+							border-radius: 3px;
+						}
+						#map_image #img2 {
+							position: absolute;
+							margin-top: 10px;
+							margin-left: 110px;
+							width: 30px;
+						    height: 50px;
+						}
+						#map_image span {
+							position: absolute;
+							margin-top: 60px;
+							margin-left: 55px;
+							width: 245px;
+						    height: 20px;
+						    font-weight: bold;
+						    font-size: 12pt;
+						    color: #3c3c3c;
+						}
+						#map_image span:hover {
+							color: var(--color-blue);
+						}
+				/* line */
+				.div_line02 {
+					margin: 18px 0 15px 0;
+					min-width: 1px;
+				    width: 240px;
+				    height: 1px;
+				    flex: 1 1 0%;
+				    border-bottom: 1px solid rgb(221, 223, 226);
+				}
+				#hotelInfo_atrt #atrt_title {
+					margin-bottom: 15px;
+					font-weight: bold;
+				}
+				#hotelInfo_atrt .atrt_name {
+					margin-top: 7px;
+					font-size: 9pt;
+				}
+	/* 객실정보 */
+	#div_room {
+		margin-top: 40px;
+		width: 1100px;
+	}
+		#div_room #room_cnt {
+		 	color: var(--color-darkgray);
+			font-size: 16pt;
+			font-weight: bold;
+		}
+		#div_room #room_each {
+			margin-top: 20px;
+		}
+			/* 객실명 */
+			#room_each #room_name {
+				padding: 10px 0 10px 10px;
+				font-size: 12pt;
+				font-weight: bold;
+			}
+			/* 객실 전체 정보 */
+			#room_each #room_total {
+				background-color: #F7F7F7;
+			}
+				#room_each #room_title {
+					padding: 10px 0 0 10px;
+					font-weight: bold;
+				}
+					.room_image {
+						display: inline-block;
+						vertical-align: top;
+						width: 250px;
+					}
+					.room_servie {
+						display: inline-block;
+						vertical-align: top;
+						width: 300px;
+					}
+					.room_pers {
+						display: inline-block;
+						vertical-align: top;
+						width: 120px;
+					}
+					.room_price {
+						display: inline-block;
+						vertical-align: top;
+						width: 200px;
+					}
+					.room_btn {
+						display: inline-block;
+						vertical-align: top;
+						width: 100px;
+					}
+				#room_each #room_content {
+					padding: 10px 0 10px 10px;
+				}
+						#img_space #img_space01 img {
+							width: 244px;
+							height: 150px;
+						}
+					#img_space #img_space02 {
+						margin-top: 1px;
+					}
+						#img_space #img_space02 div {
+							display: inline-block;
+						}
+						#img_space #img_space02 img {
+							width: 120px;
+							height: 70px;
+						}
+					#room_content .div_roomBox {
+						display: inline-block;
+						vertical-align: top;
+						width: 819px;
+						height: 220px;
+						background-color: var(--color-white);
+						border: 2px solid #f79911;
+						box-shadow: 0 3px 3px 0 rgb(0 0 0 / 12%);
+					}
+						/* 상품 안내 */
+						.div_roomBox .room_servie {
+							height: 220px;
+							border-right: 1px solid rgb(0 0 0 / 12%);
+						}
+							.div_roomBox .room_servie div {
+								margin-bottom: 10px;
+								padding-left: 10px;
+							}
+							.div_roomBox .room_servie .roomSvc_comment {
+								padding: 1px 0 4px 10px;
+								background-color: #f79911;
+								color: var(--color-white);
+								font-weight: bold;
+							}
+								.text_red {
+									color: red;
+									font-size: 10.5pt;
+									font-weight: bold;
+								}
+								.div_half {
+									margin-top: 50px;
+								}
+								.fa-check {
+									color: green;
+								}
+								.fa-panorama {
+									color: #0D55E6;
+									font-size: 12pt;
+								}
+								.fa-bed {
+									color: #0D55E6;
+									font-size: 12pt;
+								}
+						/* 최대 인원 */
+						.div_roomBox .room_pers {
+							height: 220px;
+							border-right: 1px solid rgb(0 0 0 / 12%);
+						}
+							.div_roomBox .room_pers div:nth-child(1){
+								padding: 30px 0 5px 25px;
+							}
+								.fa-person {
+									font-size: 17pt;
+									color: #777777; 
+								}
+								.person-small {
+									font-size: 12pt;
+								}
+							.div_roomBox .room_pers div:nth-child(2){
+								font-size: 9pt;
+							}
+							.div_roomBox .room_pers div:nth-child(3){
+								margin-top: 10px;
+								font-size: 14pt;
+								text-align: center;
+							}
+						/* 1박당 요금 */
+						.div_roomBox .room_price {
+							height: 220px;
+							border-right: 1px solid rgb(0 0 0 / 12%);
+						}
+							.div_roomBox .price_comment {
+								margin-top: 3px;
+								margin-left: -5px;
+								padding: 1px 0 3px 5px;
+								width: 100px;
+								color: var(--color-white);
+								background-color: #e12d2d;
+								font-size: 9pt;
+								font-weight: bold;
+							}
+							/* 가격 */
+							.room_price .content_price {
+								margin-top: 36px;
+								width: 200px;
+								height: 25px;
+							}
+								.content_price div {
+									float: right;
+									margin-right: 10px;
+									font-weight: bold;
+									font-size: 13pt;
+									color: #737373;
+									/* 대각선 */
+									background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" style="stroke:rgb(115,115,115); stroke-width:1" /></svg>');
+								}
+							/* 할인된 가격 */
+							.room_price .content_disPrice {
+								margin-top: 5px;
+								width: 200px;
+								height: 25px;
+							}
+								.content_disPrice div {
+									float: right;
+									margin-right: 10px;
+									color: #e12d2d;
+								}
+									.content_disPrice div span:nth-child(1){
+										margin-right: -5px;
+										font-size: 13pt;
+									}
+									.content_disPrice div span:nth-child(2){
+										font-weight: bold;
+										font-size: 17pt;
+									}
+							/* 가격 */
+							.room_price .price_comment02 {
+								margin-top: 7px;
+								width: 200px;
+								height: 25px;
+							}
+								.price_comment02 div {
+									float: right;
+									margin-right: 10px;
+									color: gray;
+									font-size: 8pt;
+								}
+						/* 예약하기 버튼 */
+						.div_roomBox .room_btn {
+							
+						}
+							.room_btn .book_btn {
+								margin-top: 10px;
+								margin-left: 5px;
+							} 
+								.book_btn button {
+									width: 168px;
+									height: 50px;
+									line-height: 22px;
+									background-color: #5392f9;
+	    							color: #fff;
+	    							border: none;
+								    border-radius: 3px;
+								    font-size: 13px;
+								    font-weight: 700;
+								}
+							.room_btn .btn_comment {
+								margin-top: 10px;
+								margin-left: 5px;
+								width: 168px;
+								height: 50px;
+								background-color: #f3f9f2;
+    							color: #195411;
+							}
+								.btn_comment div:nth-child(1) {
+									padding-top: 5px;
+									text-align: center;
+									font-weight: bold;
+								}
+								.btn_comment div:nth-child(2) {
+									padding-top: 2px;
+									text-align: center;
+									font-size: 9pt;
+								}
+	/* 호텔 리뷰 box */
+	#htlReview {
+		margin-top: 40px;
+		width: 1100px;
+		height: 100px;
+	}
+		/* 리뷰 title */
+		#htlReview .htlRv_title {
+			color: var(--color-darkgray);
+			font-size: 16pt;
+			font-weight: bold;
+		}
+		#htlReview .htlRv_total {
+			margin-top: 10px;
+			padding-bottom: 20px;
+		}
+			.htlRv_total .htlRv_comment {
+				padding: 10px 0 10px 10px;
+				color: #737373;
+			}
+				#htlRv_review #htlRv_div_rv01 {
+					display: inline-block;
+					width: 240px;
+				}
+					.htlRv_div_left {
+						float: left;
+						padding: 10px 0 0 10px;
+					}
+						.htlRv_div_left .review_total {
+							margin-right: 10px;
+							padding-left: 15px;	/* 글자 가운데 맞춤 */
+							width: 50px;		/* 글자 가운데 맞춤 */
+							height: 67px;
+							line-height: 63px;
+							font-weight: bold;
+							font-size: 19pt;
+							color: var(--color-white);
+							background-color: rgb(62, 108, 234);
+							border-radius: 40px 40px 0px 40px;
+						}
+					.htlRv_div_right {
+						padding: 20px 0 0 10px;
+					}
+						.htlRv_div_right div:first-child {
+							font-size: 12pt;
+						}
+						.htlRv_div_right div:last-child {
+							margin-top: 5px;
+							color: var(--color-blue);
+							font-weight: bold;
+						}
+				#htlRv_review .htlRv_div_rv02 {
+					display: inline-block;
+					vertical-align: top;
+					margin-top: 20px;
+					width: 209px;
+					border-right: 1px solid rgb(0 0 0 / 12%);
+				}
+				#htlRv_review .htlRv_div_rv02_final {
+					display: inline-block;
+					vertical-align: top;
+					margin-top: 20px;
+					width: 209px;
+				}
+				.htlRv_div_rv02 div:nth-child(1),
+				.htlRv_div_rv02_final div:nth-child(1) {
+					font-size: 14pt;
+					font-weight: bold;
+					color: var(--color-blue);
+					text-align: center;
+				}
+				.htlRv_div_rv02 div:nth-child(2),
+				.htlRv_div_rv02_final div:nth-child(2) {
+					font-size: 11pt;
+					text-align: center;
+				}
+	/* 흐리게 */
+	.chgOpacity {
+		opacity: 0.3;
+	}
+		
+		
+		
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 1000px;
+}
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}		
+		

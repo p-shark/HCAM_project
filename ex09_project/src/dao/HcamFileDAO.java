@@ -92,7 +92,7 @@ public class HcamFileDAO {
 		int startrow=(pageNo-1)*10;
 		
 		try {
-			String sql = String.format("select concat(hfl_path,'/',hfl_name) as filepath from hcamFile " + 
+			String sql = String.format("select concat(hfl_path,hfl_name) as filepath from hcamFile " + 
 									   "where hfl_kubun = '%s' and kubun_no = %d;"
 									   , hfl_kubun, kubun_no); 
 			ResultSet rs = stmt.executeQuery(sql);

@@ -7,7 +7,6 @@ public class SharingBoardDTO {
 	private String shb_title;
 	private String shb_content;
 	private int shb_cnt;
-	private int shb_likeCnt;
 	private String shb_date;
 	private int commentCnt;
 	
@@ -28,9 +27,6 @@ public class SharingBoardDTO {
 	}
 	public void setShb_cnt(int shb_cnt) {
 		this.shb_cnt = shb_cnt;
-	}
-	public void setShb_likeCnt(int shb_likeCnt) {
-		this.shb_likeCnt = shb_likeCnt;
 	}
 	public void setShb_date(String shb_date) {
 		this.shb_date = shb_date;
@@ -56,9 +52,6 @@ public class SharingBoardDTO {
 	}
 	public int getShb_cnt() {
 		return shb_cnt;
-	}
-	public int getShb_likeCnt() {
-		return shb_likeCnt;
 	}
 	public String getShb_date() {
 		return shb_date;

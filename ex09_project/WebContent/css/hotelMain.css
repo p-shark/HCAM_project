@@ -4,6 +4,14 @@ input::-webkit-inner-spin-button {	/* input type=number 인 경우 위아래버�
 	-webkit-appearance: none;
 }
 
+/* 상단 검색바 중 체크인, 체크아웃 날짜 새로 세팅 */
+.search_section li:nth-child(3) input {
+	padding: 17px 0 15px 0;
+}
+.search_section li:nth-child(4) input {
+	padding: 17px 0 15px 0;
+}
+
 #div_content {
 	margin: 0 auto;
 	margin-top: 20px;
@@ -330,15 +338,15 @@ input::-webkit-inner-spin-button {	/* input type=number 인 경우 위아래버�
 		#right_content {
 			width: 840px;
 		}
-		#right_content:hover {
-			cursor: pointer;
-		}
 			#right_content .each_content {
 				margin-bottom: 20px;
 				width: 840px;
 				border: 1px solid #dddfe2;
 				border-radius: 8px;
 				box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%);
+			}
+				#right_content .each_content:hover {
+				cursor: pointer;
 			}
 			#right_content .each_content:nth-child(odd) {
 				background-color: #EBF0FC;
@@ -432,6 +440,25 @@ input::-webkit-inner-spin-button {	/* input type=number 인 경우 위아래버�
 							border: 1px solid #dddfe2;
 							font-weight: bold;
 						}
+					.hotelChkTime {
+						clear: left;
+						padding-top: 10px;
+					}
+						.hotelChkTime .hotel_chkTime {
+							display: inline-block;
+						}
+						.hotelChkTime .hotel_chkTime div {
+							display: inline-block;
+							padding: 3px;
+							border: 1px solid #dddfe2;
+							font-weight: bold;
+						}
+						.hotelChkTime .hotel_chkTime div:last-child {
+							margin-left: -5px;
+							margin-right: 5px;
+							border-left: none;
+							color: var(--color-red);
+						}
 					
 				/* 호텔 요금 및 객실예약버튼 */
 				.content_right {
@@ -486,7 +513,7 @@ input::-webkit-inner-spin-button {	/* input type=number 인 경우 위아래버�
 							border-radius: 2px;
 							font-size: 9pt;
 							color: var(--color-white);
-							background-color: rgb(225, 45, 45);
+							background-color: var(--color-red);
 						}
 					/* 1박당 요금 시작가 */
 					.content_right .content_priceText {

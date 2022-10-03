@@ -16,6 +16,7 @@ public class HotelDTO {
 	private int htl_lugg;
 	private String htl_inTime;
 	private String htl_outTime;
+	private int htl_brfkPrice;
 	
 	public void setHtl_no(int htl_no) {
 		this.htl_no = htl_no;
@@ -61,6 +62,9 @@ public class HotelDTO {
 	}
 	public void setHtl_outTime(String htl_outTime) {
 		this.htl_outTime = htl_outTime;
+	}
+	public void setHtl_brfkPrice(int htl_brfkPrice) {
+		this.htl_brfkPrice = htl_brfkPrice;
 	}
 	
 	public int getHtl_no() {
@@ -108,4 +112,8 @@ public class HotelDTO {
 	public String getHtl_outTime() {
 		return htl_outTime;
 	}
+	public int getHtl_brfkPrice() {
+		return htl_brfkPrice;
+	}
+	
 }

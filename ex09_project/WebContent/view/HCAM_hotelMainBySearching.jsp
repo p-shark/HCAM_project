@@ -80,7 +80,7 @@
 						}
 					%>
 				</div>
-				<div class="content_center">
+				<div class="content_center" onclick="fn_goHotelRoom(<%=hotelList.get(i).getHtl_no() %>);">
 					<div class="hotelName">
 						<font><%=hotelList.get(i).getHtl_name() %></font>
 					</div>
@@ -151,7 +151,7 @@
 						}
 					}
 				%>
-				<div class="content_right">
+				<div class="content_right" onclick="fn_goHotelRoom(<%=hotelList.get(i).getHtl_no() %>);">
 					<div class="content_review">
 						<div class="review_right">	
 							<div><%=avg_sco %></div>

@@ -65,7 +65,6 @@ public class SharingBoardDAO {
 				board.setShb_title(rs.getString("shb_title"));
 				board.setShb_content(rs.getString("shb_content"));
 				board.setShb_cnt(rs.getInt("shb_cnt"));
-				board.setShb_likeCnt(rs.getInt("shb_likeCnt"));
 				board.setShb_date(rs.getString("shb_date"));
 				board.setCommentCnt(rs.getInt("comment_cnt"));
 				
@@ -110,7 +109,6 @@ public class SharingBoardDAO {
 				board.setShb_title(rs.getString("shb_title"));
 				board.setShb_content(rs.getString("shb_content"));
 				board.setShb_cnt(rs.getInt("shb_cnt"));
-				board.setShb_likeCnt(rs.getInt("shb_likeCnt"));
 				board.setShb_date(rs.getString("shb_date"));
 				board.setCommentCnt(rs.getInt("comment_cnt"));
 				
@@ -151,7 +149,6 @@ public class SharingBoardDAO {
 				board.setShb_title(rs.getString("shb_title"));
 				board.setShb_content(rs.getString("shb_content"));
 				board.setShb_cnt(rs.getInt("shb_cnt"));
-				board.setShb_likeCnt(rs.getInt("shb_likeCnt"));
 				board.setShb_date(rs.getString("shb_date"));
 				
 				boards.add(board);
@@ -283,7 +280,6 @@ public class SharingBoardDAO {
 				board.setShb_title(rs.getString("shb_title"));
 				board.setShb_content(rs.getString("shb_content"));
 				board.setShb_cnt(rs.getInt("shb_cnt"));
-				board.setShb_likeCnt(rs.getInt("shb_likeCnt"));
 				board.setShb_date(rs.getString("shb_fmDate"));
 			}
 			
@@ -329,7 +325,6 @@ public class SharingBoardDAO {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally{
 			close(rs);

@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.HotelBookingAction;
+import action.HotelBookingSuccessAction;
 import action.HotelListTotalAction;
 import action.HotelMainBySearchingAction;
+import action.HotelRoomListAction;
 import action.ShareBoardByCtgryAction;
 import action.ShareBoardDeleteAction;
 import action.ShareBoardDetailAction;
@@ -63,6 +66,30 @@ public class HaFrontController extends HttpServlet {
 		}
 		else if(command.equals("/hotelMainBySearching.ho")) {
 			action = new HotelMainBySearchingAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/hotelRoom.ho")){
+			action = new HotelRoomListAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/hotelBooking.ho")){
+			action = new HotelBookingAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/hotelBookingSuccess.ho")){
+			action = new HotelBookingSuccessAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {

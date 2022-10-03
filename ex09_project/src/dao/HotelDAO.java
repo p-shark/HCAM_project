@@ -12,9 +12,9 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.sql.DataSource;
-
+import vo.HotelBookingDTO;
 import vo.HotelDTO;
+import vo.HotelRoomDTO;
 
 public class HotelDAO {
 	
@@ -327,6 +327,222 @@ public class HotelDAO {
 		}
 		
 		return hotelAdnInfos;
+	}
+	
+	/* 호텔 정보 */
+	public HotelDTO getHotelInfo(int htl_no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from hotel where htl_no = ?;";
+		
+		HotelDTO hotel = new HotelDTO();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htl_no);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				hotel.setHtl_no(rs.getInt("htl_no"));
+				hotel.setMgr_no(rs.getInt("mgr_no"));
+				hotel.setHtl_name(rs.getString("htl_name"));
+				hotel.setHtl_nation(rs.getString("htl_nation"));
+				hotel.setHtl_location(rs.getString("htl_location"));
+				hotel.setHtl_addr(rs.getString("htl_addr"));
+				hotel.setHtl_addrdtl(rs.getString("htl_addrdtl"));
+				hotel.setHtl_grade(rs.getInt("htl_grade"));
+				hotel.setHtl_brkf(rs.getInt("htl_brkf"));
+				hotel.setHtl_pool(rs.getInt("htl_pool"));
+				hotel.setHtl_park(rs.getInt("htl_park"));
+				hotel.setHtl_conv(rs.getInt("htl_conv"));
+				hotel.setHtl_lugg(rs.getInt("htl_lugg"));
+				hotel.setHtl_inTime(rs.getString("htl_inTime"));
+				hotel.setHtl_outTime(rs.getString("htl_outTime"));
+				hotel.setHtl_brfkPrice(rs.getInt("htl_brfkPrice"));
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return hotel;
+	}
+	
+	/* 각 호텔의 전체 객실 정보 */
+	public ArrayList<HotelRoomDTO> getRoomAll(int htl_no, String chkIn, String chkOut) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<HotelRoomDTO> htlRoomList = new ArrayList<HotelRoomDTO>();
+		HotelRoomDTO htlRoom = null;
+		
+		String sql = "select hrm.* " 
+				   + ",(select count(*) from htlBooking where htl_no = hrm.htl_no and hrm_no = hrm.hrm_no "
+				   + "and ((? >= htb_chkIn and ? < htb_chkOut) or (? < htb_chkIn and ? > htb_chkIn))) as booking_cnt "
+				   + "from htlRoom hrm where hrm.htl_no = ? order by booking_cnt, hrm_price;";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, chkIn.replaceAll("-", ""));
+			pstmt.setString(2, chkIn.replaceAll("-", ""));
+			pstmt.setString(3, chkIn.replaceAll("-", ""));
+			pstmt.setString(4, chkOut.replaceAll("-", ""));
+			pstmt.setInt(5, htl_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				htlRoom = new HotelRoomDTO();
+				
+				htlRoom.setHrm_no(rs.getInt("hrm_no"));
+				htlRoom.setHtl_no(rs.getInt("htl_no"));
+				htlRoom.setHrm_name(rs.getString("hrm_name"));
+				htlRoom.setHrm_view(rs.getString("hrm_view"));
+				htlRoom.setHrm_bed(rs.getString("hrm_bed"));
+				htlRoom.setHrm_price(rs.getInt("hrm_price"));
+				htlRoom.setHrm_maxpers(rs.getInt("hrm_maxpers"));
+				htlRoom.setBooking_cnt(rs.getInt("booking_cnt"));
+				
+				htlRoomList.add(htlRoom);
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return htlRoomList;
+	}
+	
+	/* 호텔의 객실 정보 */
+	public HotelRoomDTO getRoomInfo(int htl_no, int hrm_no) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		HotelRoomDTO htlRoom = null;
+		
+		String sql = "select * from htlRoom where htl_no = ? and hrm_no = ?;";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htl_no);
+			pstmt.setInt(2, hrm_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				htlRoom = new HotelRoomDTO();
+				
+				htlRoom.setHrm_no(rs.getInt("hrm_no"));
+				htlRoom.setHtl_no(rs.getInt("htl_no"));
+				htlRoom.setHrm_name(rs.getString("hrm_name"));
+				htlRoom.setHrm_view(rs.getString("hrm_view"));
+				htlRoom.setHrm_bed(rs.getString("hrm_bed"));
+				htlRoom.setHrm_price(rs.getInt("hrm_price"));
+				htlRoom.setHrm_maxpers(rs.getInt("hrm_maxpers"));
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return htlRoom;
+	}
+	
+	/* 호텔 예약 */
+	public int insertHtlBooking(HotelBookingDTO htlBooking) {
+		
+		CallableStatement cstmt = null;
+		ResultSet rs = null;
+		
+		int htb_no = 0;
+		
+		try {
+			cstmt = conn.prepareCall("{call HOTEL_BOOKING_SP(?,?,?,?,?,?,?,?,?,?,?)}");
+			
+			cstmt.setInt(1, htlBooking.getHtl_no());
+			cstmt.setInt(2, htlBooking.getHrm_no());
+			cstmt.setInt(3, htlBooking.getMem_no());
+			cstmt.setString(4, htlBooking.getHtb_rlpName());
+			cstmt.setString(5, htlBooking.getHtb_rlpEmail());
+			cstmt.setString(6, htlBooking.getHtb_rlpNation());
+			cstmt.setString(7, htlBooking.getHtb_rlpPhone());
+			cstmt.setString(8, htlBooking.getHtb_chkIn());
+			cstmt.setString(9, htlBooking.getHtb_chkOut());
+			cstmt.setInt(10, htlBooking.getHtb_stayTerm());
+			cstmt.setInt(11, htlBooking.getHtb_brkfCnt());
+			
+			cstmt.execute();
+			
+			rs = cstmt.getResultSet();
+			
+			if(rs.next()) {
+				htb_no = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rs);
+			close(cstmt);
+		}
+		
+		return htb_no;
+	}
+	
+	/* 호텔 예약 정보 */
+	public HotelBookingDTO getHtlBookingInfo(int htb_no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		HotelBookingDTO htlBooking = null;
+		
+		String sql = "select htb.*, date_format(htb_date, '%Y-%m-%d %H:%i') as htb_fmDate from htlBooking htb where htb_no = ?;";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htb_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				htlBooking = new HotelBookingDTO();
+				
+				htlBooking.setHtb_no(rs.getInt("htb_no"));
+				htlBooking.setHtl_no(rs.getInt("htl_no"));
+				htlBooking.setHrm_no(rs.getInt("hrm_no"));
+				htlBooking.setMem_no(rs.getInt("mem_no"));
+				htlBooking.setHtb_rlpName(rs.getString("htb_rlpName"));
+				htlBooking.setHtb_rlpEmail(rs.getString("htb_rlpEmail"));
+				htlBooking.setHtb_rlpNation(rs.getString("htb_rlpNation"));
+				htlBooking.setHtb_rlpPhone(rs.getString("htb_rlpPhone"));
+				htlBooking.setHtb_chkIn(rs.getString("htb_chkIn"));
+				htlBooking.setHtb_chkOut(rs.getString("htb_chkOut"));
+				htlBooking.setHtb_stayTerm(rs.getInt("htb_stayTerm"));
+				htlBooking.setHtb_brkfCnt(rs.getInt("htb_brkfCnt"));
+				htlBooking.setHtb_brkfPrice(rs.getInt("htb_brkfPrice"));
+				htlBooking.setHtb_rlpRoomPrice(rs.getInt("htb_rlpRoomPrice"));
+				htlBooking.setHtb_totalPrice(rs.getInt("htb_totalPrice"));
+				htlBooking.setHtb_date(rs.getString("htb_fmDate"));
+				
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return htlBooking;
 	}
 	
 }

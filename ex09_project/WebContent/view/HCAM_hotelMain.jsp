@@ -54,6 +54,10 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/hotelMain.css">
 <!-- kakaoMap api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ba53fbf9c283e34734ca1b92dfbf253&libraries=services"></script>
+<!-- Air datepicker -->
+<link href="js/datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/datepicker/js/datepicker.js"></script>		<!-- Air datepicker js -->
+<script src="js/datepicker/js/datepicker.ko.js"></script>	<!-- 달력 한글 추가를 위해 커스텀 -->
 <title>Insert title here</title>
 </head>
 <script>
@@ -78,13 +82,13 @@
 		
 		var oldValue = obj.value;
 
-		var today = $("input[name='today']").val();				// 최저요금
-		var tomorrow = $("input[name='tomorrow']").val();				// 최저요금
+		var today = $("input[name='today']").val();
+		var tomorrow = $("input[name='tomorrow']").val();
 		
 		if(kubun == 1) {
 			if(oldValue < today) {
-				alert("현재 일자 이전의 날짜는 선택할 수 없습니다.")
-				obj.value = today;
+				/* alert("현재 일자 이전의 날짜는 선택할 수 없습니다.")
+				obj.value = today; */
 			}
 		}
 		else {
@@ -107,6 +111,9 @@
 		// 날짜 체크
 		if(top_chkIn >= top_chkOut) {
 			alert("체크아웃일자는 체크인일자 이후로 선택하세요");
+		}
+		else if(top_chkIn == "" || top_chkOut == "") {
+			alert("날짜를 선택하세요");
 		}
 		else {
 			result = true;
@@ -307,6 +314,17 @@
 		});
 		 
 	}
+	
+	/* 호텔룸 화면으로 이동 */
+	function fn_goHotelRoom(htl_no) {
+		var select01 = $('#select01 option:selected').val();
+		var select02 = $('#select02 option:selected').val();
+		var top_chkIn = $("input[name='top_chkIn']").val();			// 체크인일자
+		var top_chkOut = $("input[name='top_chkOut']").val();		// 체크아웃일자
+		
+		location.href = "hotelRoom.ho?htl_no=" + htl_no + "&select01=" + select01 + "&select02=" + select02 + 
+						"&top_chkIn=" + top_chkIn + "&top_chkOut=" + top_chkOut;
+	}
 </script>
 <body>
 	<!-- header -->
@@ -366,8 +384,8 @@
 							  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 							</svg>
 						</div>
-						<input class="search_sec_input" type="date" name="top_chkIn" id="top_chkIn" value="<%=checkIn %>" onblur="fn_chgDate(this ,1);" placeholder="체크인일자">
-	
+						<%-- <input class="search_sec_input" type="date" name="top_chkIn" id="top_chkIn" value="<%=checkIn %>" onblur="fn_chgDate(this ,1);" placeholder="체크인일자"> --%>
+						<input class="search_sec_input" type="text" name="top_chkIn" id="top_chkIn" value="<%=checkIn %>" onblur="fn_chgDate(this ,1);" placeholder="체크인일자">
 					</li>
 					<li>
 						<div class="search_sec_icon">
@@ -376,7 +394,8 @@
 							  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 							</svg>
 						</div>
-						<input class="search_sec_input" type="date" name="top_chkOut" id="top_chkOut" value="<%=checkOut %>" onblur="fn_chgDate(this ,2)" placeholder="체크아웃">
+						<%-- <input class="search_sec_input" type="date" name="top_chkOut" id="top_chkOut" value="<%=checkOut %>" onblur="fn_chgDate(this ,2)" placeholder="체크아웃"> --%>
+						<input class="search_sec_input" type="text" name="top_chkOut" id="top_chkOut" value="<%=checkOut %>" onblur="fn_chgDate(this ,2)" placeholder="체크아웃">
 					</li>
 					<li>
 						<input type="submit" value="검색하기">
@@ -477,27 +496,6 @@
 							<img class="star_icon" alt="" src="image/icon/star_icon.png">
 							<img class="star_icon" alt="" src="image/icon/star_icon.png">
 						</label>
-						<!-- <input type="radio" name="grade" value="5" id="grade5">
-						<label for="grade5">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-						</label><br>
-						<input type="radio" name="grade" value="5" id="grade4">
-						<label for="grade4">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-						</label><br>
-						<input type="radio" name="grade" value="5" id="grade3">
-						<label for="grade3">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png">
-							<img class="star_icon" alt="" src="image/icon/star_icon.png"><br>
-						</label> -->
 					</div>
 				</div>
 				<div class="div_line"></div>
@@ -610,7 +608,7 @@
 								}
 							%>
 						</div>
-						<div class="content_center">
+						<div class="content_center" onclick="fn_goHotelRoom(<%=hotelList.get(i).getHtl_no() %>);">
 							<div class="hotelName">
 								<font><%=hotelList.get(i).getHtl_name() %></font>
 							</div>
@@ -647,6 +645,16 @@
 									}
 								%>
 							</div>
+							<div class="hotelChkTime">
+								<div class="hotel_chkTime">
+									<div>입실시간</div>
+									<div><%=hotelList.get(i).getHtl_inTime() %></div>
+								</div>
+								<div class="hotel_chkTime">
+									<div>퇴실시간</div>
+									<div><%=hotelList.get(i).getHtl_outTime() %></div>
+								</div>
+							</div>
 						</div>
 						<%
 							TreeMap<String, String> hotelTreeMap = hotelAdnInfos.get(i);
@@ -681,7 +689,7 @@
 								}
 							}
 						%>
-						<div class="content_right">
+						<div class="content_right" onclick="fn_goHotelRoom(<%=hotelList.get(i).getHtl_no() %>);">
 							<div class="content_review">
 								<div class="review_right">	
 									<div><%=avg_sco %></div>
@@ -843,6 +851,91 @@
 		function topFunction() {
 		  document.body.scrollTop = 0;
 		  document.documentElement.scrollTop = 0;
+		}
+		
+		/* 달력 날짜 선택 */
+		datePickerSet($("#top_chkIn"), $("#top_chkOut"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
+		/*
+		    * 달력 생성기
+		    * @param sDate 파라미터만 넣으면 1개짜리 달력 생성
+		    * @example   datePickerSet($("#datepicker"));
+		    * 
+		    * 
+		    * @param sDate, 
+		    * @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음
+		    * @example   datePickerSet($("#datepicker1"), $("#datepicker2"));
+		*/
+		function datePickerSet(sDate, eDate, flag) {
+	
+		    //시작 ~ 종료 2개 짜리 달력 datepicker	
+		    if (!isValidStr(sDate) && !isValidStr(eDate) && sDate.length > 0 && eDate.length > 0) {
+		        var sDay = sDate.val();
+		        var eDay = eDate.val();
+	
+		        if (flag && !isValidStr(sDay) && !isValidStr(eDay)) { //처음 입력 날짜 설정, update...			
+		            var sdp = sDate.datepicker().data("datepicker");
+		            sdp.selectDate(new Date(sDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
+	
+		            var edp = eDate.datepicker().data("datepicker");
+		            edp.selectDate(new Date(eDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
+		        }
+	
+		        /* 쟁구리가 고친곳임 (오늘일자 선택불가, 체크아웃일자는 체크인일자 다음날부터  선택가능하도록 고침) */
+		        var now_utc = Date.now() 	// 지금 날짜를 밀리초로
+				// getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+				var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+				var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+				// 체크아웃일자는 체크인일자 다음날로 선택가능하도록
+		        var endDate = new Date(sDay.replace(/-/g, "/"));
+		        endDate.setDate(endDate.getDate() + 1); 
+		        var fmt_endDate = new Date(endDate-timeOff).toISOString().split("T")[0];
+				
+				// 오늘일자 이전 선택 불가하도록
+	            sDate.datepicker({
+	            	minDate: new Date(today.replace(/-/g, "/"))
+	            });
+		        sDate.datepicker({
+		            language: 'ko',
+		            autoClose: true,
+		            onSelect: function () {
+		                datePickerSet(sDate, eDate);
+		            }
+		        });
+	
+		        //종료일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
+		        if (!isValidStr(sDay)) {
+		            eDate.datepicker({
+		                minDate: new Date(fmt_endDate.replace(/-/g, "/"))
+		            });
+		        }
+		        eDate.datepicker({
+		            language: 'ko',
+		            autoClose: true,
+		            onSelect: function () {
+		                datePickerSet(sDate, eDate);
+		            }
+		        });
+	
+		        //한개짜리 달력 datepicker
+		    } else if (!isValidStr(sDate)) {
+		        var sDay = sDate.val();
+		        if (flag && !isValidStr(sDay)) { //처음 입력 날짜 설정, update...			
+		            var sdp = sDate.datepicker().data("datepicker");
+		            sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
+		        }
+	
+		        sDate.datepicker({
+		            language: 'ko',
+		            autoClose: true
+		        });
+		    }
+	
+		    function isValidStr(str) {
+		        if (str == null || str == undefined || str == "")
+		            return true;
+		        else
+		            return false;
+		    }
 		}
 	</script>
 </body>

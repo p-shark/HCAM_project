@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 import dao.HotelDAO;
+import vo.HotelBookingDTO;
 import vo.HotelDTO;
+import vo.HotelRoomDTO;
 
 public class HotelService {
 
@@ -116,6 +118,107 @@ public class HotelService {
 		close(conn);
 		
 		return hotelAdnInfos;
+	}
+	
+	/* 호텔 정보 */
+	public HotelDTO getHotelInfo(int htl_no) {
+		HotelDTO hotel = null;
+		
+		// db connection
+		Connection conn = getConnection();
+		
+		HotelDAO hotelDAO = HotelDAO.getInstance();
+		hotelDAO.setConnection(conn);
+		
+		/* 호텔 정보 */
+		hotel = hotelDAO.getHotelInfo(htl_no);
+		
+		close(conn);
+		
+		return hotel;
+	}
+	
+	/* 각 호텔의 전체 객실 정보 */
+	public ArrayList<HotelRoomDTO> getRoomAll(int htl_no, String chkIn, String chkOut) {
+		
+		ArrayList<HotelRoomDTO> hotelRoomList = null;
+		
+		// db connection
+		Connection conn = getConnection();
+		
+		HotelDAO hotelDAO = HotelDAO.getInstance();
+		hotelDAO.setConnection(conn);
+		
+		/* 각 호텔의 전체 객실 정보 */
+		hotelRoomList = hotelDAO.getRoomAll(htl_no, chkIn, chkOut);
+		
+		close(conn);
+		
+		return hotelRoomList;
+	}
+	
+	/* 호텔의 객실 정보 */
+	public HotelRoomDTO getRoomInfo(int htl_no, int hrm_no) {
+		
+		HotelRoomDTO htlRoom = null;
+		
+		// db connection
+		Connection conn = getConnection();
+		
+		HotelDAO hotelDAO = HotelDAO.getInstance();
+		hotelDAO.setConnection(conn);
+		
+		/* 각 호텔의 전체 객실 정보 */
+		htlRoom = hotelDAO.getRoomInfo(htl_no, hrm_no);
+		
+		close(conn);
+		
+		return htlRoom;
+	}
+	
+	/* 호텔 예약 */
+	public int insertHtlBooking(HotelBookingDTO htlBooking) {
+		
+		int htb_no = 0;
+		
+		// db connection
+		Connection conn = getConnection();
+		
+		HotelDAO hotelDAO = HotelDAO.getInstance();
+		hotelDAO.setConnection(conn);
+		
+		/* 호텔 예약 */
+		htb_no = hotelDAO.insertHtlBooking(htlBooking);
+		
+		if(htb_no > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return htb_no;
+	}
+	
+	/* 호텔 예약 정보 */
+	public HotelBookingDTO getHtlBookingInfo(int htb_no) {
+		
+		HotelBookingDTO htlBooking = null;
+				
+		// db connection
+		Connection conn = getConnection();
+		
+		HotelDAO hotelDAO = HotelDAO.getInstance();
+		hotelDAO.setConnection(conn);
+		
+		/* 호텔 예약 정보 */
+		htlBooking = hotelDAO.getHtlBookingInfo(htb_no);
+		
+		close(conn);
+		
+		return htlBooking;
 	}
 	
 }
