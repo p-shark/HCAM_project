@@ -107,6 +107,7 @@
 </style>
 </head>
 <script>
+	/* 대댓글 저장 */
 	function fn_saveComment() {
 		var comment = document.getElementsByName("comment")[0].value;
 		

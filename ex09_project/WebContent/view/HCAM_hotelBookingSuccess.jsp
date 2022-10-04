@@ -61,11 +61,11 @@
 </head>
 <script>
 	$(document).ready(function() {
-		fn_chgTopBooking();
+		fn_chgTopBooking(3);
 	});
 	
 	// 결제하기 버튼 클릭 시 상단 바 css 변경
-	function fn_chgTopBooking() {
+	function fn_chgTopBooking(kubun) {
 		var fmt_pointBalance = $("input[name='fmt_pointBalance']").val();		// 결제 총 합계
 		
 		$.ajax({
@@ -73,8 +73,7 @@
 			type:'POST',
 			dataType: "text",
 			async:false,
-			data: "kubun=3" +
-				  "&fmt_pointBalance=" + fmt_pointBalance,
+			data: "kubun=" + kubun,
 			success: function(result) {
 				$("#div_topContent").html(result);
 			},

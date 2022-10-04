@@ -1,3 +1,5 @@
-/vo/
 /dao/
+/db/
+/mybatis/
 /action/
+/controller/

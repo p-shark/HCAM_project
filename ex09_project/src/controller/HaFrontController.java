@@ -15,6 +15,7 @@ import action.HotelBookingSuccessAction;
 import action.HotelListTotalAction;
 import action.HotelMainBySearchingAction;
 import action.HotelRoomListAction;
+import action.PointDepositAction;
 import action.ShareBoardByCtgryAction;
 import action.ShareBoardDeleteAction;
 import action.ShareBoardDetailAction;
@@ -183,6 +184,14 @@ public class HaFrontController extends HttpServlet {
 		}
 		else if(command.equals("/shareCommentDelete.ho")){
 			action = new ShareCommentDeleteAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/pointDeposit.ho")){
+			action = new PointDepositAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {

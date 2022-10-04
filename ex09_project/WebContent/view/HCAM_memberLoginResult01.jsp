@@ -12,6 +12,7 @@
 		session.setAttribute("id", id);
 		session.setAttribute("mem_no", member.getMem_no());
 		session.setAttribute("pnt_no", member.getPnt_no());
+		session.setAttribute("mem_name", member.getMem_name());
 	}
 %>
 <!DOCTYPE html>

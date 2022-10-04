@@ -1,8 +1,21 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean class="dao.CommonDAO" id="commonDao"></jsp:useBean>
 <%
+	//로그인한 회원정보
+	int pnt_no = 0;
+	if(session.getAttribute("pnt_no") != null) {
+		pnt_no = Integer.parseInt(String.valueOf(session.getAttribute("pnt_no")));
+	}
+
 	String kubun = request.getParameter("kubun");
-	String fmt_pointBalance = request.getParameter("fmt_pointBalance");
+
+	/* 포인트 잔액 조회 */
+	int pnt_balance = commonDao.getPnt_balance(pnt_no);
+	
+	// 금액 포맷
+	DecimalFormat df = new DecimalFormat("#,###");
 %>
 <!DOCTYPE html>
 <html>
@@ -104,9 +117,13 @@
 		<div id="top_right">
 			<div>
 				<span>포인트잔액</span>
-				<span><input type="text" name="fmt_pointBalance" value="<%=fmt_pointBalance %>"></span>
+				<span><input type="text" name="fmt_pointBalance" value="<%=df.format(pnt_balance) %>"></span>
 			</div>
 		</div>
 	</div>
+	
+	<%
+		commonDao.dbClose();
+	%>
 </body>
 </html>

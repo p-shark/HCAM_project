@@ -3,7 +3,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//로그인한 회원정보
 	String id = (String) session.getAttribute("id");
+	// 세션에 저장된 mem_no 값 가져오기 
+	int mem_no = 0;
+	if(session.getAttribute("mem_no") != null) {
+		mem_no = Integer.parseInt(String.valueOf(session.getAttribute("mem_no")));
+	}
+	int pnt_no = 0;
+	if(session.getAttribute("pnt_no") != null) {
+		pnt_no = Integer.parseInt(String.valueOf(session.getAttribute("pnt_no")));
+	}
+	String mem_name = "";
+	if(session.getAttribute("mem_name") != null) {
+		mem_name = String.valueOf(session.getAttribute("mem_name"));
+	}
 
 	//현재일자, 다음날일자 구하기
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -47,7 +61,8 @@
 				<ul>
 					<% if(id != null) { %>
 						<!-- <li id="btn_mypage">$&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li> -->
-						<li id="comment"><div>${id} 님 환영합니다.</div></li>
+						<li id="comment"><div>${mem_name} 님 환영합니다.</div></li>
+						
 						<li class="btn_mypage"><button>마이페이지</button></li>
 						<li class="btn_mypage" onclick="fn_logout();"><button>로그아웃</button></li>
 					<% }else { %>

@@ -54,6 +54,7 @@ public class MemberDAO {
 			if(rs.next()) {
 				member.setMem_no(rs.getInt("mem_no"));
 				member.setPnt_no(rs.getInt("pnt_no"));
+				member.setMem_name(rs.getString("mem_name"));
 			}
 			
 		} catch (SQLException e) {

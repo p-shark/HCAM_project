@@ -216,12 +216,12 @@
 	
 	// 포인트 충전 popup 호출 
 	function fn_depositPoint() {
-		var mem_no = $("input[name='mem_no']").val();		// 결제 총 합계
 		
-		var url = "${pageContext.request.contextPath}/view/HCAM_pointDeposit.jsp?mem_no=" + mem_no;
+		var url = "${pageContext.request.contextPath}/view/HCAM_pointDeposit.jsp";
 		var title = "popupOpener";
 		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=400,height=500,top=100,left=500";
 		window.open(url, title, "width=400, height=500, top=100, left=500");
+		
 	}
 </script>
 <body>

@@ -295,29 +295,45 @@ public class CommonDAO {
 		return count;
 	}
 	
-	public void updatePoint(int mem_no, String phs_kubun, int phs_historyAmt, String phs_comment) {
+	/* 포인트 잔액 조회 */
+	public int getPnt_balance(int pnt_no) {
 		
-		// 연산기호 PNT01001: 충전 / PNT01002: 적립 / PNT01003: 사용
-		String operSymbol = "";
-		if("PNT01003".equals(phs_kubun)) operSymbol = "+";
-		else operSymbol = "-";
+		int pnt_balance = 0;
 		
 		try {
 			// 1.포인트 번호 조회
-			String point_sql = "select pnt_no from hcamMem where mem_no = " + mem_no;
+			String point_sql = "select pnt_balance from hcamPoint where pnt_no = " + pnt_no;
 			rs = stmt.executeQuery(point_sql);
 			
-			int pnt_no = 0;
 			if(rs.next()) {
-				pnt_no = rs.getInt("pnt_no");
+				pnt_balance = rs.getInt("pnt_balance");
 			}
 			
-			// 2.포인트 히스토리 추가
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		return pnt_balance;
+		
+	}
+	
+	/* 포인트 충전/적립/사용 */
+	public void updatePoint(int pnt_no, String phs_kubun, int phs_historyAmt, String phs_comment) {
+		
+		// 연산기호 PNT01001: 충전 / PNT01002: 적립 / PNT01003: 사용
+		String operSymbol = "";
+		if("PNT01003".equals(phs_kubun)) operSymbol = "-";
+		else operSymbol = "+";
+		
+		try {
+			
+			// 1.포인트 히스토리 추가
 			String pntHistory_sql = String.format("insert into pntHistory(pnt_no, phs_kubun, phs_historyAmt, phs_comment) values(%d, '%s', %d, '%s');"
 									, pnt_no, phs_kubun, phs_historyAmt, phs_comment);
 			stmt.execute(pntHistory_sql);
 			
-			// 3. 포인트 잔액 변경
+			// 2. 포인트 잔액 변경
 			String hcamPoint_sql = String.format("update hcamPoint set pnt_balance = pnt_balance %s %d where pnt_no = %d"
 							   , operSymbol, phs_historyAmt, pnt_no);
 			stmt.executeUpdate(hcamPoint_sql);
