@@ -1,5 +1,3 @@
-/controller/
-/action/
-/service/
-/dao/
 /vo/
+/dao/
+/action/

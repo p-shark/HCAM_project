@@ -142,8 +142,7 @@
 		booking_totalPrice.val(fmt_total_price);	// (결제 요금내역) 총 합계
 		$('#brfk_cnt').html(number);
 		
-		$("input[name='htb_brkfPrice']").val(total_brfkPrice);	// 파라미터로 넘길 조식 총 합계
-		$("input[name='htb_totalPrice']").val(total_price);	// 파라미터로 넘길 조식 총 합계
+		$("input[name='num_booking_totalPrice']").val(total_price);	// 파라미터로 넘길 조식 총 합계
 		
 	}
 	
@@ -152,13 +151,14 @@
 		var result = false;
 		
 		var pnt_balance = parseInt($("input[name='pnt_balance']").val());			// 잔액
-		var htb_totalPrice = parseInt($("input[name='htb_totalPrice']").val());		// 결제 총 합계
+		var num_booking_totalPrice = parseInt($("input[name='num_booking_totalPrice']").val());		// 결제 총 합계
 		
+		//alert($("input[name='num_booking_totalPrice']").val());
 		/* 결제하기 버튼 클릭 시 상단 바 css 변경 */
 		fn_chgTopBooking();
 		
 		// 포인트 잔액 < 결제 총합계
-		if(pnt_balance < htb_totalPrice) {
+		if(pnt_balance < num_booking_totalPrice) {
 			var pnt_flag = confirm("포인트 잔액이 부족합니다. 충전하시겠습니까?");
 			event.preventDefault();	// confirm 창 띄우고나면 submit 자동으로 돼서 막음 
 			
@@ -527,6 +527,7 @@
 							<div>합계</div>
 							<div>
 								<span>₩</span>
+								<input type="hidden" name="num_booking_totalPrice" value="<%=Math.round(htlRoom.getHrm_price()*0.75 * dayTerm) %>">
 								<span><input type="text" name="booking_totalPrice" value="<%=df.format(htlRoom.getHrm_price()*0.75 * dayTerm) %>"></span>
 							</div>
 						</div>

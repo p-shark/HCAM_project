@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import db.DBInfo;
+import vo.HcamMemDTO;
 
 public class MemberDAO {
 	
@@ -41,16 +42,18 @@ public class MemberDAO {
 	}
 	
 	/* 로그인 호출 */
-	public int loginResult(String id, String pw) {
+	public HcamMemDTO loginResult(String id, String pw) {
 		
-		int mem_no = 0;
+		HcamMemDTO member = new HcamMemDTO();
+		
 		try {
 			String sql = String.format("select * from hcamMem where mem_id = '%s' and mem_pw = '%s';", id, pw);
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			// 해당 회원이 존재하는 경우
 			if(rs.next()) {
-				mem_no = rs.getInt("mem_no");
+				member.setMem_no(rs.getInt("mem_no"));
+				member.setPnt_no(rs.getInt("pnt_no"));
 			}
 			
 		} catch (SQLException e) {
@@ -58,7 +61,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		
-		return mem_no;
+		return member;
 	}
 	
 	/* 비밀번호 찾기 */

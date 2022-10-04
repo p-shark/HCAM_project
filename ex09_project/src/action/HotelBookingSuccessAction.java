@@ -20,6 +20,8 @@ public class HotelBookingSuccessAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		request.setCharacterEncoding("utf-8");
+		
 		HcamMemDTO member = new HcamMemDTO();
 		HcamPointDTO point = new HcamPointDTO();
 		HotelDTO hotel = new HotelDTO();

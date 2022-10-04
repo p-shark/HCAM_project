@@ -10,7 +10,7 @@
 				<property name="driver" value="com.mysql.jdbc.Driver" />
 				<property name="url" value="jdbc:mysql://localhost:3306/hcam?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=UTF-8&amp;validationQuery=select1" />
 				<property name="username" value="root" />
-				<property name="password" value="admin" />
+				<property name="password" value="tiger" />
 			</dataSource>
 		</environment>
 	</environments>

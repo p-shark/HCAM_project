@@ -249,7 +249,7 @@
 				<div class="booking_fee">
 					<div>
 						<span>조식 요금 (조식 요금 x <%=htlBooking.getHtb_brkfCnt() %></span>
-						<span id="brfk_cnt">0</span>
+						<span id="brfk_cnt"></span>
 						<span>인)</span>
 					</div>
 					<div>
