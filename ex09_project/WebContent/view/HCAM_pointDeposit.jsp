@@ -86,7 +86,7 @@
 				}
 					#point_inputBox input {
 						padding-right: 10px;
-						width: 340px;
+						width: 410px;
 						height: 40px;
 						font-size: 12pt;
 						border: none;
@@ -288,6 +288,9 @@
 		// 충전금액 int로 변경
 		var num_depositAmt = parseInt(fmt_depositAmt);
 		
+		if (isNaN(num_depositAmt) == true) {
+			num_depositAmt = 0;
+		}
 		if(kubun == 1) num_depositAmt = 500000;			// 최대금액은 500,000만원
 		else if(kubun == 2) num_depositAmt += 50000;
 		else if(kubun == 3) num_depositAmt += 30000;
@@ -334,6 +337,9 @@
 					if(typeof(opener.fn_chgTopBooking == "function")) {
 						alert("포인트가 정상 충전 되었습니다.");
 						opener.fn_chgTopBooking(2);
+					}
+					if(typeof(opener.fn_parentValue == "function")) {
+						opener.fn_parentValue(phs_historyAmt);
 					}
 					//$("#div_header", opener.document).load(opener.location.href + "#div_header");
 					window.close();

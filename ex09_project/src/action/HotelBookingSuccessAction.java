@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CommonDAO;
 import service.HotelService;
 import service.MemberService;
 import vo.ActionForward;
@@ -65,6 +66,7 @@ public class HotelBookingSuccessAction implements Action{
 		
 		HotelService hotelsvc = new HotelService();
 		MemberService membersvc = new MemberService();
+		CommonDAO commonDao = new CommonDAO();
 		
 		ActionForward forward = new ActionForward();
 		
@@ -92,10 +94,12 @@ public class HotelBookingSuccessAction implements Action{
 			/* 호텔 예약 정보 */
 			htlBooking = hotelsvc.getHtlBookingInfo(htb_no);
 			
+			/* 포인트 차감 */
+			commonDao.updatePoint(point.getPnt_no(), "PNT01003", htlBooking.getHtb_totalPrice(), "포인트 사용: 호텔예약");
+			/* 포인트 적립 */
+			commonDao.updatePoint(point.getPnt_no(), "PNT01002", accum_point, "포인트 적립: 호텔예약");
 			
-			
-			/* 포인트 차감 해야함 accum_point */
-			
+			commonDao.dbClose();
 			
 			request.setAttribute("member", member);
 			request.setAttribute("point", point);

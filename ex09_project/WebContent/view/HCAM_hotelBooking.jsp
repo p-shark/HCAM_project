@@ -73,6 +73,8 @@
 <script>
 	$(document).ready(function() {
 		$('#div_difPerson').hide();
+		/* 상단 바 css 변경 */
+		fn_chgTopBooking(1);
 		
 		var brfk_yn = $("input[name='htl_brfk']").val(); // 조식 제공여부
 		if(brfk_yn == 1) {
@@ -155,7 +157,7 @@
 		
 		//alert($("input[name='num_booking_totalPrice']").val());
 		/* 결제하기 버튼 클릭 시 상단 바 css 변경 */
-		fn_chgTopBooking();
+		fn_chgTopBooking(2);
 		
 		// 포인트 잔액 < 결제 총합계
 		if(pnt_balance < num_booking_totalPrice) {
@@ -170,9 +172,9 @@
 		else if($('#difPs').is(':checked')) { // 예약자와 투숙객 다름 체크한 경우
 			var htb_rlpName = $("input[name='htb_rlpName']").val();
 			var htb_rlpEmail = $("input[name='htb_rlpEmail']").val();
-			var htb_rlpNation = $("input[name='htb_rlpNation']").val();
+			var htb_rlpPhone = $("input[name='htb_rlpPhone']").val();
 			
-			if(htb_rlpName == "" || htb_rlpEmail == "" || htb_rlpNation == "") {
+			if(htb_rlpName == "" || htb_rlpEmail == "" || htb_rlpPhone == "") {
 				alert("예약자와 투숙객이 다른 경우 필수값을 입력하세요.");
 			}
 			else {
@@ -195,7 +197,7 @@
 	}
 	
 	// 결제하기 버튼 클릭 시 상단 바 css 변경
-	function fn_chgTopBooking() {
+	function fn_chgTopBooking(kubun) {
 		var fmt_pointBalance = $("input[name='fmt_pointBalance']").val();		// 결제 총 합계
 		
 		$.ajax({
@@ -203,7 +205,8 @@
 			type:'POST',
 			dataType: "text",
 			async:false,
-			data: "kubun=2" +
+			data: "title=HOTEL" + 
+				  "&kubun=" + kubun +
 				  "&fmt_pointBalance=" + fmt_pointBalance,
 			success: function(result) {
 				$("#div_topContent").html(result);
@@ -222,6 +225,12 @@
 		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=470,height=500,top=100,left=500";
 		window.open(url, title, "width=470, height=500, top=100, left=500");
 		
+	}
+	
+	// 포인트 충전 후 부모창의 포인트 잔액 값 변경
+	function fn_parentValue(value) {
+		var pnt_balance = $("input[name='pnt_balance']");		// 결제 총 합계
+		pnt_balance.val(parseInt(pnt_balance.val()) + parseInt(value));
 	}
 </script>
 <body>

@@ -596,7 +596,7 @@
 								}
 	/* 호텔 리뷰 box */
 	#htlReview {
-		margin-top: 40px;
+		margin-top: 80px;
 		width: 1100px;
 	}
 		/* 리뷰 title */
@@ -607,7 +607,7 @@
 		}
 		/* 리뷰 score */
 		#htlReview .htlRv_total {
-			margin-top: 10px;
+			margin: 30px 0 30px 0;
 			padding-bottom: 20px;
 		}
 			.htlRv_total .htlRv_comment {

@@ -73,7 +73,8 @@
 			type:'POST',
 			dataType: "text",
 			async:false,
-			data: "kubun=" + kubun,
+			data: "title=HOTEL" +
+				  "&kubun=" + kubun,
 			success: function(result) {
 				$("#div_topContent").html(result);
 			},
@@ -189,7 +190,7 @@
 						<input type="text" readonly="readonly" value="<%=phone_number %>">
 					</div>
 					<div>
-						<input type="text" name="nation">
+						<input type="text" readonly="readonly" name="nation">
 					</div>
 				</div>
 			</div>
@@ -208,10 +209,10 @@
 					</div>
 					<div class="pers_input_context">
 						<div>
-							<input type="text" name="htb_rlpName" maxlength="80" value="<%=htlBooking.getHtb_rlpName() %>">
+							<input type="text" name="htb_rlpName" maxlength="80" readonly="readonly" value="<%=htlBooking.getHtb_rlpName() %>">
 						</div>
 						<div>
-							<input type="text" name="htb_rlpEmail" maxlength="16" value="<%=htlBooking.getHtb_rlpEmail() %>">
+							<input type="text" name="htb_rlpEmail" maxlength="16" readonly="readonly" value="<%=htlBooking.getHtb_rlpEmail() %>">
 						</div>
 					</div>
 					<div class="pers_input_title">
@@ -224,10 +225,10 @@
 					</div>
 					<div class="pers_input_context">
 						<div>
-							<input type="number" name="htb_rlpPhone" maxlength="15" value="<%=htlBooking.getHtb_rlpPhone() %>">
+							<input type="number" name="htb_rlpPhone" maxlength="15" readonly="readonly" value="<%=htlBooking.getHtb_rlpPhone() %>">
 						</div>
 						<div>
-							<input type="text" name="htb_rlpNation" maxlength="80" value="<%=htlBooking.getHtb_rlpNation() %>">
+							<input type="text" name="htb_rlpNation" maxlength="80" readonly="readonly" value="<%=htlBooking.getHtb_rlpNation() %>">
 						</div>
 					</div>
 				</div>
@@ -253,7 +254,7 @@
 					</div>
 					<div>
 						<span>₩</span>
-						<span><input type="text" name="hrm_brfkPrice" value="0"></span>
+						<span><input type="text" name="hrm_brfkPrice" value="<%=htlBooking.getHtb_brkfPrice() %>"></span>
 					</div>
 				</div>
 				<div class="div_line02"></div>

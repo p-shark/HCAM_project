@@ -9,6 +9,7 @@
 		pnt_no = Integer.parseInt(String.valueOf(session.getAttribute("pnt_no")));
 	}
 
+	String title = request.getParameter("title");
 	String kubun = request.getParameter("kubun");
 
 	/* 포인트 잔액 조회 */
@@ -78,7 +79,7 @@
 <input type="hidden" name="kubun" value="<%=kubun %>">
 	<div id="top_content">
 		<div id="top_left">
-			<div>호텔 예약</div>
+			<div><%=title %> 예약</div>
 		</div>
 		<div id="top_middle">
 			<ul>
