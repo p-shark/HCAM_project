@@ -43,7 +43,7 @@ public class CommonDAO {
 		}
 	}
 	
-	/* 로그인한 회원 이름 조회 */
+	/* 회원 이름 조회 */
 	public String getLoginMember(int mem_no) {
 		
 		String mem_name = "";

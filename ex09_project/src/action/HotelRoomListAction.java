@@ -3,6 +3,7 @@ package action;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.HotelService;
 import vo.ActionForward;
 import vo.HotelDTO;
+import vo.HotelReviewDTO;
 import vo.HotelRoomDTO;
 
 public class HotelRoomListAction implements Action{
@@ -19,6 +21,8 @@ public class HotelRoomListAction implements Action{
 		
 		HotelDTO hotel = new HotelDTO();
 		ArrayList<HotelRoomDTO> htlRoomList = new ArrayList<HotelRoomDTO>();
+		HashMap<String, String> reviewInfo = new HashMap<String, String>();
+		ArrayList<HotelReviewDTO> reviewList = new ArrayList<>();
 		
 		// 현재일자 setting
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,6 +56,11 @@ public class HotelRoomListAction implements Action{
 		hotel = hotelsvc.getHotelInfo(htl_no);
 		/* 각 호텔의 전체 객실 정보 */
 		htlRoomList = hotelsvc.getRoomAll(htl_no, chkIn, chkOut);
+		/* 각 호텔의 전체 이용후기 정보(평균값, 총 개수) */
+		reviewInfo = hotelsvc.getHotelReviewInfo(htl_no);
+		/* 호텔 이용후기 */
+		reviewList = hotelsvc.getHtlReview(htl_no);
+		
 				
 		request.setAttribute("select01", select01);		// 국가
 		request.setAttribute("select02", select02);		// 지역
@@ -60,6 +69,8 @@ public class HotelRoomListAction implements Action{
 		request.setAttribute("htl_no", htl_no);
 		request.setAttribute("hotel", hotel);
 		request.setAttribute("htlRoomList", htlRoomList);
+		request.setAttribute("reviewInfo", reviewInfo);
+		request.setAttribute("reviewList", reviewList);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("view/HCAM_hotelRoom.jsp");

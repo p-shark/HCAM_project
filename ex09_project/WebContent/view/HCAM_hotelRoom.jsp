@@ -1,3 +1,5 @@
+<%@page import="vo.HotelReviewDTO"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="vo.HotelRoomDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,6 +18,10 @@
 	if(session.getAttribute("mem_no") != null) {
 		mem_no = Integer.parseInt(String.valueOf(session.getAttribute("mem_no")));
 	}
+	String mem_name = "";
+	if(session.getAttribute("mem_name") != null) {
+		mem_name = String.valueOf(session.getAttribute("mem_name"));
+	}
 
 	//국가, 지역
 	String select01 = (String) request.getAttribute("select01");
@@ -31,9 +37,12 @@
 	int htl_no = (Integer) request.getAttribute("htl_no");
 	/* 호텔 정보 */
 	HotelDTO hotel = (HotelDTO) request.getAttribute("hotel");
-	
 	/* 호텔 정보 */
 	ArrayList<HotelRoomDTO> htlRoomList = (ArrayList<HotelRoomDTO>) request.getAttribute("htlRoomList");
+	/* 각 호텔의 전체 이용후기 정보(평균값, 총 개수) */
+	HashMap<String, Integer> reviewInfo = (HashMap<String, Integer>) request.getAttribute("reviewInfo");
+	/* 호텔 이용후기 */
+	ArrayList<HotelReviewDTO> reviewList = (ArrayList<HotelReviewDTO>) request.getAttribute("reviewList");
 	
 	int remainCnt = 0;	// 잔여 객실수
 	ArrayList<HotelRoomDTO> htlRemainRoom = new ArrayList<HotelRoomDTO>();	// 잔여 객실 리스트
@@ -377,40 +386,40 @@
 			<div id="right_hotelInfo">
 				<div class="div_border" id="hotelInfo_review">
 					<div class="review_left">	
-						<div class="review_total">8.5</div>
+						<div class="review_total"><%=reviewInfo.get("avg_totalSco") %></div>
 					</div>
 					<div class="review_right">
-						<div>우수</div>
-						<div> 건의 이용후기</div>
+						<div><%=reviewInfo.get("htl_cond") %></div>
+						<div><%=reviewInfo.get("review_cnt") %> 건의 이용후기</div>
 					</div>
 					<div class="review_detail">
 						<div class="review_each">
 							<div class="review_eachSub">
 								<div>숙소 청결 상태</div>
-								<div>9.0</div>
+								<div><%=reviewInfo.get("avg_clSco") %></div>
 							</div>
-							<div><input type="range" name="" min="0" max="10" value="8.5"></div>
+							<div><input type="range" name="" min="0" max="10" value="<%=reviewInfo.get("avg_clSco") %>"></div>
 						</div>
 						<div class="review_each">
 							<div class="review_eachSub">
 								<div>부대시설</div>
-								<div>9.0</div>
+								<div><%=reviewInfo.get("avg_conSco") %></div>
 							</div>
-							<div><input type="range" name="" min="0" max="10" value="8.5"></div>
+							<div><input type="range" name="" min="0" max="10" value="<%=reviewInfo.get("avg_conSco") %>"></div>
 						</div>
 						<div class="review_each">
 							<div class="review_eachSub">
 								<div>위치</div>
-								<div>9.0</div>
+								<div><%=reviewInfo.get("avg_loSco") %></div>
 							</div>
-							<div><input type="range" name="" min="0" max="10" value="8.5"></div>
+							<div><input type="range" name="" min="0" max="10" value="<%=reviewInfo.get("avg_loSco") %>"></div>
 						</div>
 						<div class="review_each">
 							<div class="review_eachSub">
 								<div>서비스</div>
-								<div>9.0</div>
+								<div><%=reviewInfo.get("avg_svcSco") %></div>
 							</div>
-							<div><input type="range" name="" min="0" max="10" value="8.5"></div>
+							<div><input type="range" name="" min="0" max="10" value="<%=reviewInfo.get("avg_svcSco") %>"></div>
 						</div>
 					</div>
 				</div>
@@ -554,32 +563,49 @@
 				<div id="htlRv_review">
 					<div id="htlRv_div_rv01">
 						<div class="htlRv_div_left">	
-							<div class="review_total">8.5</div>
+							<div class="review_total"><%=reviewInfo.get("avg_totalSco") %></div>
 						</div>
 						<div class="htlRv_div_right">
-							<div>우수</div>
-							<div> 건의 이용후기</div>
+							<div><%=reviewInfo.get("htl_cond") %></div>
+							<div><%=reviewInfo.get("review_cnt") %> 건의 이용후기</div>
 						</div>
 					</div>
 					<div class="htlRv_div_rv02">
-						<div>9.0</div>
+						<div><%=reviewInfo.get("avg_clSco") %></div>
 						<div>숙소청결 상태</div>
 					</div>
 					<div class="htlRv_div_rv02">
-						<div>9.0</div>
-						<div>숙소청결 상태</div>
+						<div><%=reviewInfo.get("avg_loSco") %></div>
+						<div>숙소위치 점수</div>
 					</div>
 					<div class="htlRv_div_rv02">
-						<div>9.0</div>
-						<div>숙소청결 상태</div>
+						<div><%=reviewInfo.get("avg_conSco") %></div>
+						<div>부대시설 점수</div>
 					</div>
 					<div class="htlRv_div_rv02_final">
-						<div>9.0</div>
-						<div>숙소청결 상태</div>
+						<div><%=reviewInfo.get("avg_svcSco") %></div>
+						<div>서비스 점수</div>
 					</div>
 				</div>
 			</div>
-			
+			<div class="div_line03"></div>
+			<% for(int i=0; i<reviewList.size(); i++) { %>
+				<div class="each_review">
+					<div class="review_mem">
+						<div class="div_reviewMem">
+							<div><%=reviewList.get(i).getHrv_totalSco() %></div>
+							<div></div>
+							<div><%=commonDao.getLoginMember(reviewList.get(i).getMem_no()) %></div>
+						</div>
+					</div>
+					<div class="review_content">
+						<div class="div_review_cont"><%=reviewList.get(i).getHrv_content() %></div>
+						<div class="div_line04"></div>
+						<div class="div_review_date">작성일자: <%=reviewList.get(i).getHrv_date() %></div>
+					</div>
+					<div class="div_line03"></div>
+				</div>
+			<% } %>
 		</div>
 	</div>
 	

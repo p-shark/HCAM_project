@@ -3,11 +3,13 @@ package service;
 import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 import dao.HotelDAO;
 import vo.HotelBookingDTO;
 import vo.HotelDTO;
+import vo.HotelReviewDTO;
 import vo.HotelRoomDTO;
 
 public class HotelService {
@@ -174,6 +176,42 @@ public class HotelService {
 		close(conn);
 		
 		return htlRoom;
+	}
+	
+	/* 각 호텔의 전체 이용후기 정보(평균값, 총 개수) */
+	public HashMap<String, String> getHotelReviewInfo(int htl_no) {
+		
+		HashMap<String, String> reviewInfo = new HashMap<String, String>();
+		
+		// db connection
+		Connection conn = getConnection();
+		
+		HotelDAO hotelDAO = HotelDAO.getInstance();
+		hotelDAO.setConnection(conn);
+		
+		reviewInfo = hotelDAO.getHotelReviewInfo(htl_no);
+		
+		close(conn);
+		
+		return reviewInfo;
+	}
+	
+	/* 호텔 이용후기 */ 
+	public ArrayList<HotelReviewDTO> getHtlReview(int htl_no) {
+		
+		ArrayList<HotelReviewDTO> reviewList = new ArrayList<HotelReviewDTO>();
+		
+		// db connection
+		Connection conn = getConnection();
+		
+		HotelDAO hotelDAO = HotelDAO.getInstance();
+		hotelDAO.setConnection(conn);
+		
+		reviewList = hotelDAO.getHtlReview(htl_no);
+		
+		close(conn);
+		
+		return reviewList;
 	}
 	
 	/* 호텔 예약 */

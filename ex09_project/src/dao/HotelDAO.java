@@ -9,11 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 import vo.HotelBookingDTO;
 import vo.HotelDTO;
+import vo.HotelReviewDTO;
 import vo.HotelRoomDTO;
 
 public class HotelDAO {
@@ -456,6 +458,88 @@ public class HotelDAO {
 		}
 		
 		return htlRoom;
+	}
+	
+	/* 각 호텔의 전체 이용후기 정보(평균값, 총 개수) */
+	public HashMap<String, String> getHotelReviewInfo(int htl_no) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		HashMap<String, String> reviewInfo = new HashMap<String, String>();
+		
+		String sql = "select round(avg(hrv_clSco),1) as avg_clSco, round(avg(hrv_loSco),1) as avg_loSco "
+				   + ", round(avg(hrv_svcSco),1) as avg_svcSco, round(avg(hrv_conSco),1) as avg_conSco "
+				   + ", round(avg(hrv_totalSco),1) as avg_totalSco, count(*) as review_cnt "
+				   + ", ReviewCondition_FN(htl_no) as htl_cond "
+				   + "from htlReview where htl_no = ?;"; 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htl_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				reviewInfo.put("avg_clSco", rs.getString("avg_clSco"));
+				reviewInfo.put("avg_loSco", rs.getString("avg_loSco"));
+				reviewInfo.put("avg_svcSco", rs.getString("avg_svcSco"));
+				reviewInfo.put("avg_conSco", rs.getString("avg_conSco"));
+				reviewInfo.put("avg_totalSco", rs.getString("avg_totalSco"));
+				reviewInfo.put("review_cnt", rs.getString("review_cnt"));
+				reviewInfo.put("htl_cond", rs.getString("htl_cond"));
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return reviewInfo;
+	}
+	
+	/* 호텔 이용후기 */ 
+	public ArrayList<HotelReviewDTO> getHtlReview(int htl_no) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<HotelReviewDTO> reviewList = new ArrayList<HotelReviewDTO>();
+		HotelReviewDTO review = null;
+		
+		String sql = "select hrv.*, date_format(hrv_date, '%Y-%m-%d %H:%i') as hrv_fmdate from htlReview hrv where htl_no = ?"; 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htl_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				review = new HotelReviewDTO();
+				
+				review.setHrv_no(rs.getInt("hrv_no"));
+				review.setHtl_no(rs.getInt("htl_no"));
+				review.setMem_no(rs.getInt("mem_no"));
+				review.setHrv_clSco(rs.getInt("hrv_clSco"));
+				review.setHrv_loSco(rs.getInt("hrv_loSco"));
+				review.setHrv_svcSco(rs.getInt("hrv_svcSco"));
+				review.setHrv_conSco(rs.getInt("hrv_conSco"));
+				review.setHrv_totalSco(rs.getDouble("hrv_totalSco"));
+				review.setHrv_content(rs.getString("hrv_content"));
+				review.setHrv_date(rs.getString("hrv_fmdate"));
+				
+				reviewList.add(review);
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return reviewList;
 	}
 	
 	/* 호텔 예약 */

@@ -598,7 +598,6 @@
 	#htlReview {
 		margin-top: 40px;
 		width: 1100px;
-		height: 100px;
 	}
 		/* 리뷰 title */
 		#htlReview .htlRv_title {
@@ -606,6 +605,7 @@
 			font-size: 16pt;
 			font-weight: bold;
 		}
+		/* 리뷰 score */
 		#htlReview .htlRv_total {
 			margin-top: 10px;
 			padding-bottom: 20px;
@@ -669,6 +669,65 @@
 				.htlRv_div_rv02_final div:nth-child(2) {
 					font-size: 11pt;
 					text-align: center;
+				}
+		/* 리뷰 상세 */
+		.each_review {
+			
+		}
+			/* line */
+			.div_line03 {
+				margin: 18px 0 15px 0;
+				min-width: 1px;
+			    width: 1100px;
+			    height: 1px;
+			    flex: 1 1 0%;
+			    border-bottom: 1px solid rgb(221, 223, 226);
+			}
+			.each_review .review_mem {
+				display: inline-block;
+				vertical-align: top;
+				width: 300px;
+			}
+				.div_reviewMem {
+					margin: 0 auto;
+					padding: 20px 0;
+					width: 200px;
+				}
+					 .div_reviewMem div {
+					 	color: #4e4e4e;
+					 }
+					.div_reviewMem div:nth-child(1) {
+						color: #488bf8;
+						font-size: 18pt;
+					}
+					.div_reviewMem div:nth-child(2) {
+						margin-top: 5px;
+					}
+					.div_reviewMem div:nth-child(3) {
+						
+					}
+			.each_review .review_content {
+				display: inline-block;
+				vertical-align: top;
+				padding: 20px;
+				width: 755px;
+				border-radius: 15px;
+				background-color: #f5f5f5;
+			}
+				.review_content .div_review_cont {
+					color: #4e4e4e;
+				}
+				.review_content .div_review_date {
+					color: #999;
+				}
+				/* line */
+				.div_line04 {
+					margin: 10px 0 10px 0;
+					min-width: 1px;
+				    width: 750px;
+				    height: 1px;
+				    flex: 1 1 0%;
+				    border-bottom: 1px solid rgb(221, 223, 226);
 				}
 	/* 흐리게 */
 	.chgOpacity {

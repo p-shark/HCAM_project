@@ -138,12 +138,12 @@
 					#phone_box #telecom {
 						display: inline-block;
 						margin-right: 10px;
-						width: 100px;
+						width: 122px;
 						border: 1px solid #E6E6E6;
 					}
 						#telecom select {
 							padding: 0 10px;
-							width: 90px;
+							width: 112px;
 							height: 30px;
 							border: none;
 							outline: none;
@@ -152,7 +152,7 @@
 						display: inline-block;
 					}
 						#phone_num input {
-							width: 59px;
+							width: 75px;
 							height: 27px;
 							text-align: center;
 							font-size: 10.5pt;
@@ -172,11 +172,11 @@
 					vertical-align: top;
 				}
 				#chkNumber_box div:first-child {
-					width: 240px;
+					width: 308px;
 					border: 1px solid #E6E6E6;
 				}
 					#chkNumber_box input {
-						width: 230px;
+						width: 295px;
 						height: 27px;
 						text-align: right;
 						font-size: 10.5pt;
