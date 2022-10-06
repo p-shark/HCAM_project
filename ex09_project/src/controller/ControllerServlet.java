@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import impl.MarketImpl;
+import impl.MyPageBookingImpl;
 import impl.SawonImpl;
 
 public class ControllerServlet extends HttpServlet{
@@ -35,6 +36,16 @@ public class ControllerServlet extends HttpServlet{
 				inter = MarketImpl.instance();
 				viewName = inter.showData(request, response);
 				viewName = "view/"+viewName;
+				request.getRequestDispatcher(viewName).forward(request, response);
+			}
+			else if(command.equals("mypageMain")) {
+				viewName = "view/HCAM_mypageMain.jsp";
+				response.sendRedirect(viewName);
+			}
+			else if(command.equals("mpBooking")){
+				inter = MyPageBookingImpl.instance();
+				viewName = inter.showData(request, response);
+				
 				request.getRequestDispatcher(viewName).forward(request, response);
 			}
 			else {
