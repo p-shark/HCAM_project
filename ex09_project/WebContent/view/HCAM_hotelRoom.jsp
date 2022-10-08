@@ -66,11 +66,14 @@
 	// 객실 사진 관련 변수
 	int roomImgNum = 0;
 	
+	/* 코드별 공통코드 전체 조회 */
+	TreeMap<String, String> commCodes = commonDao.getCodeAllByCode("CCD02");
+	
 	/* 파일 여러개 조회 */
 	ArrayList<String> fileList = fileDao.getFileList("htl", htl_no, 0);
 	
-	/* 코드별 공통코드 전체 조회 */
-	TreeMap<String, String> commCodes = commonDao.getCodeAllByCode("CCD02");
+	/* 회원 별 호텔,캠핑,여행리뷰 각 좋아요 여부 */
+	int hlk_useYn = commonDao.getLikeYn("htl", mem_no, htl_no);
 %>
 <!DOCTYPE html>
 <html>
@@ -115,6 +118,15 @@
 		}
 		if(lugg == 0) {
 			$('#lugg_icon img').addClass('chgOpacity');
+		}
+		
+		var hlk_useYn = document.getElementsByName("hlk_useYn")[0];		// 로그인한 회원의 좋아요 여부
+		// 좋아요한 이력이 있는 경우 하트 icon 변경
+		if(hlk_useYn.value == 1) {
+			if($('.fa-heart').hasClass('fa-regular')) {
+				$('.fa-heart').removeClass('fa-regular');
+				$('.fa-heart').addClass('fa-solid');
+			}
 		}
 	});
 
@@ -188,6 +200,56 @@
 		}
 	}
 	
+	/* 하트 클릭 시 */
+	function fn_chgHeart() {
+		
+		var mem_no = document.getElementsByName("mem_no")[0];		// 로그인한 mem_no
+		if(mem_no.value == 0) {
+			alert("로그인 후 이용가능합니다.");
+			return;
+		}
+		
+		var hlk_useYn = 0;
+		
+		if($('.fa-heart').hasClass('fa-regular')){
+			hlk_useYn = 1;
+			$('.fa-heart').removeClass('fa-regular');
+			$('.fa-heart').addClass('fa-solid');
+		}
+		else {
+			hlk_useYn = 0;
+			$('.fa-heart').removeClass('fa-solid');
+			$('.fa-heart').addClass('fa-regular');
+		}
+		
+		var hlk_kubun = "htl";										// 좋아요 카테고리 
+		var hlk_no = document.getElementsByName("htl_no")[0].value;	// 게시판  No
+		var hlk_useYn = hlk_useYn;									// 좋아요 여부
+		
+		fn_callAjaxHeart(hlk_kubun, hlk_no, hlk_useYn); 
+	}
+	
+	/* 하트 클릭 시 ajax로 처리 */
+	function fn_callAjaxHeart(hlk_kubun, hlk_no, hlk_useYn) {
+		
+		$.ajax({
+			url: "view/HCAM_heartChange.jsp",
+			type:'POST',
+			dataType: "text",
+			async:false,
+			data: "hlk_kubun=" + hlk_kubun +
+				  "&hlk_no=" + hlk_no +
+				  "&hlk_useYn=" + hlk_useYn,
+			success: function(result) {
+				$(".heart_cnt").html(result);
+			},
+			error: function(request, error) {
+				alert(request.status + " / " + request.responseText + " / " + error);
+			}
+		});
+		
+	}
+	
 	/* 호텔 예약으로 이동 */
 	function fn_goBooking(htl_no, hrm_no, booking_cnt) {
 		
@@ -220,6 +282,7 @@
 		<section class="search_section">
 			<form name="top_searching" method="POST" action="hotelRoom.ho" onsubmit="return fn_topSearching();">
 				<input type="hidden" name="htl_no" id="htl_no" value="<%=htl_no %>">
+				<input type="hidden" name="hlk_useYn" value="<%=hlk_useYn%>">			<!-- 로그인한 회원의 좋아요 여부 -->
 				<ul>
 					<li>
 						<div class="search_sec_icon">
@@ -227,7 +290,7 @@
 								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 							</svg>
 						</div>
-						<select class="search_sec_input" name="select01" id="select01" onchange="fn_chgSelectbox(this);">
+						<select class="search_sec_input" name="select01" id="select01" onchange="fn_chgSelectbox(this);" disabled="disabled">
 							<option value="1">전체
 							<% 
 								for(Map.Entry<String, String> code : commCodes.entrySet()) { 
@@ -244,7 +307,7 @@
 					<li class="li_select02">
 						<div class="search_sec_icon">
 						</div>
-						<select class="search_sec_input" name="select02" id="select02">
+						<select class="search_sec_input" name="select02" id="select02" disabled="disabled">
 							<option value="1">전체
 							<% 
 								if(select02 != null || select02 != "") {
@@ -296,7 +359,7 @@
 				<img src="<%=fileList.get(0) %>">
 				<div id="div_heart">
 					<div id="heart_shape">
-						<i class="fa-regular fa-heart fa-2x"></i>
+						<a onclick="fn_chgHeart();"><i class="fa-regular fa-heart fa-2x"></i></a>
 					</div>
 				</div>
 			</div>

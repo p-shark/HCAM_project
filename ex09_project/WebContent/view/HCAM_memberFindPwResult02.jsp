@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String kubun = request.getParameter("kubun");
 	String id = request.getParameter("id");
 %>
 <!DOCTYPE html>
@@ -131,6 +132,7 @@
 </script>
 <body>
 	<form action="HCAM_memberFindPwResult03.jsp" name="form_chgPw" method="POST" onsubmit="return fn_chgPw();">
+		<input type="hidden" name="kubun" value="<%=kubun %>">
 		<input type="hidden" name="id" value="<%=id %>">
 		<div id="chgPwBox">
 			<table id="chgPw_table">

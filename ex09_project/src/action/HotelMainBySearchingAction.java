@@ -25,8 +25,8 @@ public class HotelMainBySearchingAction implements Action{
 		int page = 1;
 		int limit = 8;
 		
-		if(request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+		if(request.getParameter("pageNo") != null) {
+			page = Integer.parseInt(request.getParameter("pageNo"));
 		}
 				
 		TreeMap<Integer, String> searchList = new TreeMap<>();

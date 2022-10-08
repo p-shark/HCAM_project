@@ -63,12 +63,12 @@
 						<!-- <li id="btn_mypage">$&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li> -->
 						<li id="comment"><div>${mem_name} 님 환영합니다.</div></li>
 						
-						<li class="btn_mypage"><button onclick="location.href='mypage.do?command=mypageMain'">마이페이지</button></li>
-						<li class="btn_mypage" onclick="fn_logout();"><button>로그아웃</button></li>
+						<li class="btn_mypage"><a onclick="location.href='mypage.do?command=mypageMain'">마이페이지</a></li>
+						<li class="btn_mypage" onclick="fn_logout();"><a>로그아웃</a></li>
 					<% }else { %>
-						<li id="btn_mgr"><button>매니저</button></li>
-						<li id="btn_login"><button onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberLogin.jsp'">로그인</button></li>
-						<li id="btn_join"><button onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberJoin.jsp'">회원가입</button></li>
+						<li id="btn_mgr"><a>매니저</a></li>
+						<li id="btn_login"><a onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberLogin.jsp'">로그인</a></li>
+						<li id="btn_join"><a onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberJoin.jsp'">회원가입</a></li>
 					<% } %>
 				</ul>
 			</div>

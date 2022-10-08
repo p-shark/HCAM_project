@@ -40,11 +40,19 @@ public class HotelListTotalAction implements Action{
 		if(request.getParameter("select02") != null) {
 			select02 = request.getParameter("select02");
 		}
+		// 상단바 검색
 		if(request.getParameter("top_chkIn") != null) {
 			chekIn = request.getParameter("top_chkIn");
 		}
 		if(request.getParameter("top_chkOut") != null) {
 			checOut = request.getParameter("top_chkOut");
+		}
+		// 메인 검색
+		if(request.getParameter("main_htl_chkIn") != null) {
+			chekIn = request.getParameter("main_htl_chkIn");
+		}
+		if(request.getParameter("main_htl_chkOut") != null) {
+			checOut = request.getParameter("main_htl_chkOut");
 		}
 		
 		// 페이지 처리를 위한 변수

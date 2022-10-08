@@ -10,4 +10,44 @@
 		insert into HcamMem(pnt_no, memg_kubun, mem_id, mem_pw,mem_name,mem_email,mem_nation,mem_phone,mem_post,mem_addr,mem_addrdtl) 
 		values(1,'mem',#{mem_id},#{mem_pw},#{mem_name},'asdf','asdf','asdf','asdf','asdf','asdf');
 	</insert>
+	
+	<select id="myPageHtlBooking" parameterType="int" resultType="map">
+		select htb_no
+		      ,htb_brkfPrice
+		      ,htb_totalPrice
+		      ,htb_chkIn
+			  ,htb_chkOut
+		      ,date_format(htb_date, '%Y-%m-%d %H:%m') as fmt_htb_date
+		      ,(case when DATE(htb_chkIn) &lt;= DATE(now()) then 'Y'
+		        else 'N' end) as bookingComple
+			  ,(select htl_name from hotel where htl_no = htb.htl_no) as htl_name
+			  ,(select hrm_name from htlRoom where hrm_no = htb.hrm_no ) as hrm_name
+		      ,(select concat(hfl_path, hfl_name) from hcamFile where hfl_kubun = 'htl' and kubun_no = htb.htl_no limit 1) file_path
+		  from htlBooking htb
+		 where mem_no = #{mem_no}
+		 order by htb_chkIn desc;
+	</select>
+	
+	<select id="myPagePointInfo" parameterType="int" resultType="map">
+		select FORMAT(pnt_balance,0) as pnt_balance
+			  ,(select FORMAT(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kubun = 'PNT01001') as depo_pnt
+		      ,(select FORMAT(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kubun = 'PNT01002') as save_pnt
+		      ,(select FORMAT(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kubun = 'PNT01003') as use_pnt
+		  from hcamPoint pnt
+		 where pnt_no = #{pnt_no};
+	</select>
+	
+	<select id="myPagePntHistory" parameterType="int" resultType="vo.PntHistoryDTO">
+		select phs_kubun
+			  ,phs_historyAmt
+		      ,phs_comment
+		      ,date_format(phs_date, '%Y-%m-%d %H:%m') as phs_date
+		  from pntHistory
+		 where pnt_no = #{pnt_no}
+		order by phs_no desc;
+	</select>
+	
+	<select id="myPageMember" parameterType="int" resultType="vo.HcamMemDTO">
+		select * from hcamMem where mem_no = #{mem_no};
+	</select>
 </mapper>

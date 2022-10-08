@@ -8,6 +8,10 @@
 	if(session.getAttribute("mem_no") != null) {
 		mem_no = Integer.parseInt(String.valueOf(session.getAttribute("mem_no")));
 	}
+	int pnt_no = 0;
+	if(session.getAttribute("pnt_no") != null) {
+		pnt_no = Integer.parseInt(String.valueOf(session.getAttribute("pnt_no")));
+	}
 	String mem_name = "";
 	if(session.getAttribute("mem_name") != null) {
 		mem_name = String.valueOf(session.getAttribute("mem_name"));
@@ -21,78 +25,25 @@
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mypageMain.css">
 <!-- icon -->
 <script src="https://kit.fontawesome.com/ae515d5c73.js" crossorigin="anonymous"></script>
 <title>Insert title here</title>
 <style>
-	#div_content {
-		margin: 0 auto;
-		width: 1100px;
-	}
-		/* 왼쪽 영역 */
-		#div_content #left_content {
-			display: inline-block;
-			vertical-align: top;
-			width: 245px;
-		}
-			.left_tab_tit {
-				padding-top:20px;
-			}
-			.left_tab_tit::after {
-				content:''; 
-				display:block; 
-				clear:both;
-			}
-				.left_tab_tit li {
-					padding-left: 10px;
-					width: 240px;
-					height: 45px;
-					line-height: 45px; 
-					cursor:pointer;
-					
-				}
-				.left_tab_tit li::after {
-					float: right;
-					content:''; 
-					display:none;
-					height: 100%;
-					border-right: 3px solid var(--color-blue);
-				}
-				.left_tab_tit li.on {
-					background: linear-gradient(90deg,#f8f7f9,#fff)
-				}
-				.left_tab_tit li.on::after {
-					display:block;
-					background-color: black;
-				}
-					.left_tab_tit .left_tab_icon {
-						font-size: 12pt;
-						color: var(--color-blue);
-					}
-					.left_tab_tit .left_tab_title {
-						font-size: 12pt;
-						color: var(--color-blue);
-					}
-		
-		/* 오른쪽 영역 */
-		#div_content #right_content {
-			display: inline-block;
-			vertical-align: top;
-			width: 850px;
-		}
-			#right_content .right_inner {
-				padding: 20px 0 0 20px;
-			}
-				.right_inner .right_top {
-					width: 800px;
-					height: 50px;
-					background-color: red;
-				}
+	
 			
 </style>
 </head>
 <script>
+	/* init window */
+	$(document).ready(function(){
+		/* 탭 메뉴 오른쪽 화면 호출 */
+		go_tabPage("mypage.do?command=mpBooking");
+		//go_tabPage("mypage.do?command=mpPoint");
+	});
+
 	$(function() {
+		/* 왼쪽 tab */
 		$('ul.left_tab_tit li').click(function() {
 			var url_onTab = $(this).attr('data-tab');
 			$('ul.left_tab_tit li').removeClass('on');
@@ -101,19 +52,32 @@
 			//$('#' + onTab).addClass('on');
 
 			/* 탭 메뉴 오른쪽 화면 호출 */
-			//go_tabPage(url_onTab);
+			go_tabPage(url_onTab);
+		})
+		
+		/* 오른쪽 tab */
+		$('ul.inner_tab_tit li').click(function() {
+			var inner_onTab = $(this).attr('data-tab');
+			$('ul.inner_tab_tit li').removeClass('inner_on');
+			$('.inner_cnt').removeClass('inner_on');
+			$(this).addClass('inner_on');
+			$('#' + inner_onTab).addClass('inner_on');
+
 		})
 	});
 	
 	/* 탭 메뉴 오른쪽 화면 호출 */
 	function go_tabPage(url_onTab) {
+		var mem_no = $("input[name='mem_no']").val();
+		var pnt_no = $("input[name='pnt_no']").val();
 		
 		$.ajax({
-			url: "mypage.do?command=mpBooking",
+			url: url_onTab,
 			type:'POST',
 			dataType: "text",
 			async:false,
-			data: "",
+			data: "mem_no=" + mem_no + 
+				  "&pnt_no=" + pnt_no,
 			success: function(result) {
 				$("#right_content").html(result);
 			},
@@ -128,6 +92,8 @@
 	<!-- header -->
 	<jsp:include page="../include/HCAM_header.jsp"/>
 	
+	<input type="hidden" name="mem_no" value="<%=mem_no %>">
+	<input type="hidden" name="pnt_no" value="<%=pnt_no %>">
 	<div id="div_content">
 		<div id="left_content">
 			<ul class="left_tab_tit">
@@ -154,11 +120,7 @@
 			</ul>
 		</div>
 		<div id="right_content">
-			<div class="right_inner">
-				<div class="right_top">
-					
-				</div>
-			</div>
+			
 		</div>
 	</div>
 	

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <jsp:useBean class="dao.MemberDAO" id="memberDao"></jsp:useBean>
 <%
+	String kubun = request.getParameter("kubun");
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pass_init");
 	
@@ -39,10 +40,11 @@
 </style>
 </head>
 <script>
-	function fn_closeLogin(){
-		window.opener.location.href="HCAM_memberLogin.jsp";
+	function fn_closeLogin(kubun){
+		if(kubun == 1) {
+			window.opener.location.href="HCAM_memberLogin.jsp";
+		}
 		window.close();
-		
 	}
 </script>
 <body>
@@ -52,7 +54,7 @@
 		<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
 		</svg><br>
 		비밀번호가 변경되었습니다.<br>
-		<input type="button" value="확인" onClick='fn_closeLogin()'>
+		<input type="button" value="확인" onClick='fn_closeLogin(<%=kubun%>)'>
 	<div>
 	
 	<%

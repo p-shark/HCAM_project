@@ -333,13 +333,22 @@
 				data: "pnt_no=" + pnt_no + 
 					  "&phs_historyAmt=" + phs_historyAmt,
 				success: function(result) {
+					alert("포인트가 정상 충전 되었습니다.");
+					
 					// 부모창에 해당 함수가 있으면 호출. (hotelBooking에서 호출하는 경우 해당 함수 있음)
-					if(typeof(opener.fn_chgTopBooking == "function")) {
-						alert("포인트가 정상 충전 되었습니다.");
+					if(opener.fn_chgTopBooking) {
+						alert(1);
 						opener.fn_chgTopBooking(2);
 					}
-					if(typeof(opener.fn_parentValue == "function")) {
+					// 부모창에 해당 함수가 있으면 호출. (hotelBooking에서 호출하는 경우 해당 함수 있음)
+					if(opener.fn_parentValue) {
+						alert(2);
 						opener.fn_parentValue(phs_historyAmt);
+					}
+					// 부모창에 해당 함수가 있으면 호출. (HCAM_mypagePoint에서 호출하는 경우 해당 함수 있음)
+					if(opener.go_tabPage) {
+						alert(3);
+						opener.go_tabPage("mypage.do?command=mpPoint");
 					}
 					//$("#div_header", opener.document).load(opener.location.href + "#div_header");
 					window.close();

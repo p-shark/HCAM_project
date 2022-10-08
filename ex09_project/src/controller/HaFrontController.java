@@ -199,7 +199,6 @@ public class HaFrontController extends HttpServlet {
 			}
 		}
 		
-		
 		if(forward != null){
 			
 			if(forward.isRedirect()){

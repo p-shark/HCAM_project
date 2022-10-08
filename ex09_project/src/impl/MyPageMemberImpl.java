@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.CommandInter;
 import model.MypageModel;
+import vo.HcamMemDTO;
+import vo.PntHistoryDTO;
 
-public class MyPageBookingImpl implements CommandInter{
+public class MyPageMemberImpl implements CommandInter{
 
-	static MyPageBookingImpl impl = new MyPageBookingImpl();
+	static MyPageMemberImpl impl = new MyPageMemberImpl();
 
-	public static MyPageBookingImpl instance(){
+	public static MyPageMemberImpl instance(){
 		return impl;
 	}
 	
@@ -25,11 +27,10 @@ public class MyPageBookingImpl implements CommandInter{
 		
 		MypageModel model = MypageModel.instance();
 		
-		/* 호텔 예약 정보 */
-		ArrayList<Map<String, String>> htlBooking = (ArrayList<Map<String, String>>) model.selectHtlBooking(mem_no);
+		ArrayList<HcamMemDTO> memberInfo = (ArrayList<HcamMemDTO>) model.selectMemberInfo(mem_no);
 		
-		request.setAttribute("htlBooking", htlBooking);
+		request.setAttribute("memberInfo", memberInfo);
 		
-		return "HCAM_mypageBooking.jsp";
+		return "HCAM_mypageMember.jsp";
 	}
 }

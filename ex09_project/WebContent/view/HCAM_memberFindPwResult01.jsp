@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <jsp:useBean class="dao.MemberDAO" id="memberDao"></jsp:useBean>
 <%
+	String kubun = request.getParameter("kubun");
 	String id = request.getParameter("id");
 	String email = request.getParameter("email");
 
@@ -38,7 +39,7 @@
 </head>
 <body>
 	<% if(result) { 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("HCAM_memberFindPwResult02.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("HCAM_memberFindPwResult02.jsp?kubun=" + kubun);
 		dispatcher.forward(request, response);
 	%>
 	<% } else { %>

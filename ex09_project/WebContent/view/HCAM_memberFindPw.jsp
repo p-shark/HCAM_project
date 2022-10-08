@@ -159,12 +159,12 @@
 </head>
 <script>
 	/* 비밀번호 찾기 */
-	function fn_findPw() {
+	function fn_findPw(kubun) {
 		var id = document.getElementsByName("id")[0].value;
 		var email = document.getElementsByName("email")[0].value;
 		
 		if(id != "" && email != "") {
-			var url = "HCAM_memberFindPwResult01.jsp?id=" + id + "&email=" + email;
+			var url = "HCAM_memberFindPwResult01.jsp?kubun=" + kubun + "&id=" + id + "&email=" + email;
 			var title = "popupOpener";
 			var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=500,height=300,top=100,left=500";
 			window.open(url, title, "width=500, height=380, top=100, left=500");
@@ -184,7 +184,7 @@
 	<jsp:include page="../include/HCAM_header.jsp"/>
 	
 	<div id="findPwBox">
-		<form name="form_findPw" method="POST" onsubmit="fn_findPw();">
+		<form name="form_findPw" method="POST" onsubmit="fn_findPw(1);">
 			<table id="findPw_table">
 				<tr>
 					<td colspan="2">비밀번호 찾기</td>

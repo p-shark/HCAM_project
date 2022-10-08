@@ -1,10 +1,7 @@
-/action/
-/config/
-/controller/
-/dao/
-/db/
-/impl/
 /model/
 /mybatis/
-/service/
+/impl/
+/controller/
 /vo/
+/dao/
+/action/
