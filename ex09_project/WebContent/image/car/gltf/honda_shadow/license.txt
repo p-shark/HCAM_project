@@ -1,0 +1,11 @@
+Model Information:
+* title:	Honda Shadow RS 2010
+* source:	https://sketchfab.com/3d-models/honda-shadow-rs-2010-2e7cf7bc195044f4a0f60c04581e2691
+* author:	Alex.Ka. (https://sketchfab.com/Alex.Ka.)
+
+Model License:
+* license type:	CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions can not be distributed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Honda Shadow RS 2010" (https://sketchfab.com/3d-models/honda-shadow-rs-2010-2e7cf7bc195044f4a0f60c04581e2691) by Alex.Ka. (https://sketchfab.com/Alex.Ka.) licensed under CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)

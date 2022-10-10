@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chevrolet Malibu Premier 2022
+* source:	https://sketchfab.com/3d-models/chevrolet-malibu-premier-2022-55aa80115ee04aa79c802f3baf454326
+* author:	Type_S (https://sketchfab.com/Type_S)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chevrolet Malibu Premier 2022" (https://sketchfab.com/3d-models/chevrolet-malibu-premier-2022-55aa80115ee04aa79c802f3baf454326) by Type_S (https://sketchfab.com/Type_S) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

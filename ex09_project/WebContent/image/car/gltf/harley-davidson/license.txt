@@ -1,0 +1,11 @@
+Model Information:
+* title:	Harley-Davidson Seventy-Two HD FXT 2015
+* source:	https://sketchfab.com/3d-models/harley-davidson-seventy-two-hd-fxt-2015-15e67a3076494bb99ba7504c9913ceb5
+* author:	Alex.Ka. (https://sketchfab.com/Alex.Ka)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Harley-Davidson Seventy-Two HD FXT 2015" (https://sketchfab.com/3d-models/harley-davidson-seventy-two-hd-fxt-2015-15e67a3076494bb99ba7504c9913ceb5) by Alex.Ka. (https://sketchfab.com/Alex.Ka) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

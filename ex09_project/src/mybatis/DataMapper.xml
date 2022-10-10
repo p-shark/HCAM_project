@@ -50,4 +50,27 @@
 	<select id="myPageMember" parameterType="int" resultType="vo.HcamMemDTO">
 		select * from hcamMem where mem_no = #{mem_no};
 	</select>
+	
+	<select id="carSelectBysearch" parameterType="map" resultType="vo.RentACarDTO">
+		select rac.*
+			  ,(select count(*) 
+				  from racBooking 
+				 where car_no = rac.car_no
+		           and (((#{chkIn} &gt;= concat(cbk_chkInDate,cbk_chkInTime)) and #{chkIn} &lt; (concat(cbk_chkOutDate,cbk_chkOutTime)))
+		                or
+		                ((#{chkIn} &lt; concat(cbk_chkInDate,cbk_chkInTime)) and (#{chkOut} &gt; concat(cbk_chkInDate,cbk_chkInTime)))
+		               )
+				) as booking_cnt
+		  from rentAcar rac
+		 where car_location = #{select01}
+		   and car_branch = #{select02}
+		<if test = '!car_kubun01.equals("all")'>
+		   and car_kubun in (#{car_kubun01}, #{car_kubun02}, #{car_kubun03}, #{car_kubun04});
+		</if>
+	</select>
+	
+	<select id="carEach" parameterType="int" resultType="vo.RentACarDTO">
+		select * from rentAcar where car_no = #{car_no};
+	</select>
+	
 </mapper>

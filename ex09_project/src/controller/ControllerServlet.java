@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import impl.MarketImpl;
 import impl.MyPageBookingImpl;
+import impl.MyPageMainImpl;
 import impl.MyPageMemberImpl;
 import impl.MyPagePointImpl;
+import impl.RentAcarImpl;
+import impl.RentAcarPopupImpl;
 import impl.SawonImpl;
 
 public class ControllerServlet extends HttpServlet{
@@ -31,8 +34,16 @@ public class ControllerServlet extends HttpServlet{
 				request.getRequestDispatcher(viewName).forward(request, response);
 			} 
 			else if(command.equals("carMain")){
-				viewName = "view/HCAM_rentACarMain.jsp";
-				response.sendRedirect(viewName);
+				inter = RentAcarImpl.instance();
+				viewName = inter.showData(request, response);
+				viewName = "view/"+viewName;
+				request.getRequestDispatcher(viewName).forward(request, response);
+			}
+			else if(command.equals("carDetailPopup")){
+				inter = RentAcarPopupImpl.instance();
+				viewName = inter.showData(request, response);
+				viewName = "view/"+viewName;
+				request.getRequestDispatcher(viewName).forward(request, response);
 			}
 			else if(command.equals("MarketMain")){
 				inter = MarketImpl.instance();
@@ -41,25 +52,32 @@ public class ControllerServlet extends HttpServlet{
 				request.getRequestDispatcher(viewName).forward(request, response);
 			}
 			else if(command.equals("mypageMain")) {
+				/*
+				// 이걸로 쓰면 안 됨! view가 엉망으로 얽혀서 페이지 못 찾아감
 				viewName = "view/HCAM_mypageMain.jsp";
 				response.sendRedirect(viewName);
+				*/
+				inter = MyPageMainImpl.instance();
+				viewName = inter.showData(request, response);
+				viewName = "view/"+viewName;
+				request.getRequestDispatcher(viewName).forward(request, response);
 			}
 			else if(command.equals("mpBooking")){
 				inter = MyPageBookingImpl.instance();
 				viewName = inter.showData(request, response);
-				
+				viewName = "view/"+viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);
 			}
 			else if(command.equals("mpPoint")){
 				inter = MyPagePointImpl.instance();
 				viewName = inter.showData(request, response);
-				
+				viewName = "view/"+viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);
 			}
 			else if(command.equals("mpMember")){
 				inter = MyPageMemberImpl.instance();
 				viewName = inter.showData(request, response);
-				
+				viewName = "view/"+viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);
 			}
 			else {

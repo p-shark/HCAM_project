@@ -8,7 +8,7 @@ public class HotelRoomDTO {
 	private String hrm_bed;
 	private int hrm_price;
 	private int hrm_maxpers;
-	private int booking_cnt;
+	private int booking_cnt;	// db 테이블에는 없고, 파라미터 전달용
 	
 	public void setHrm_no(int hrm_no) {
 		this.hrm_no = hrm_no;

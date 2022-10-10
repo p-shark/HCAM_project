@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bmw 1m
+* source:	https://sketchfab.com/3d-models/bmw-1m-f0ac8fa9bf1e4d79a03a4a3ea6d24afa
+* author:	David.3D.Art (https://sketchfab.com/David.3D.models)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bmw 1m" (https://sketchfab.com/3d-models/bmw-1m-f0ac8fa9bf1e4d79a03a4a3ea6d24afa) by David.3D.Art (https://sketchfab.com/David.3D.models) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -455,7 +455,7 @@
 								font-weight: bold;
 							}
 								.text_red {
-									color: red;
+									color: var(--color-red);
 									font-size: 10.5pt;
 									font-weight: bold;
 								}

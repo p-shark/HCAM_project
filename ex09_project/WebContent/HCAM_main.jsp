@@ -15,8 +15,10 @@
 	cal.add(Calendar.DATE, 1);
 	String tomorrow = sdf.format(cal.getTime());
 
-	/* 코드별 공통코드 전체 조회 */
+	/* 코드별 공통코드 전체 조회 (호텔) */
 	TreeMap<String, String> commCodes = commonDao.getCodeAllByCode("CCD02");
+	/* 코드별 공통코드 전체 조회 (렌터카) */
+	TreeMap<String, String> car_commCodes = commonDao.getCodeAllByCode("CCD13");
 %>
 <!DOCTYPE html>
 <html>
@@ -41,6 +43,13 @@
 	<link href="js/datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
 	<script src="js/datepicker/js/datepicker.js"></script>		<!-- Air datepicker js -->
 	<script src="js/datepicker/js/datepicker.ko.js"></script>	<!-- 달력 한글 추가를 위해 커스텀 -->
+	<!-- timepicker -->
+	<link href="js/datepicker/css/timepicker.css" rel="stylesheet" type="text/css" media="all">
+	<script src="js/datepicker/js/timepicker.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/timepicker@1.14.0/jquery.timepicker.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/timepicker@1.14.0/jquery.timepicker.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/timepicker@1.14.0/jquery.timepicker.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/timepicker@1.14.0/jquery.timepicker.min.js"></script>
 	<title></title>
 </head>
 <script>
@@ -55,7 +64,10 @@
 		// 인기여행지 slide
 		slideshow2();
 		
-		// 날짜 체크
+		// 초기 지점 값
+		fn_chgCarSelectbox('CCD13001');
+		
+		/* // 날짜 체크
 		var now_utc = Date.now() 	// 지금 날짜를 밀리초로
 		var tomo_utc = new Date();	// 다음 날짜를 밀리초로
 		tomo_utc.setDate(tomo_utc.getDate() + 1); 			// 1일 더하여 setting
@@ -69,32 +81,10 @@
 		document.getElementById("top_chkIn").setAttribute("min", today);
 		document.getElementById("top_chkOut").setAttribute("min", tomorrow);
 		document.getElementById("main_htl_chkIn").setAttribute("min", today);
-		document.getElementById("main_htl_chkOut").setAttribute("min", tomorrow);
+		document.getElementById("main_htl_chkOut").setAttribute("min", tomorrow); */
 		
 	});
 	
-	/* 체크인, 체크아웃 일자 변경 시 체크 */
-	function fn_chgDate(obj, kubun) {
-		
-		var oldValue = obj.value;
-		
-		var today = $("input[name='today']").val();
-		var tomorrow = $("input[name='tomorrow']").val();
-		
-		if(kubun == 1) {
-			if(oldValue < today) {
-				alert("현재 일자 이전의 날짜는 선택할 수 없습니다.");
-				obj.value = today;
-			}
-		}
-		else {
-			if(oldValue < tomorrow) {
-				alert("다음날 일자 이전의 날짜는 선택할 수 없습니다.");
-				obj.value = tomorrow;
-			}
-		}
-	}
-
 	/* Tab Menu */
 	function fn_tabMenu() {
 		$('#div_icon button').click(function() {
@@ -107,7 +97,7 @@
 			}
 			// 액티비티 버튼 클릭 시 section 크기 변경
 			else if(index == 2) {
-				$('#main_section').css('height', 600+'px');
+				$('#main_section').css('height', 740+'px');
 			}
 			else {
 				$('#main_section').css('height', 770+'px');
@@ -133,7 +123,7 @@
 		});
 	}
 	
-	/* Top 국가 select박스 변경될 시 */
+	/* Top 호텔 국가 select박스 변경될 시 */
 	function fn_chgSelectbox(NationCode) {
 		if($('#select01 option:selected').val() == "") {
 			//$('#select02').val("").prop("selected", true);
@@ -158,7 +148,7 @@
 		}
 	}
 	
-	/* main 국가 select박스 변경될 시 */
+	/* main 호텔 국가 select박스 변경될 시 */
 	function fn_chgHotelSelectbox(NationCode) {
 		if($('#htl_select01 option:selected').val() == "") {
 			//$('#select02').val("").prop("selected", true);
@@ -181,6 +171,34 @@
 				}
 			});
 		}
+	}
+	
+	/* main 렌터카 select박스 변경될 시 */
+	function fn_chgCarSelectbox(carLocCode) {
+		
+		// 화면 시작할때 서울->김포공항으로 나와야해서 if문으로 나누어서 체크
+		// 버튼 클릭 시에는 this로 넘기기 때문에 object 타입이므로 이때는 .value를 붙여줌
+		if(typeof carLocCode === 'object') {
+			var v_carLocCode = carLocCode.value;
+		}
+		else {	// 화면 시작할때 호출하는 것은 그냥 value값인 CCD13001를 넘김
+			var v_carLocCode = carLocCode;
+		}
+		
+		$.ajax({
+			url: "view/HCAM_mainSelectbox.jsp",
+			type:'POST',
+			dataType: "text",
+			async:false,
+			data: "topCode=" + v_carLocCode +
+			  	  "&kubun=car",
+			success: function(result) {
+				$("#search_car_location").html(result);
+			},
+			error: function(request, error) {
+				alert(request.status + " / " + request.responseText + " / " + error);
+			}
+		});
 	}
 	
 	/* 상단 검색 바 */
@@ -221,6 +239,44 @@
 		}
 		else if(htlMain_chkIn == "" || htlMain_chkOut == "") {
 			alert("날짜를 선택하세요");
+		}
+		else {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	/* 렌터카 메인 검색 */
+	function fn_carSearching() {
+		var result = false;
+		
+		var sedan = $('#sedan').val();								// 세단
+		var cabriolet = $('#cabriolet').val();						// 카리브올레
+		var sport = $('#sport').val();								// 스포츠카
+		var scooter = $('#scooter').val();							// 스쿠터
+		var select01 = $('#car_select01 option:selected').val();	// 지역
+		var select02 = $('#car_select02 option:selected').val();	// 지점
+		var main_car_chkIn = $("#main_car_chkIn").val();			// 대여일자
+		var search_car_intime = $("#search_car_intime").val();		// 대여시간
+		var main_car_chkOut = $("#main_car_chkOut").val();			// 반납일자
+		var search_car_outtime = $("#search_car_outtime").val();		// 반납시간
+		
+		// 시간 형식 체크
+		var time_pattern = /^([1-9]|[01][0-9]|2[0-3]):([0-5][0-9])$/;
+		
+		// 날짜 체크
+		if(main_car_chkIn >= main_car_chkOut) {
+			alert("체크아웃일자는 체크인일자 이후로 선택하세요");
+		}
+		else if(main_car_chkIn == "" || main_car_chkOut == "") {
+			alert("날짜를 선택하세요");
+		}
+		else if(!time_pattern.test(search_car_intime)) {
+			alert("대여시간을 정확히 입력하세요");
+		}
+		else if(!time_pattern.test(search_car_outtime)) {
+			alert("반납시간을 정확히 입력하세요");
 		}
 		else {
 			result = true;
@@ -364,7 +420,7 @@
 							</svg>
 						</div>
 						<%-- <input class="search_sec_input" type="date" name="top_chkIn" id="top_chkIn" value="<%=today %>" onblur="fn_chgDate(this ,1);" placeholder="체크인일자"> --%>
-						<input class="search_sec_input" type="text" name="top_chkIn" id="top_chkIn" value="<%=today %>" placeholder="체크인일자">
+						<input class="search_sec_input" type="text" name="top_chkIn" id="top_chkIn" value="<%=today %>" placeholder="체크인일자" readonly="true">
 					</li>
 					<li>
 						<div class="search_sec_icon">
@@ -374,7 +430,7 @@
 							</svg>
 						</div>
 						<%-- <input class="search_sec_input" type="date" name="top_chkOut" id="top_chkOut" value="<%=tomorrow %>" onblur="fn_chgDate(this ,2)" placeholder="체크아웃"> --%>
-						<input class="search_sec_input" type="text" name="top_chkOut" id="top_chkOut" value="<%=tomorrow %>" placeholder="체크아웃">
+						<input class="search_sec_input" type="text" name="top_chkOut" id="top_chkOut" value="<%=tomorrow %>" placeholder="체크아웃" readonly="true">
 					</li>
 					<li>
 						<input type="submit" value="검색하기">
@@ -407,11 +463,12 @@
 					<li>
 						<button>
 							<div class="icon_image">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
-	  								<path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"/>
+								<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-car-front" viewBox="0 0 16 16">
+								  <path d="M4 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM4.862 4.276 3.906 6.19a.51.51 0 0 0 .497.731c.91-.073 2.35-.17 3.597-.17 1.247 0 2.688.097 3.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 10.691 4H5.309a.5.5 0 0 0-.447.276Z"/>
+								  <path fill-rule="evenodd" d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM4.82 3a1.5 1.5 0 0 0-1.379.91l-.792 1.847a1.8 1.8 0 0 1-.853.904.807.807 0 0 0-.43.564L1.03 8.904a1.5 1.5 0 0 0-.03.294v.413c0 .796.62 1.448 1.408 1.484 1.555.07 3.786.155 5.592.155 1.806 0 4.037-.084 5.592-.155A1.479 1.479 0 0 0 15 9.611v-.413c0-.099-.01-.197-.03-.294l-.335-1.68a.807.807 0 0 0-.43-.563 1.807 1.807 0 0 1-.853-.904l-.792-1.848A1.5 1.5 0 0 0 11.18 3H4.82Z"/>
 								</svg>
 							</div>
-							<div class="icon_text">캠핑</div>
+							<div class="icon_text">렌터카</div>
 						</button>
 					</li>
 					<li>
@@ -441,8 +498,8 @@
 			<div class="main_div_searching">
 				<form name="hotel_searching" method="POST" action="hotelMain.ho" onsubmit="return fn_mainSearching();">
 					<div id="div_search">
-						<div id="search_top">
-							<div id="search_hotel_nation">
+						<div class="search_top">
+							<div class="search_hotel_nation">
 								<div class="search_hotel_icon">
 									<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 										<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -457,7 +514,7 @@
 									%>
 								</select>
 							</div>
-							<div id="search_hotel_location" id="search_hotel_location">
+							<div class="search_hotel_location" id="search_hotel_location">
 								<div class="search_hotel_icon">
 								</div>
 								<select class="search_hotel_select" name="select02" id="htl_select02">
@@ -474,7 +531,7 @@
 									</svg>
 								</div>
 								<%-- <input class="search_main_date" type="date" name="main_htl_chkIn" id="main_htl_chkIn" value="<%=today %>" onblur="fn_chgDate(this ,1);" placeholder="체크인일자"> --%>
-								<input class="search_main_date" type="text" name="main_htl_chkIn" id="main_htl_chkIn" value="<%=today %>" placeholder="체크인일자">
+								<input class="search_main_date" type="text" name="main_htl_chkIn" id="main_htl_chkIn" value="<%=today %>" placeholder="체크인일자" readonly="true">
 							</div>
 							<div id="chechOut_sec">
 								<div class="search_main_icon">
@@ -484,7 +541,7 @@
 									</svg>
 								</div>
 								<%-- <input class="search_main_date" type="date" name="main_htl_chkOut" id="main_htl_chkOut" value="<%=tomorrow %>" onblur="fn_chgDate(this ,2);" placeholder="체크아웃"> --%>
-								<input class="search_main_date" type="text" name="main_htl_chkOut" id="main_htl_chkOut" value="<%=tomorrow %>" placeholder="체크아웃">
+								<input class="search_main_date" type="text" name="main_htl_chkOut" id="main_htl_chkOut" value="<%=tomorrow %>" placeholder="체크아웃" readonly="true">
 							</div>
 							<div id="people_sec">
 								<div class="search_main_icon">
@@ -495,30 +552,6 @@
 								<input class="search_main_input" id="main_people_input" type="text" name="main_people" placeholder="인원수">
 							</div>
 						</div>
-						<!-- <div id="search_last">
-							<div id="checkBox_sec">
-								<div>
-									<input type="checkbox" name="bkft" id="bkft">
-									<label for="bkft"><font>조식운영</font></label>
-								</div>
-								<div>
-									<input type="checkbox" name="pool" id="pool">
-									<label for="pool"><font>수영장</font></label>
-								</div>
-								<div>
-									<input type="checkbox" name="park" id="park">
-									<label for="park"><font>주차가능</font></label>
-								</div>
-								<div>
-									<input type="checkbox" name="conv" id="conv">
-									<label for="conv"><font>편의시설</font></label>
-								</div>
-								<div>
-									<input type="checkbox" name="bagg" id="bagg">
-									<label for="bagg"><font>수하물보관</font></label>
-								</div>
-							</div>
-						</div> -->
 					</div>
 					<div id="div_btn_search">
 						<input type="submit" value="검색하기">
@@ -526,113 +559,88 @@
 				</form>
 			</div>
 			<div class="main_div_searching div_hidden">
-				<form name="camping_searching">
+				<form name="car_searching" method="POST" action="rentAcar.do?command=carMain" onsubmit="return fn_carSearching();">
 					<div id="div_search">
-						<div id="camping_kind">
-							<div id="camping_kind_sec">
+						<div id="car_kind">
+							<div id="car_kind_sec">
 								<div>
-									<input type="checkbox" name="camping" id="camping">
-									<label for="camping">
-										<img src="image/icon/camping_icon.png"><br>
-										<font>캠핑</font>
+									<input type="checkbox" name="car_kubun" id="sedan" value="RAC01001">
+									<label for="sedan">
+										<img src="image/icon/car_sedan_icon.png"><br>
+										<font>세단</font>
 									</label>
 								</div>
 								<div>
-									<input type="checkbox" name="caravan" id="caravan">
-									<label for="caravan">
-										<img src="image/icon/caravan_icon.png"><br>
-										<font>카라반</font>
+									<input type="checkbox" name="car_kubun" id="cabriolet" value="RAC01002">
+									<label for="cabriolet">
+										<img src="image/icon/car_cabriolet_icon.png"><br>
+										<font>카리브올레</font>
 									</label>
 								</div>
 								<div>
-									<input type="checkbox" name="glamping" id="glamping">
-									<label for="glamping">
-										<img src="image/icon/glamping_icon.png"><br>
-										<font>글램핑</font>
+									<input type="checkbox" name="car_kubun" id="sport" value="RAC01003">
+									<label for="sport">
+										<img src="image/icon/car_sport_icon.png"><br>
+										<font>스포츠카</font>
 									</label>
 								</div>
-								<!-- <div>
-									<input type="checkbox" name="pension" id="pension">
-									<label for="pension">
-										<img src="image/icon/pension_icon.png"><br>
-										<font>펜션</font>
-									</label>
-								</div> -->
 								<div>
-									<input type="checkbox" name="incar" id="incar">
-									<label for="incar">
-										<img src="image/icon/incar_icon.png"><br>
-										<font>차박</font>
+									<input type="checkbox" name="car_kubun" id="scooter" value="RAC01004">
+									<label for="scooter">
+										<img src="image/icon/car_scooter_icon.png"><br>
+										<font>스쿠터</font>
 									</label>
 								</div>
 							</div>
 						</div>
-						<div id="search_sec">
-							<div class="search_main_icon">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-									<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-								</svg>
+						<div class="car_search_top">
+							<div class="search_car_nation">
+								<div class="search_car_icon">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+										<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+									</svg>
+								</div>
+								<select class="search_car_select" name="select01" id="car_select01" onchange="fn_chgCarSelectbox(this);">
+									<% 
+										for(Map.Entry<String, String> code : car_commCodes.entrySet()) { 
+											out.println("<option value='" + code.getKey() + "'>" + code.getValue() + "</option>");
+										}
+									%>
+								</select>
 							</div>
-							<input class="search_main_input" id="main_place_input" type="text" name="main_place" placeholder="어디로 떠나시나요?">
+							<div class="search_car_location" id="search_car_location">
+								<div class="search_car_icon">
+								</div>
+								<select class="search_car_select" name="select02" id="car_select02">
+								</select>
+							</div>
 						</div>
 						<div id="search_middle">
-							<div id="checkIn_sec">
+							<div id="car_checkIn_sec">
 								<div class="search_main_icon">
 									<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
 							  			<path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 							 			 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 									</svg>
 								</div>
-								<input class="search_main_input" id="main_chkIn_input" type="text" name="main_chkIn" placeholder="체크인일자">
+								<input class="search_car_date" type="text" name="main_car_chkIn" id="main_car_chkIn" value="<%=today %>" placeholder="체크인일자" readonly="true">
 							</div>
-							<div id="chechOut_sec">
+							<div id="car_inTime_sec">
+								<input class="search_time_select" type="text" name="search_car_intime" id="search_car_intime" value="시간선택" placeholder="시간선택" required size="8" maxlength="5">
+								<i class="fa-regular fa-clock"></i>
+							</div>
+							<div id="car_chechOut_sec">
 								<div class="search_main_icon">
 									<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
 							  			<path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 							 			 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 									</svg>
 								</div>
-								<input class="search_main_input" id="main_chkOut_input" type="text" name="main_chkOut" placeholder="체크아웃">
+								<input class="search_car_date" type="text" name="main_car_chkOut" id="main_car_chkOut" value="<%=tomorrow %>" placeholder="체크아웃" readonly="true">
 							</div>
-							<div id="people_sec">
-								<div class="search_main_icon">
-									<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
-	  									<path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-									</svg>
-								</div>
-								<input class="search_main_input" id="main_people_input" type="text" name="main_people" placeholder="인원수">
-							</div>
-						</div>
-						<div id="search_last">
-							<div id="checkBox_sec">
-								<div>
-									<input type="checkbox" name="mkdv" id="mkdv">
-									<label for="mkdv"><font>마켓배송</font></label>
-								</div>
-								<div>
-									<input type="checkbox" name="swim" id="swim">
-									<label for="swim"><font>수영장</font></label>
-								</div>
-								<!-- <div>
-									<input type="checkbox" name="car" id="car">
-									<label for="car"><font>카라반</font></label>
-								</div> -->
-								<div>
-									<input type="checkbox" name="common" id="common">
-									<label for="common"><font>공용시설</font></label>
-								</div>
-								<div>
-									<input type="checkbox" name="conven" id="conven">
-									<label for="conven"><font>편의시설</font></label>
-								</div>
-								<div>
-									<input type="checkbox" name="dog" id="dog">
-									<label for="dog"><font>애견동반</font></label>
-								</div>
-								<div>
-									<input type="checkbox" name="cook" id="cook">
-									<label for="cook"><font>취사가능</font></label>
-								</div>
+							<div id="car_outTime_sec">
+								<input class="search_time_select" type="text" name="search_car_outtime" id="search_car_outtime" value="시간선택" placeholder="시간선택" required size="8" maxlength="5">
+								<i class="fa-regular fa-clock"></i>
 							</div>
 						</div>
 					</div>
@@ -895,6 +903,20 @@
 		/* 달력 날짜 선택 */
 		datePickerSet($("#top_chkIn"), $("#top_chkOut"), true); 			// 상단바 날짜 검색. 다중은 시작하는 달력 먼저, 끝달력 2번째
 		datePickerSet($("#main_htl_chkIn"), $("#main_htl_chkOut"), true); 	// 호텔메인 날짜 검색. 다중은 시작하는 달력 먼저, 끝달력 2번째
+		datePickerSet($("#main_car_chkIn"), $("#main_car_chkOut"), true); 	// 렌터카메인 날짜 검색. 다중은 시작하는 달력 먼저, 끝달력 2번째
+		
+		$('#search_car_intime').timepicker({ 
+			'scrollDefault': 'now',
+			timeFormat: "H:i",    //24시간:분 으로표시
+			'minTime': '6:00am',
+			'maxTime': '8:30pm'
+		});
+		$('#search_car_outtime').timepicker({ 
+			'scrollDefault': 'now',
+			timeFormat: "H:i",    //24시간:분 으로표시
+			'minTime': '6:00am',
+			'maxTime': '8:30pm'
+		});
 		/*
 		    * 달력 생성기
 		    * @param sDate 파라미터만 넣으면 1개짜리 달력 생성

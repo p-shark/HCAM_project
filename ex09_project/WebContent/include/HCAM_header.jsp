@@ -40,6 +40,11 @@
 		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=500,height=300,top=100,left=500";
 		window.open(url, title, "width=500, height=380, top=100, left=500");
 	}
+	
+	/* 렌터카 */
+	function fn_chkRentAcar() {
+		alert("메인 검색박스를 이용하세요");		// 렌터카는 메인검색박스로만 검색 가능
+	}
 </script>
 <body>
 	<header>
@@ -48,12 +53,12 @@
 				<ul>
 					<div id="goMain"><li><a href="${pageContext.request.contextPath}/HCAM_main.jsp"><img id="logo" src="${pageContext.request.contextPath}/image/logo/logo4.png"></a></li></div>
 					<div id="goHotel"><li><a href="hotelMain.ho">호텔</a></li></div>
-					<div id="goCamping"><li><a href="campingMain.co">캠핑</a></li></div>
-					<div id="goActivity"><li><a href="">액티비티</a></li></div>
-					<div id="goCar"><li><a href="carMain.do?command=carMain">렌터카</a></li></div>
+					<!-- <div id="goCamping"><li><a href="campingMain.co">캠핑</a></li></div> -->
+					<!-- <div id="goActivity"><li><a href="">액티비티</a></li></div> -->
+					<div id="goCar"><li><a onclick="fn_chkRentAcar();">렌터카</a></li></div>
 					<div id="goMarket"><li><a href="${pageContext.request.contextPath}/HCAM_marketMain.jsp">마켓</a></li></div>
 					<div id="goShareBoard"><li><a href="shareBoard.ho">여행리뷰</a></li></div>
-					<div id="goEvent"><li><a href="">이벤트/쿠폰</a></li></div>
+					<!-- <div id="goEvent"><li><a href="">이벤트/쿠폰</a></li></div> -->
 					<div id="goNotice"><li><a href="noticeMain.co">고객센터</a></li></div>
 				</ul>
 			</div>

@@ -28,11 +28,21 @@
 				}
 			%>
 		</select>
-	<% } else { %>
+	<% } else if("main".equals(kubun)) { %>
 		<div class="search_hotel_icon">
 		</div>
 		<select class="search_hotel_select" name="select02" id="htl_select02">
 			<option value="1">전체
+			<% 
+				for(Map.Entry<String, String> code : commCodes.entrySet()) { 
+					out.println("<option value='" + code.getKey() + "'>" + code.getValue() + "</option>");
+				}
+			%>
+		</select>
+	<% } else if("car".equals(kubun)) { %>
+		<div class="search_car_icon">
+		</div>
+		<select class="search_car_select" name="select02" id="car_select02">
 			<% 
 				for(Map.Entry<String, String> code : commCodes.entrySet()) { 
 					out.println("<option value='" + code.getKey() + "'>" + code.getValue() + "</option>");

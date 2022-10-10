@@ -69,7 +69,7 @@
 							<div class="tab_hotelBooingInfo">
 								<div class="tab_hotel_top">
 									<div class="tab_hotel_left">
-										<img alt="" src="../<%=htlBooking.get(i).get("file_path") %>">
+										<img alt="" src="<%=htlBooking.get(i).get("file_path") %>">
 									</div>
 									<div class="tab_hotel_center">
 										<div class="tab_hotelCnter_top">

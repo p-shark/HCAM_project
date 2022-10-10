@@ -1,0 +1,318 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+#div_bodyContent {
+	padding: 100px 0 170px;
+	width: 100%;
+	height: 100%;
+	background: url(../image/car/@temp-short-mbg.png) 0 0 no-repeat;
+	background-size: 100% 100%;
+	font-family: Pretendard-Regular;
+}
+	#div_bodyContent #div_content {
+		justify-content: left;
+	    position: relative;
+	    width: 1280px;
+	    min-width: 1280px;
+	    height: 1000px;
+	    margin: 0 auto;
+	    background-color: #F8F8F8;
+	}
+		/* 상담 검색 바 */
+		#top_content {
+			margin: 0 auto;
+			padding-top: 55px;
+			width: 1100px;
+			height: 100px;
+		}
+			/* 대여/반납일자, 대여/반납 시간 */
+			.div_rentSearch {
+				display: inline-block;
+				vertical-align: top;
+				margin-right: 10px;
+				padding: 15px 23px 15px 23px;
+				border-radius: 16px;
+			    border: 1px solid #fff;
+			    background: #fff;
+			    box-shadow: 0 8px 16px 0 rgb(32 32 32 / 8%);
+   				text-align: left;
+   				font-weight: 11pt;
+   				font-family: Pretendard-Regular;
+			}
+				.div_rentSearch div:nth-child(1) {
+					color: #606060;
+				}
+				.div_rentSearch div:nth-child(2) {
+					margin-top: 5px;
+					margin-left: -2px;
+					color: #606060;
+				}
+					.div_rentSearch div:nth-child(2) input[name=main_car_chkIn],
+					.div_rentSearch div:nth-child(2) input[name=main_car_chkOut] {
+						width: 110px;
+						font-size: 13pt;
+						font-weight: 800;
+						cursor: pointer;
+						border: none;
+						font-family: Pretendard-Regular;
+					}
+					.div_rentSearch div:nth-child(2) input[name=search_car_intime],
+					.div_rentSearch div:nth-child(2) input[name=search_car_outtime] {
+						width: 80px;
+						font-size: 13pt;
+						font-weight: 800;
+						cursor: pointer;
+						border: none;
+						font-family: Pretendard-Regular;
+					}
+					.div_rentSearch div:nth-child(2) input[type=text]:focus {
+						outline: none;
+					}
+			/* 차량 종류 */
+			.div_rentSearch_car {
+				display: inline-block;
+				vertical-align: top;
+				padding: 4px 23px 0 23px;
+				border-radius: 16px;
+			    border: 1px solid #fff;
+			    background: #fff;
+			    box-shadow: 0 8px 16px 0 rgb(32 32 32 / 8%);
+   				text-align: left;
+			}
+				/* 차량 종류 */
+				#car_kind_sec div {
+					display: inline-block;
+					width: 65px;
+				}
+					#car_kind_sec div input {
+						display:none;
+					}
+					#car_kind_sec div label {
+						cursor: pointer;
+					}
+					#car_kind_sec div input:checked + label {
+						filter: invert(55%) sepia(89%) saturate(2542%) hue-rotate(197deg) brightness(98%) contrast(98%);
+					}
+						#car_kind_sec div label img {
+							width: 66px;
+							height: 66px;
+						}
+			/* 검색 버튼 */
+			.div_rentSearch_btn {
+				display: inline-block;
+				vertical-align: top;
+				margin-left: 10px;
+			}
+				.div_rentSearch_btn input[type=submit] {
+					width: 116px;
+					height: 75px;
+					color: #fff;
+					font-size: 11pt;
+					font-weight: 700;
+					letter-spacing: 1px;
+					text-align: center;
+					line-height: 74px;
+					border: none;
+					border-radius: 16px;
+					box-shadow: 0 8px 16px 0 rgb(35 0 104 / 16%);
+					background-color: var(--color-blue);
+					font-family: Pretendard-Regular;
+				}
+		/* 차량 content */
+		#div_carContent {
+			margin: 0 auto;
+			margin-top: 20px;
+			padding-top: 20px;
+			width: 1100px;
+		}
+			/* 위치 정보 */
+			#div_location {
+				
+			}
+				.location_color {
+					font-size: 15pt;
+					color: var(--color-blue);
+				}
+				#div_location span:nth-child(3) {
+					font-size: 13pt;
+					margin-left: 5px;
+				}
+			/* 남은 차량 개수 */
+			#div_remainCar {
+				
+			}
+				#div_remainCnt {
+					display: inline-block;
+					vertical-align: top;
+					margin: 20px 0 0 0;
+					width: 890px;
+					height: 50px;
+					padding: 5px 0 5px 0;
+					line-height: 50px;
+					border-radius: 10px;
+					box-shadow: 0 8px 16px 0 rgb(35 0 104 / 16%);
+					background-color: var(--color-white);
+				}
+					#div_remainCnt span {
+						font-size: 11pt;
+					}
+					#div_remainCnt span:nth-child(1) {
+						padding-left: 20px;
+						font-size: 16pt;
+						color: var(--color-red);
+					}
+					#div_remainCnt span:nth-child(2) {
+						padding-left: 5px;
+					}
+					#div_remainCnt span:nth-child(3) {
+						padding-left: 5px;
+						font-size: 12pt;
+						font-weight: bold;
+						color: var(--color-red);
+					}
+					#div_remainCnt span:nth-child(5) {
+						padding-left: 5px;
+						font-size: 12pt;
+						font-weight: bold;
+						color: var(--color-blue);
+					}
+				#div_bookingBtn {
+					display: inline-block;
+					vertical-align: top;
+					margin: 42px 0 0 20px;
+				}
+					#div_bookingBtn a {
+						padding: 22px 60px;
+						font-size: 11pt;
+						letter-spacing: 1px;
+						border-radius: 12px;
+						color: var(--color-white);
+						background-color: var(--color-pink);
+					}
+			
+			/* 차량 이미지, 정보 */
+			#div_allCarContent {
+				
+			}
+				.div_eachContent {
+					display: inline-block;
+					vertical-align: top;
+					margin-top: 30px;
+					margin-bottom: 20px;
+					width: 270px;
+					height:282px;
+					cursor: pointer;
+				}
+					.div_rlContent {
+						margin: 0 auto;
+						width: 250px;
+						height:282px;
+						border-radius: 16px;
+						box-shadow: 0 8px 16px 0 rgb(35 0 104 / 16%);
+						background-color: var(--color-white);
+						
+					}
+						.div_image {
+							position: relative;
+						}
+							.div_image img {
+								width: 250px;
+								height: 150px;
+								border-radius: 16px 16px 0 0;
+							}
+							.div_class_check {
+								display: none;
+								color: inherit;
+							    fill: inherit;
+							    position: absolute;
+							    top: 12px;
+							    left: 12px;
+							    z-index: 1;
+							}
+								.div_class_check .check_shape {
+									background: rgb(255, 255, 255);
+								    border-radius: 100%;
+								    color: inherit;
+								    fill: inherit;
+								    cursor: pointer;
+								    top: 12px;
+								    left: 0px;
+								    right: 16px;
+								    z-index: 1;
+								    width: 50px;
+								    height: 50px;
+								}
+									.check_shape .fa-check {
+										margin-top: 12px;
+										margin-left: 12px;
+										font-size: 20pt;
+										color: #f25555;
+									}
+									.check_shape .span_bookingStatus {
+										padding: 16px 0 0 1.5px;
+										font-weight: bold;
+										color: var(--color-green);
+									}
+							.div_class_booking {
+								color: inherit;
+							    fill: inherit;
+							    position: absolute;
+							    top: 12px;
+							    left: 12px;
+							    z-index: 1;
+							}
+								.div_class_booking .booking_shape {
+									background: rgb(255, 255, 255);
+								    border-radius: 100%;
+								    color: inherit;
+								    fill: inherit;
+								    cursor: pointer;
+								    top: 12px;
+								    left: 0px;
+								    right: 16px;
+								    z-index: 1;
+								    width: 50px;
+								    height: 50px;
+								}
+									.booking_shape .span_bookingStatus {
+										padding: 16px 0 0 1.5px;
+										font-weight: bold;
+										color: var(--color-green);
+									}
+						.div_carName {
+							margin: 8px 0 3px 0;
+							text-align: right;
+						}
+							.div_carName span {
+								margin-right: 12px;
+								font-size: 12pt;
+								font-weight: bold;
+							}
+						.div_OptionContent {
+							
+						}
+							.top_carOption {
+								
+							}
+								.carOption {
+									display: inline-block;
+									vertical-align: center;
+									margin: 10px 7px 0 7px;
+									width: 106px;
+									height: 30px;
+									line-height: 30px;
+									text-align: center;
+									color: var(--color-darkgray);
+									border: 1px solid var(--color-darkgray);
+									border-radius: 20px;
+								}
+								.carOptionTrue {
+									color: var(--color-blue);
+									border: 1px solid var(--color-blue);
+								}
+			
+			

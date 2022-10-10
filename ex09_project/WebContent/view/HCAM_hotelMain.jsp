@@ -385,7 +385,7 @@
 							</svg>
 						</div>
 						<%-- <input class="search_sec_input" type="date" name="top_chkIn" id="top_chkIn" value="<%=checkIn %>" onblur="fn_chgDate(this ,1);" placeholder="체크인일자"> --%>
-						<input class="search_sec_input" type="text" name="top_chkIn" id="top_chkIn" value="<%=checkIn %>" onblur="fn_chgDate(this ,1);" placeholder="체크인일자">
+						<input class="search_sec_input" type="text" name="top_chkIn" id="top_chkIn" value="<%=checkIn %>" onblur="fn_chgDate(this ,1);" placeholder="체크인일자" readonly="true">
 					</li>
 					<li>
 						<div class="search_sec_icon">
@@ -395,7 +395,7 @@
 							</svg>
 						</div>
 						<%-- <input class="search_sec_input" type="date" name="top_chkOut" id="top_chkOut" value="<%=checkOut %>" onblur="fn_chgDate(this ,2)" placeholder="체크아웃"> --%>
-						<input class="search_sec_input" type="text" name="top_chkOut" id="top_chkOut" value="<%=checkOut %>" onblur="fn_chgDate(this ,2)" placeholder="체크아웃">
+						<input class="search_sec_input" type="text" name="top_chkOut" id="top_chkOut" value="<%=checkOut %>" onblur="fn_chgDate(this ,2)" placeholder="체크아웃" readonly="true">
 					</li>
 					<li>
 						<input type="submit" value="검색하기">

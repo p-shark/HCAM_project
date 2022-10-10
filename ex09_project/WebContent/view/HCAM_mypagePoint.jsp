@@ -66,7 +66,7 @@
 			<div class="div_point_content">
 				<div class="div_point_top">
 					<div class="point_image">
-						<img alt="" src="../image/agoda-gift-card-centered-thailand.png">
+						<img alt="" src="image/agoda-gift-card-centered-thailand.png">
 						<div></div>
 					</div>
 					<div class="point_balance">

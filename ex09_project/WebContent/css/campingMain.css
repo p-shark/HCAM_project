@@ -1,0 +1,80 @@
+.div_background {
+	z-index: -100;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(114.47deg, #FFE9CD 0%, #FFFFFF 59.38%);
+}
+.div_content_left {
+ 	display: block;
+    position: fixed;
+    left: calc(50% - 500px);
+    top: calc(100% - 50%);
+    transform: translateY(-50%);
+}
+	#total_left_top div{
+		margin-top: 10px;
+	}
+	#total_left_top div span{
+		font-weight: bold;
+		font-size: 1.7rem;
+		color: #25a5f0;
+		text-align: center;
+	}
+	
+	/* map */
+	#canvas {float:left; position:relative; width: 320px; height:400px; margin: 0}
+	#south {width: 320px; height:400px; position: absolute; top: 0px; left: 0;}
+	
+	#canvas h2{ padding:0; margin:0; font-size:12px; }
+	
+	#seoul, #gygg, #incheon, #gangwon, #chungbuk, #chungnam, #daejeon, #sejong, #jeonbuk, #jeonnam, #gwangju, #gyeongbuk, #gyeongnam, #daegu, #busan, #ulsan, #jeju { display: none; position: absolute; height:16px; background-color:#000; color:#fff; padding:2px 5px; text-align:center;}
+	
+	#seoul{ left:80px; top:75px; }
+	#gygg{ left:80px; top:45px; }
+	#incheon{ left:60px; top:75px; }
+	#gangwon{ left:150px; top:45px; }
+	#chungbuk{ left:120px; top:145px; }
+	#chungnam{ left:60px; top:165px; }
+	#daejeon{ left:80px; top:165px; }
+	#sejong{ left:70px; top:145px; }
+	#jeonbuk{ left:60px; top:205px; }
+	#jeonnam{ left:60px; top:260px; }
+	#gwangju{ left:	60px; top:260px; }
+	#gyeongbuk{ left:150px; top:165px; }
+	#gyeongnam{ left:130px; top:240px; }
+	#daegu{ left:170px; top:210px; }
+	#busan{ left:190px; top:250px; }
+	#ulsan{ left:200px; top:225px; }
+	#jeju{ left:80px; top:340px; }
+	
+	#map_title{
+		margin: 0 auto;
+		width: 100%;
+		height:80px;
+	}
+	#map_title_line1{
+		width: 100%;
+		height:35px;
+	}
+	#map_title_line1 div {
+		display: inline-block;
+		font-weight: bold;
+		font-size: 20pt;
+	}
+	#map_title_line1 div:nth-child(2){
+		margin-right: 90px;
+		color: #25a5f0;
+	}
+	#map_title_line2{
+		text-align: center;
+		font-weight: bold;
+		font-size: 12pt;
+		margin-top: 10px;
+		margin-right: 90px;
+		clear: left;
+	}
+	#map{
+		 width:200px;
+		 height:400px;
+	}

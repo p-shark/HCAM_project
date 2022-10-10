@@ -49,7 +49,7 @@ public class HaFrontController extends HttpServlet {
 		String command=RequestURI.substring(contextPath.length());
 		ActionForward forward=null;
 		Action action=null;
-		
+		System.out.println("command >>>> " + command);
 		// path가 .jsp로 넘어오지 않고 .ho로 넘어오는 경우 command값에 /view가 같이 넘어와서 제거해줘야함 
 		command = command.replace("/view", "");
 		

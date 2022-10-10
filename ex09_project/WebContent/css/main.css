@@ -121,14 +121,14 @@
 				height: 300px;
 			}
 			.main_div_searching:nth-child(4) #div_search {	/* 캠핑 searchBox */
-				height: 420px;
+				height: 370px;
 			}
 			.main_div_searching:nth-child(5) #div_search {	/* 액티비티 searchBox */
 				height: 210px;
 			}
 			
 			/* main search 중 호텔 국가, 지역 */
-			#search_top {
+			.search_top {
 				clear: left;
 				margin: 0 auto;
 				margin-top: 10px;
@@ -136,7 +136,7 @@
 				height: 65px;
 			}
 				/* main search 중 호텔 국가 */
-				#search_hotel_nation {
+				.search_hotel_nation {
 					display: inline-block;
 					margin-right: 7px;
 					width: 493px;
@@ -154,7 +154,7 @@
 					}
 					.search_hotel_select {
 						float: left;
-						margin-top: 20px;
+						margin-top: 22px;
 						margin-left: 15px;
 						width: 400px;
 						height: 20px;
@@ -166,7 +166,7 @@
 						outline: none;
 					}
 				/* main search 중 호텔 국가 */
-				#search_hotel_location {
+				.search_hotel_location {
 					display: inline-block;
 					width: 493px;
 					height: 65px;
@@ -174,89 +174,42 @@
 					border: 1px solid #DDDFE2;
 					border-radius: 10px;
 				}
-				
-				
-				/* 캠핑 종류 */
-				#camping_kind {
-					margin-top: -10px;
-					display: inline-block;
+			#search_middle {
+				display: inline-block;
+				margin-top: 15px;
+			}
+				/* main icon,input */
+				.search_main_icon {
+					margin-top: 18px;
+					margin-left: 10px;
+					float: left;
+					width: 30px;
+					height: 30px;
 				}
-					#camping_kind #camping_kind_sec {
-						width: 1000px;
-						height: 65px;
-						border-radius: 10px;
-					}
-						#camping_kind #camping_kind_sec div {
-							display: inline-block;
-							margin-right: 100px;
-						}
-						#camping_kind #camping_kind_sec div:last-child {
-							margin-right: 0px;
-						}
-							#camping_kind #camping_kind_sec div input {
-								display:none;
-							}
-							#camping_kind #camping_kind_sec div label {
-								cursor: pointer;
-							}
-							#camping_kind #camping_kind_sec div input:checked + label {
-								filter: invert(55%) sepia(89%) saturate(2542%) hue-rotate(197deg) brightness(98%) contrast(98%);
-							}
-								#camping_kind #camping_kind_sec div label img {
-									width: 40px;
-									height: 40px;
-								}
-
-				/* 장소: 검색어 */
-				#search_sec {
-					clear: left;
-					margin: 0 auto;
-					margin-top: 10px;
-					width: 1000px;
-					height: 65px;
-					background-color: white;
-					border: 1px solid #DDDFE2;
-					border-radius: 10px;
+				.search_main_input {
+					float: left;
+					margin-top: 23px;
+					margin-left: 5px;
+					height: 20px;
+					border: none;
+					border-radius: 5px;
+					font-size: 12pt;
 				}
-					/* main icon,input */
-					.search_main_icon {
-						margin-top: 18px;
-						margin-left: 10px;
-						float: left;
-						width: 30px;
-						height: 30px;
-					}
-					.search_main_input {
-						float: left;
-						margin-top: 23px;
-						margin-left: 5px;
-						height: 20px;
-						border: none;
-						border-radius: 5px;
-						font-size: 12pt;
-					}
-					.search_main_input:focus {
-						outline: none;
-					}
-					.search_main_date {
-						float: left;
-						margin-left: 15px;
-						padding: 23px 0 17px 0;
-						width: 270px;
-						/* height: 62px; */
-						border: none;
-						border-radius: 5px;
-						font-size: 12pt;
-					}
-					.search_main_date:focus {
-						outline: none;
-					}
-						#main_place_input {
-							width: 900px;
-						}
-				#search_middle {
-					display: inline-block;
-					margin-top: 15px;
+				.search_main_input:focus {
+					outline: none;
+				}
+				.search_main_date {
+					float: left;
+					margin-left: 15px;
+					padding: 23px 0 17px 0;
+					width: 270px;
+					/* height: 62px; */
+					border: none;
+					border-radius: 5px;
+					font-size: 12pt;
+				}
+				.search_main_date:focus {
+					outline: none;
 				}
 					/* 체크인일자 */
 					#checkIn_sec {
@@ -294,30 +247,183 @@
 						border: 1px solid #DDDFE2;
 						border-radius: 10px;
 					}
-						#main_people_input {
-							width: 250px;
-						}
-				#search_last {
-					display: inline-block;
-					margin-top: 10px;
-				}
-					/* 체크박스 */
-					#search_last #checkBox_sec {
-						clear: left;
-						width: 1000px;
-						height: 65px;
-						background-color: white;
-						border: 1px solid #DDDFE2;
-						border-radius: 10px;
+					#main_people_input {
+						width: 250px;
 					}
-						#search_last #checkBox_sec div {
-							display: inline-block;
-							margin-top: 21px;
-							margin-right: 30px;
+				
+			/* 렌터카 종류 */
+			#car_kind {
+				margin-top: -25px;
+				display: inline-block;
+			}
+				#car_kind #car_kind_sec {
+					width: 1000px;
+					height: 65px;
+					border-radius: 10px;
+				}
+					#car_kind #car_kind_sec div {
+						display: inline-block;
+						margin-right: 100px;
+					}
+					#car_kind #car_kind_sec div:last-child {
+						margin-right: 0px;
+					}
+						#car_kind #car_kind_sec div input {
+							display:none;
 						}
-						#search_last #checkBox_sec div:last-child {
-							margin-right: 0px;
+						#car_kind #car_kind_sec div label {
+							cursor: pointer;
 						}
+						#car_kind #car_kind_sec div input:checked + label {
+							filter: invert(55%) sepia(89%) saturate(2542%) hue-rotate(197deg) brightness(98%) contrast(98%);
+						}
+							#car_kind #car_kind_sec div label img {
+								width: 66px;
+								height: 66px;
+							}
+				
+			/* 장소: 검색어 */
+			#search_sec {
+				clear: left;
+				margin: 0 auto;
+				margin-top: 10px;
+				width: 1000px;
+				height: 65px;
+				background-color: white;
+				border: 1px solid #DDDFE2;
+				border-radius: 10px;
+			}
+					#main_place_input {
+						width: 900px;
+					}
+			/* main search 중 렌터카 지역 */
+			.car_search_top {
+				clear: left;
+				margin: 0 auto;
+				margin-top: 20px;
+				width: 1000px;
+				height: 65px;
+			}
+				.search_car_nation {
+					display: inline-block;
+					margin-right: 7px;
+					width: 493px;
+					height: 65px;
+					background-color: white;
+					border: 1px solid #DDDFE2;
+					border-radius: 10px;
+				}
+					.search_car_icon {
+						margin-top: 17px;
+						margin-left: 10px;
+						float: left;
+						width: 30px;
+						height: 30px;
+					}
+					.search_car_select {
+						float: left;
+						margin-top: 22px;
+						margin-left: 15px;
+						width: 400px;
+						height: 20px;
+						border: none;
+						border-radius: 5px;
+						font-size: 12pt;
+					}
+					.search_car_select:focus {
+						outline: none;
+					}
+				/* main search 중 렌터카 지역 */
+				.search_car_location {
+					display: inline-block;
+					width: 493px;
+					height: 65px;
+					background-color: white;
+					border: 1px solid #DDDFE2;
+					border-radius: 10px;
+				}
+			
+			/* 체크인일자 */
+			#car_checkIn_sec {
+				clear: left;
+				float: left;
+				width: 331px;
+				height: 65px;
+				border-right: 1px solid #DDDFE2;
+				background-color: white;
+				border: 1px solid #DDDFE2;
+				border-radius: 10px 0 0 10px;
+			}
+				.search_car_date {
+					float: left;
+					margin-left: 15px;
+					padding: 23px 0 17px 0;
+					width: 270px;
+					/* height: 62px; */
+					border: none;
+					border-radius: 5px;
+					font-size: 12pt;
+				}
+				.search_car_date:focus {
+					outline: none;
+				}
+			/* 대여일시 */
+			#car_inTime_sec {
+				float: left;
+				width: 162px;
+				height: 65px;
+				border-right: 1px solid #DDDFE2;
+				background-color: white;
+				border: 1px solid #DDDFE2;
+				border-radius: 0 10px 10px 0;
+			}
+				.fa-clock {
+					margin-top: 22px;
+					margin-right: 27px;
+					font-size: 20px;
+				}
+				.search_time_select {
+					float: left;
+					margin-top: 22px;
+					margin-left: 30px;
+					width: 70px;
+					height: 20px;
+					border: none;
+					border-radius: 5px;
+					font-size: 12pt;
+					cursor: pointer;
+				}
+				.search_time_select:focus {
+					outline: none;
+				}
+			/* 체크아웃일자 */
+			#car_chechOut_sec {
+				float: left;
+				margin-left: 10px;
+				width: 331px;
+				height: 65px;
+				background-color: white;
+				border: 1px solid #DDDFE2;
+				border-radius: 10px 0 0 10px;
+			}
+			/* 반납일시 */
+			#car_outTime_sec {
+				float: left;
+				width: 162px;
+				height: 65px;
+				border-right: 1px solid #DDDFE2;
+				background-color: white;
+				border: 1px solid #DDDFE2;
+				border-radius: 0 10px 10px 0;
+			}
+			
+				
+						
+			
+			
+					
+					
+					
 			/* 검색 버튼 */
 			#div_btn_search {
 				margin-top: -35px;
