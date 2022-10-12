@@ -12,6 +12,10 @@
 	if(session.getAttribute("mem_no") != null) {
 		mem_no = Integer.parseInt(String.valueOf(session.getAttribute("mem_no")));
 	}
+	int pnt_no = 0;
+	if(session.getAttribute("pnt_no") != null) {
+		pnt_no = Integer.parseInt(String.valueOf(session.getAttribute("pnt_no")));
+	}
 	String mem_name = "";
 	if(session.getAttribute("mem_name") != null) {
 		mem_name = String.valueOf(session.getAttribute("mem_name"));
@@ -86,19 +90,6 @@
 		window.open(url, title, "width=800, height=730, top=100, left=500");
 	}
 	
-	/* 차량 예약하기 */
-	function fn_chjBooking() {
-		
-		var car_no = $("input[name=car_no]").val();
-		
-		if(<%=mem_no %> == 0) {
-			alert("로그인 후 예약 가능합니다.");
-		}
-		else if(car_no == "") {
-			alert("차량 선택 후 예약 가능합니다.");
-		}
-	}
-	
 	/* popup에서 선택 시 display 상태 변경 */
 	function fn_chgCheckDisplay(car_no) {
 		// css 변경
@@ -146,12 +137,42 @@
 		
 		return result;
 	}
+	
+	/* 차량 예약하기 */
+	function fn_chjBooking() {
+		
+		var mem_no = $("input[name=mem_no]").val();
+		var pnt_no = $("input[name=pnt_no]").val();
+		var car_no = $("input[name=car_no]").val();
+		var chkInDate = $("input[name=chkInDate]").val();
+		var chkOutDate = $("input[name=chkOutDate]").val();
+		var inTime = $("input[name=inTime]").val();
+		var outTime = $("input[name=outTime]").val();
+		
+		if(mem_no == 0) {
+			alert("로그인 후 예약 가능합니다.");
+		}
+		else if(car_no == "") {
+			alert("차량 선택 후 예약 가능합니다.");
+		}
+		else {
+			location.href = "car.do?command=carBooking" + "&mem_no=" + mem_no + "&pnt_no=" + pnt_no
+			 			  + "&car_no=" + car_no+ "&chkInDate=" + chkInDate + "&chkOutDate=" + chkOutDate 
+			 			  + "&inTime=" + inTime + "&outTime=" + outTime;
+		}
+	}
 </script>
 <body>
 	<!-- header -->
 	<jsp:include page="../include/HCAM_header.jsp"/>
-	
+
 	<input type="hidden" name="car_no" value="">
+	<input type="hidden" name="mem_no" value="<%=mem_no %>">
+	<input type="hidden" name="pnt_no" value="<%=pnt_no %>">
+	<input type="hidden" name="chkInDate" value="<%=chkInDate %>">
+	<input type="hidden" name="chkOutDate" value="<%=chkOutDate %>">
+	<input type="hidden" name="inTime" value="<%=inTime %>">
+	<input type="hidden" name="outTime" value="<%=outTime %>">
 	<div id="div_bodyContent">
 		<div id="div_content">
 			<div id="top_content">
