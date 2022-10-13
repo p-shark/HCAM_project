@@ -146,7 +146,7 @@
 					<div class="botm_left_botm"><%=hotel.getHtl_inTime() %></div>
 				</div>
 				<div id="botm_center">
-					<div><%=htlBooking.getHtb_stayTerm() %>박</div>
+					<div>1박</div>
 				</div>
 				<div id="botm_right">
 					<div class="botm_left_top">체크인</div>

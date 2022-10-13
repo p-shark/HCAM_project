@@ -14,8 +14,6 @@ import impl.MyPageBookingImpl;
 import impl.MyPageMainImpl;
 import impl.MyPageMemberImpl;
 import impl.MyPagePointImpl;
-import impl.RentAcarBookingImpl;
-import impl.RentAcarBookingSuccessImpl;
 import impl.RentAcarImpl;
 import impl.RentAcarPopupImpl;
 import impl.SawonImpl;
@@ -43,18 +41,6 @@ public class ControllerServlet extends HttpServlet{
 			}
 			else if(command.equals("carDetailPopup")){
 				inter = RentAcarPopupImpl.instance();
-				viewName = inter.showData(request, response);
-				viewName = "view/"+viewName;
-				request.getRequestDispatcher(viewName).forward(request, response);
-			}
-			else if(command.equals("carBooking")){
-				inter = RentAcarBookingImpl.instance();
-				viewName = inter.showData(request, response);
-				viewName = "view/"+viewName;
-				request.getRequestDispatcher(viewName).forward(request, response);
-			}
-			else if(command.equals("carBookingSuccess")){
-				inter = RentAcarBookingSuccessImpl.instance();
 				viewName = inter.showData(request, response);
 				viewName = "view/"+viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);

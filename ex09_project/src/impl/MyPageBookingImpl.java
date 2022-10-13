@@ -28,11 +28,7 @@ public class MyPageBookingImpl implements CommandInter{
 		/* 호텔 예약 정보 */
 		ArrayList<Map<String, String>> htlBooking = (ArrayList<Map<String, String>>) model.selectHtlBooking(mem_no);
 		
-		/* 렌터카 예약정보 */
-		ArrayList<Map<String, String>> carBooking = (ArrayList<Map<String, String>>) model.selectCarBooking(mem_no);
-		
 		request.setAttribute("htlBooking", htlBooking);
-		request.setAttribute("carBooking", carBooking);
 		
 		return "HCAM_mypageBooking.jsp";
 	}

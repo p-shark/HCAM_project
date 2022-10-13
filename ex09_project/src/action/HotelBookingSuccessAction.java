@@ -37,13 +37,12 @@ public class HotelBookingSuccessAction implements Action{
 		int htb_stayTerm = Integer.parseInt(request.getParameter("htb_stayTerm"));			// 머무는 기간
 		int htb_brkfCnt = Integer.parseInt(request.getParameter("htb_brkfCnt"));			// 조식 총 수량
 		int accum_point = Integer.parseInt(request.getParameter("accum_point"));			// 적립예정포인트
-		int rlp_useYn = Integer.parseInt(request.getParameter("rlp_useYn"));				// 예약자와 투숙객 동일여부(0:같음/1:다름)
 		
 		String htb_rlpName = "";							// 실제투숙객 정보
 		String htb_rlpEmail = "";							// 실제투숙객 정보
 		String htb_rlpNation = "";							// 실제투숙객 정보
 		String htb_rlpPhone = "";							// 실제투숙객 정보
-					
+		int rlp_useYn = Integer.parseInt(request.getParameter("rlp_useYn"));				// 예약자와 투숙객 동일여부(0:같음/1:다름)
 		if(rlp_useYn == 1) {
 			htb_rlpName = request.getParameter("htb_rlpName");
 			htb_rlpEmail = request.getParameter("htb_rlpEmail");

@@ -28,28 +28,6 @@
 		 order by htb_chkIn desc;
 	</select>
 	
-	<select id="myPageCarBooking" parameterType="int" resultType="map">
-		select cbk_no
-			  ,cbk_rlpCarPrice
-		      ,cbk_totalPrice
-		      ,cbk_chkInDate
-		      ,cbk_chkOutDate
-		      ,cbk_chkInTime
-		      ,cbk_chkOutTime
-		      ,DATE_FORMAT(cbk_date, '%Y-%m-%d %H:%m') as fmt_cbk_date
-		      ,(case when concat(cbk_chkInDate,cbk_chkInTime) &lt;= DATE_FORMAT(NOW(), '%Y%m%d%H%m') then 'Y'
-				else 'N' end) as bookingComple
-			  ,(select car_name from rentAcar where car_no = cbk.car_no) as car_name
-		      ,(select car_kubun from rentAcar where car_no = cbk.car_no) as car_kubun
-		      ,(select car_location from rentAcar where car_no = cbk.car_no) as car_location
-		      ,(select car_branch from rentAcar where car_no = cbk.car_no) as car_branch
-		      ,(select car_fuelKubun from rentAcar where car_no = cbk.car_no) as car_fuelKubun
-			  ,(select concat(hfl_path, hfl_name) from hcamFile where hfl_kubun = 'car' and kubun_no = cbk.car_no limit 1) file_path
-		  from racBooking cbk
-		 where mem_no = #{mem_no}
-		 order by cbk_chkInDate desc, cbk_chkInTime desc;
-	</select>
-	
 	<select id="myPagePointInfo" parameterType="int" resultType="map">
 		select FORMAT(pnt_balance,0) as pnt_balance
 			  ,(select FORMAT(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kubun = 'PNT01001') as depo_pnt
@@ -93,21 +71,6 @@
 	
 	<select id="carEach" parameterType="int" resultType="vo.RentACarDTO">
 		select * from rentAcar where car_no = #{car_no};
-	</select>
-	
-	<select id="carCheckBooking" parameterType="vo.RacBookingDTO" resultType="String">
-		select cbk_no from racBooking where car_no = #{car_no} and cbk_chkInDate = #{cbk_chkInDate} and cbk_chkOutDate = #{cbk_chkOutDate}
-		and cbk_chkInTime = #{cbk_chkInTime} and cbk_chkOutTime = #{cbk_chkOutTime} and cbk_rentTerm = #{cbk_rentTerm};
-	</select>
-	
-	<insert id="carInsertBooking" parameterType="vo.RacBookingDTO">
-		insert into racBooking(car_no, mem_no, cbk_rlpName, cbk_rlpEmail, cbk_rlpNation, cbk_rlpPhone, cbk_chkInDate, cbk_chkOutDate, cbk_chkInTime, cbk_chkOutTime, cbk_rentTerm, cbk_rlpCarPrice, cbk_totalPrice)
-		values(#{car_no}, #{mem_no}, #{cbk_rlpName}, #{cbk_rlpEmail}, #{cbk_rlpNation}, #{cbk_rlpPhone}, #{cbk_chkInDate}, #{cbk_chkOutDate}, #{cbk_chkInTime}, #{cbk_chkOutTime}, #{cbk_rentTerm}, #{cbk_rlpCarPrice}, #{cbk_totalPrice});
-	</insert>
-	
-	<select id="carBookingInfo" parameterType="int" resultType="vo.RacBookingDTO">
-		select cbk_no, car_no, mem_no, cbk_rlpName, cbk_rlpEmail, cbk_rlpNation, cbk_rlpPhone, cbk_chkInDate, cbk_chkOutDate
-		, cbk_chkInTime, cbk_chkOutTime, cbk_rentTerm, cbk_rlpCarPrice, cbk_totalPrice, date_format(cbk_date, '%Y-%m-%d %H:%m') as cbk_date from racBooking where cbk_no = #{cbk_no};
 	</select>
 	
 </mapper>
