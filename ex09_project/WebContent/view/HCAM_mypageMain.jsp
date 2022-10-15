@@ -54,16 +54,6 @@
 			/* 탭 메뉴 오른쪽 화면 호출 */
 			go_tabPage(url_onTab);
 		})
-		
-		/* 오른쪽 tab */
-		$('ul.inner_tab_tit li').click(function() {
-			var inner_onTab = $(this).attr('data-tab');
-			$('ul.inner_tab_tit li').removeClass('inner_on');
-			$('.inner_cnt').removeClass('inner_on');
-			$(this).addClass('inner_on');
-			$('#' + inner_onTab).addClass('inner_on');
-
-		})
 	});
 	
 	/* 탭 메뉴 오른쪽 화면 호출 */

@@ -179,7 +179,7 @@
 						height: 200px;
 						border-bottom: 1px solid rgb(221, 223, 226);
 					}
-						/* 사진 영역 */
+						/* 호텔 사진 영역 */
 						.tab_hotel_left {
 							display: inline-block;
 							vertical-align: top;
@@ -191,12 +191,32 @@
 								height: 200px;
 								border-radius: 3px 0 0 0;
 							}
+						/* 렌터카 사진 영역 */
+						.tab_car_left {
+							display: inline-block;
+							vertical-align: top;
+							margin-bottom: -3px;
+							width: 300px;	
+						}
+							.tab_car_left img {
+								width: 300px;
+								height: 200px;
+								border-radius: 3px 0 0 0;
+							}
 						/* 호텔 정보 */
 						.tab_hotel_center {
 							display: inline-block;
 							vertical-align: top;
 							padding: 15px 30px 10px 10px;
 							width: 345px;
+							color: var(--color-darkgray);
+						}
+						/* 렌터카 정보 */
+						.tab_car_center {
+							display: inline-block;
+							vertical-align: top;
+							padding: 15px 30px 10px 10px;
+							width: 245px;
 							color: var(--color-darkgray);
 						}
 							.tab_hotelCnter_top {
@@ -226,11 +246,24 @@
 						.tab_room_name {
 							font-weight: bold;
 						}
+						.tab_car_location {
+							font-weight: bold;
+						}
+							.tab_car_location span {
+								font-size: 11pt;
+								color: var(--color-blue);
+							}
 						.tab_brfk_amt {
 							margin-top: 5px;
 						}
 							.tab_brfk_amt span:last-child {
 								color: #E12D33;
+								font-weight: bold;
+							}
+						.tab_car_option {
+							margin-top: 5px;
+						}
+							.tab_car_option span {
 								font-weight: bold;
 							}
 						/* 체크인아웃, 총 금액 */
@@ -268,6 +301,11 @@
 											display: inline-block;
 											font-size: 8pt;
 										}
+									.tab_chk_time {
+										text-align: center;
+										color: var(--color-green);
+										font-size: 13pt;
+									}
 							/* 총 금액 */
 							.tab_hotel_totalAmt {
 								margin-right: 16px;

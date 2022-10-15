@@ -30,6 +30,15 @@ public class MypageModel {
 		return list;
 	}
 	
+	/* 렌터카 예약 정보 */
+	public List<Map<String, String>> selectCarBooking(int mem_no){
+		List<Map<String, String>> list = null;
+		SqlSession sqlSession = factory.openSession();
+		list = sqlSession.selectList("myPageCarBooking", mem_no);
+		sqlSession.close();
+		return list;
+	}
+	
 	/* 포인트 정보 */
 	public List<Map<String, String>> selectPointInfo(int pnt_no){
 		List<Map<String, String>> list = null;

@@ -1,6 +1,6 @@
 package vo;
 
-public class RacBooking {
+public class RacBookingDTO {
 	private int cbk_no;
 	private int car_no;
 	private int mem_no;
@@ -12,7 +12,7 @@ public class RacBooking {
     private String cbk_chkOutDate;
     private String cbk_chkInTime;
     private String cbk_chkOutTime;
-	private int cbk_rentTerm;			// 대여 기간
+	private double cbk_rentTerm;		// 대여 기간
 	private int cbk_rlpCarPrice;		// 1일당 실제 결제한 렌터카 가격 (추후, 이 가격 * 기간(2박) 해서 금액 보여줘야함)
 	private int cbk_totalPrice;			// 총 합계
 	private String cbk_date;
@@ -50,7 +50,7 @@ public class RacBooking {
 	public void setCbk_chkOutTime(String cbk_chkOutTime) {
 		this.cbk_chkOutTime = cbk_chkOutTime;
 	}
-	public void setCbk_rentTerm(int cbk_rentTerm) {
+	public void setCbk_rentTerm(double cbk_rentTerm) {
 		this.cbk_rentTerm = cbk_rentTerm;
 	}
 	public void setCbk_rlpCarPrice(int cbk_rlpCarPrice) {
@@ -96,7 +96,7 @@ public class RacBooking {
 	public String getCbk_chkOutTime() {
 		return cbk_chkOutTime;
 	}
-	public int getCbk_rentTerm() {
+	public double getCbk_rentTerm() {
 		return cbk_rentTerm;
 	}
 	public int getCbk_rlpCarPrice() {
