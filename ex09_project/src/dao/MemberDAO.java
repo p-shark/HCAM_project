@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import db.DBInfo;
 import vo.HcamMemDTO;
+import vo.HcamMgrDTO;
 
 public class MemberDAO {
 	
@@ -41,7 +42,7 @@ public class MemberDAO {
 		}
 	}
 	
-	/* 로그인 호출 */
+	/* 회원 로그인 호출 */
 	public HcamMemDTO loginResult(String id, String pw) {
 		
 		HcamMemDTO member = new HcamMemDTO();
@@ -54,6 +55,7 @@ public class MemberDAO {
 			if(rs.next()) {
 				member.setMem_no(rs.getInt("mem_no"));
 				member.setPnt_no(rs.getInt("pnt_no"));
+				member.setMemg_kubun(rs.getString("memg_kubun"));
 				member.setMem_name(rs.getString("mem_name"));
 			}
 			
@@ -63,6 +65,31 @@ public class MemberDAO {
 		}
 		
 		return member;
+	}
+	
+	/* 매니저 로그인 호출 */
+	public HcamMgrDTO mgrLoginResult(String id, String pw) {
+		
+		HcamMgrDTO manager = new HcamMgrDTO();
+		
+		try {
+			String sql = String.format("select * from hcamMgr where mgr_id = '%s' and mgr_pw = '%s';", id, pw);
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			// 해당 회원이 존재하는 경우
+			if(rs.next()) {
+				manager.setMgr_no(rs.getInt("mgr_no"));
+				manager.setPnt_no(rs.getInt("pnt_no"));
+				manager.setMemg_kubun(rs.getString("memg_kubun"));
+				manager.setMgr_name(rs.getString("mgr_name"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return manager;
 	}
 	
 	/* 비밀번호 찾기 */

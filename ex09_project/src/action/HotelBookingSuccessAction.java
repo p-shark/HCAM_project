@@ -96,9 +96,9 @@ public class HotelBookingSuccessAction implements Action{
 			htlBooking = hotelsvc.getHtlBookingInfo(htb_no);
 			
 			/* 포인트 차감 */
-			commonDao.updatePoint(point.getPnt_no(), "PNT01003", htlBooking.getHtb_totalPrice(), "포인트 사용: 호텔예약");
+			commonDao.updatePoint(point.getPnt_no(), "PNT01003", htlBooking.getHtb_totalPrice(), "포인트 사용: 호텔 예약");
 			/* 포인트 적립 */
-			commonDao.updatePoint(point.getPnt_no(), "PNT01002", accum_point, "포인트 적립: 호텔예약");
+			commonDao.updatePoint(point.getPnt_no(), "PNT01002", accum_point, "포인트 적립: 호텔 예약");
 			
 			commonDao.dbClose();
 			

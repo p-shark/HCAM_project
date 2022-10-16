@@ -14,6 +14,10 @@
 	if(session.getAttribute("pnt_no") != null) {
 		pnt_no = Integer.parseInt(String.valueOf(session.getAttribute("pnt_no")));
 	}
+	String memg_kubun = "";
+	if(session.getAttribute("memg_kubun") != null) {
+		memg_kubun = String.valueOf(session.getAttribute("memg_kubun"));
+	}
 	String mem_name = "";
 	if(session.getAttribute("mem_name") != null) {
 		mem_name = String.valueOf(session.getAttribute("mem_name"));
@@ -68,11 +72,15 @@
 						<!-- <li id="btn_mypage">$&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li> -->
 						<li id="comment"><div>${mem_name} 님 환영합니다.</div></li>
 						
-						<li class="btn_mypage"><a onclick="location.href='mypage.do?command=mypageMain'">마이페이지</a></li>
+						<% if("mem".equals(memg_kubun)) { %>
+							<li class="btn_mypage"><a onclick="location.href='mypage.do?command=mypageMain'">마이페이지</a></li>
+						<% }else { %>
+							<li class="btn_mypage"><a onclick="">데이터분석차트</a></li>
+						<% } %>
 						<li class="btn_mypage" onclick="fn_logout();"><a>로그아웃</a></li>
 					<% }else { %>
-						<li id="btn_mgr"><a>매니저</a></li>
-						<li id="btn_login"><a onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberLogin.jsp'">로그인</a></li>
+						<li id="btn_mgr"><a onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberLogin.jsp?kubun=mgr'">매니저</a></li>
+						<li id="btn_login"><a onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberLogin.jsp?kubun=mem'">로그인</a></li>
 						<li id="btn_join"><a onclick="location.href='${pageContext.request.contextPath}/view/HCAM_memberJoin.jsp'">회원가입</a></li>
 					<% } %>
 				</ul>

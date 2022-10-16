@@ -3,6 +3,9 @@
 <%
 	/* 로그인 실패 시 아이디값 존재 */
 	String id = request.getParameter("id");
+
+	// 회원, 매니저 로그인 구분
+	String kubun = request.getParameter("kubun");
 %>
 <!DOCTYPE html>
 <html>
@@ -57,9 +60,14 @@
 	
 	<div id="loginBox">
 		<form name="form_login" method="POST" action="HCAM_memberLoginResult01.jsp" onsubmit="return fn_login();">
+			<input type="hidden" name="kubun" value="<%=kubun %>">
 			<table id="login_table">
 				<tr>
-					<td colspan="2">로 그 인</td>
+					<% if("mem".equals(kubun)) { %>
+						<td colspan="2">로 그 인</td>
+					<% } else { %>
+						<td colspan="2">매 니 저 로 그 인</td>
+					<% } %>
 				</tr>
 				<tr>
 					<% if(id != null) { %>

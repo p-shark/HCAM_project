@@ -123,7 +123,7 @@ public class RentAcarBookingSuccessImpl implements CommandInter{
 			/* 포인트 차감 */
 			commonDao.updatePoint(pnt_no, "PNT01003", racBooking.getCbk_totalPrice(), "포인트 사용: 렌터카 예약");
 			/* 포인트 적립 */
-			commonDao.updatePoint(pnt_no, "PNT01002", accum_point, "포인트 적립: 호텔 예약");
+			commonDao.updatePoint(pnt_no, "PNT01002", accum_point, "포인트 적립: 렌터카 예약");
 			
 			commonDao.dbClose();
 			

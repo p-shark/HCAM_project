@@ -121,10 +121,10 @@
 				height: 300px;
 			}
 			.main_div_searching:nth-child(4) #div_search {	/* 캠핑 searchBox */
-				height: 370px;
+				height: 420px;
 			}
-			.main_div_searching:nth-child(5) #div_search {	/* 액티비티 searchBox */
-				height: 210px;
+			.main_div_searching:nth-child(5) #div_search {	/* 렌터카 searchBox */
+				height: 370px;
 			}
 			
 			/* main search 중 호텔 국가, 지역 */
@@ -250,6 +250,57 @@
 					#main_people_input {
 						width: 250px;
 					}
+			/* 캠핑 종류 */
+			#camping_kind {
+				margin-top: -10px;
+				display: inline-block;
+			}
+				#camping_kind #camping_kind_sec {
+					width: 1000px;
+					height: 65px;
+					border-radius: 10px;
+				}
+					#camping_kind #camping_kind_sec div {
+						display: inline-block;
+						margin-right: 100px;
+					}
+					#camping_kind #camping_kind_sec div:last-child {
+						margin-right: 0px;
+					}
+						#camping_kind #camping_kind_sec div input {
+							display:none;
+						}
+						#camping_kind #camping_kind_sec div label {
+							cursor: pointer;
+						}
+						#camping_kind #camping_kind_sec div input:checked + label {
+							filter: invert(55%) sepia(89%) saturate(2542%) hue-rotate(197deg) brightness(98%) contrast(98%);
+						}
+							#camping_kind #camping_kind_sec div label img {
+								width: 40px;
+								height: 40px;
+							}
+				#search_last {
+					display: inline-block;
+					margin-top: 10px;
+				}
+					/* 체크박스 */
+					#search_last #checkBox_sec {
+						clear: left;
+						width: 1000px;
+						height: 65px;
+						background-color: white;
+						border: 1px solid #DDDFE2;
+						border-radius: 10px;
+					}
+						#search_last #checkBox_sec div {
+							display: inline-block;
+							margin-top: 21px;
+							margin-right: 30px;
+						}
+						#search_last #checkBox_sec div:last-child {
+							margin-right: 0px;
+						}
 				
 			/* 렌터카 종류 */
 			#car_kind {
