@@ -95,9 +95,9 @@
 					<span class="left_tab_icon"><i class="fa-brands fa-shopify"></i></span>
 					<span class="left_tab_title">마켓주문</span>
 				</li>
-				<li data-tab="mypage.do?command=mpReview">
-					<span class="left_tab_icon"><i class="fa-regular fa-star-half-stroke"></i></span>
-					<span class="left_tab_title">이용후기</span>
+				<li data-tab="mypage.do?command=mpLike">
+					<span class="left_tab_icon"><i class="fa-solid fa-heart"></i></span>
+					<span class="left_tab_title">찜한목록</span>
 				</li>
 				<li data-tab="mypage.do?command=mpPoint">
 					<span class="left_tab_icon"><i class="fa-brands fa-product-hunt"></i></span>

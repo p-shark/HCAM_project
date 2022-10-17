@@ -57,7 +57,7 @@
 				<ul>
 					<div id="goMain"><li><a href="${pageContext.request.contextPath}/HCAM_main.jsp"><img id="logo" src="${pageContext.request.contextPath}/image/logo/logo4.png"></a></li></div>
 					<div id="goHotel"><li><a href="hotelMain.ho">호텔</a></li></div>
-					<!-- <div id="goCamping"><li><a href="campingMain.co">캠핑</a></li></div> -->
+					<div id="goCamping"><li><a href="campingMain.co">캠핑</a></li></div>
 					<!-- <div id="goActivity"><li><a href="">액티비티</a></li></div> -->
 					<div id="goCar"><li><a onclick="fn_chkRentAcar();">렌터카</a></li></div>
 					<div id="goMarket"><li><a href="${pageContext.request.contextPath}/HCAM_marketMain.jsp">마켓</a></li></div>
