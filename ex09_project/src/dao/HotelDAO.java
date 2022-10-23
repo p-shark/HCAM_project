@@ -583,6 +583,28 @@ public class HotelDAO {
 		return htb_no;
 	}
 	
+	/* 호텔 예약 취소 */
+	public int cancelHtlBooking(int htb_no) {
+		PreparedStatement pstmt = null;
+		
+		String sql = "delete from htlBooking where htb_no = ?;";
+		int deleteCount=0;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htb_no);
+			
+			deleteCount=pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return deleteCount;
+	}
+	
 	/* 호텔 예약 정보 */
 	public HotelBookingDTO getHtlBookingInfo(int htb_no) {
 		PreparedStatement pstmt = null;

@@ -508,9 +508,9 @@
 					<div class="div_line02"></div>
 					<div id="hotelInfo_atrt">
 						<div id="atrt_title">인기 관광지</div>
-						<div class="atrt_name">인기 관광지</div>
-						<div class="atrt_name">인기 관광지</div>
-						<div class="atrt_name">인기 관광지</div>
+						<div class="atrt_name">에펠탑</div>
+						<div class="atrt_name">루브르 박물관</div>
+						<div class="atrt_name">개선문</div>
 					</div>
 				</div>
 			</div>

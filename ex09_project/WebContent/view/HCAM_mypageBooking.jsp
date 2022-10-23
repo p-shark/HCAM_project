@@ -143,7 +143,7 @@
 								<div class="tab_hotel_btn">
 									<a class="tab_hotelBtn_detail">자세히 보기</a>
 									<% if("N".equals(htlBooking.get(i).get("bookingComple"))) { %>
-										<a class="tab_hotelBtn_cancel">예약취소</a>
+										<a class="tab_hotelBtn_cancel" href="hotelBookingCancel.ho?htb_no=<%=String.valueOf(htlBooking.get(i).get("htb_no")) %>">예약취소</a>
 									<% } %>
 								</div>
 							</div>
@@ -182,7 +182,7 @@
 											<div class="tab_hotelComple">
 												<% if("Y".equals(carBooking.get(i).get("bookingComple"))) { %>
 													<span class="tab_hotelBlue"><i class="fa-solid fa-circle-check"></i></span>
-													<span class="tab_hotelBlue">투숙완료</span>
+													<span class="tab_hotelBlue">이용완료</span>
 												<% } else { %>
 													<span class="tab_hotelGreen"><i class="fa-solid fa-user-clock"></i></span>
 													<span class="tab_hotelGreen">예약중</span>
@@ -240,7 +240,7 @@
 								<div class="tab_hotel_btn">
 									<a class="tab_hotelBtn_detail">자세히 보기</a>
 									<% if("N".equals(carBooking.get(i).get("bookingComple"))) { %>
-										<a class="tab_hotelBtn_cancel">예약취소</a>
+										<a class="tab_hotelBtn_cancel" href="car.do?command=carBookingCancel&cbk_no=<%=String.valueOf(carBooking.get(i).get("cbk_no")) %>">예약취소</a>
 									<% } %>
 								</div>
 							</div>

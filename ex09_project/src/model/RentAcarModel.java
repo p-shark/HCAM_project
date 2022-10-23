@@ -63,6 +63,21 @@ public class RentAcarModel {
 		sqlSession.close();
 	}
 	
+	/* 렌터카 예약 */
+	public int cancelBooking(int cbk_no) {
+		SqlSession sqlSession = factory.openSession();
+		int result = sqlSession.insert("carCancelBooking", cbk_no);
+		if(result > 0) {
+			sqlSession.commit();
+		}
+		else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		
+		return result;
+	}
+	
 	/* 렌터카 예약정보 */
 	public RacBookingDTO getRacBooking(int cbk_no){
 		RacBookingDTO racBooking = new RacBookingDTO();

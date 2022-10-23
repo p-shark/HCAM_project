@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.CommonDAO;
 import vo.ActionForward;
+import vo.PntHistoryDTO;
 
 public class PointDepositAction implements Action{
 
@@ -20,8 +21,16 @@ public class PointDepositAction implements Action{
 		
 		CommonDAO commonDao = new CommonDAO();
 		
+		PntHistoryDTO pntHistory = new PntHistoryDTO();
+		
+		/* 포인트 차감 */
+		pntHistory.setPnt_no(pnt_no);
+		pntHistory.setPhs_kind("PNT01001");
+		pntHistory.setPhs_historyAmt(phs_historyAmt);
+		pntHistory.setPhs_comment(phs_comment);
+		
 		/* 포인트 충전/적립/사용 */
-		commonDao.updatePoint(pnt_no, "PNT01001", phs_historyAmt, phs_comment);
+		commonDao.updatePoint(pntHistory);
 		
 		commonDao.dbClose();
 		

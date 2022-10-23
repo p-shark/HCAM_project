@@ -12,6 +12,7 @@ import dao.CommonDAO;
 import model.MypageModel;
 import model.RentAcarModel;
 import vo.HcamMemDTO;
+import vo.PntHistoryDTO;
 import vo.RacBookingDTO;
 import vo.RentACarDTO;
 
@@ -117,13 +118,25 @@ public class RentAcarBookingSuccessImpl implements CommandInter{
 			ArrayList<Map<String, String>> pointInfo = (ArrayList<Map<String, String>>) mypage_model.selectPointInfo(pnt_no);
 			/* 렌터카 select */
 			ArrayList<RentACarDTO> car = (ArrayList<RentACarDTO>) car_model.getRentAcar(car_no);
-			/* 호텔 예약 정보 */
+			/* 렌터카 예약 정보 */
 			racBooking = (RacBookingDTO) car_model.getRacBooking(cbk_no);
 			
+			PntHistoryDTO pntHistory = new PntHistoryDTO();
+			
 			/* 포인트 차감 */
-			commonDao.updatePoint(pnt_no, "PNT01003", racBooking.getCbk_totalPrice(), "포인트 사용: 렌터카 예약");
+			pntHistory.setPnt_no(pnt_no);
+			pntHistory.setPhs_kubun("cbk");
+			pntHistory.setPhs_kubunNo(racBooking.getCbk_no());
+			pntHistory.setPhs_kind("PNT01003");
+			pntHistory.setPhs_historyAmt(racBooking.getCbk_totalPrice());
+			pntHistory.setPhs_comment("(렌터카 예약) " + car.get(0).getCar_name());
+			commonDao.updatePoint(pntHistory);
+			
 			/* 포인트 적립 */
-			commonDao.updatePoint(pnt_no, "PNT01002", accum_point, "포인트 적립: 렌터카 예약");
+			pntHistory.setPhs_kind("PNT01002");
+			pntHistory.setPhs_historyAmt(accum_point);
+			pntHistory.setPhs_comment("(렌터카 예약 적립) " + car.get(0).getCar_name());
+			commonDao.updatePoint(pntHistory);
 			
 			commonDao.dbClose();
 			

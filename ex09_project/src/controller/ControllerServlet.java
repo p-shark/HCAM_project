@@ -15,6 +15,7 @@ import impl.MyPageLikeImpl;
 import impl.MyPageMainImpl;
 import impl.MyPageMemberImpl;
 import impl.MyPagePointImpl;
+import impl.RentAcarBookingCancelImpl;
 import impl.RentAcarBookingImpl;
 import impl.RentAcarBookingSuccessImpl;
 import impl.RentAcarImpl;
@@ -56,6 +57,12 @@ public class ControllerServlet extends HttpServlet{
 			}
 			else if(command.equals("carBookingSuccess")){
 				inter = RentAcarBookingSuccessImpl.instance();
+				viewName = inter.showData(request, response);
+				viewName = "view/"+viewName;
+				request.getRequestDispatcher(viewName).forward(request, response);
+			}
+			else if(command.equals("carBookingCancel")){
+				inter = RentAcarBookingCancelImpl.instance();
 				viewName = inter.showData(request, response);
 				viewName = "view/"+viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);

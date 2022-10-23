@@ -10,10 +10,11 @@ import java.util.TreeMap;
 
 import db.DBInfo;
 import vo.HcamLikeDTO;
+import vo.PntHistoryDTO;
 
 public class CommonDAO {
 	Connection conn = null;
-	Statement stmt = null;
+	Statement stmt = null; 
 	ResultSet rs = null;
 	
 	public CommonDAO() {
@@ -319,23 +320,25 @@ public class CommonDAO {
 	}
 	
 	/* 포인트 충전/적립/사용 */
-	public void updatePoint(int pnt_no, String phs_kubun, int phs_historyAmt, String phs_comment) {
+	public void updatePoint(PntHistoryDTO pntHistory) {
 		
 		// 연산기호 PNT01001: 충전 / PNT01002: 적립 / PNT01003: 사용
 		String operSymbol = "";
-		if("PNT01003".equals(phs_kubun)) operSymbol = "-";
+		if("PNT01003".equals(pntHistory.getPhs_kind())) operSymbol = "-";
 		else operSymbol = "+";
 		
 		try {
 			
 			// 1.포인트 히스토리 추가
-			String pntHistory_sql = String.format("insert into pntHistory(pnt_no, phs_kubun, phs_historyAmt, phs_comment) values(%d, '%s', %d, '%s');"
-									, pnt_no, phs_kubun, phs_historyAmt, phs_comment);
+			String pntHistory_sql = String.format("insert into pntHistory(pnt_no, phs_kubun, phs_kubunNo, "
+								  + "phs_kind, phs_historyAmt, phs_comment) values(%d, '%s', %d, '%s', %d, '%s');"
+								    , pntHistory.getPnt_no(), pntHistory.getPhs_kubun(), pntHistory.getPhs_kubunNo()
+								    , pntHistory.getPhs_kind(), pntHistory.getPhs_historyAmt(), pntHistory.getPhs_comment());
 			stmt.execute(pntHistory_sql);
 			
 			// 2. 포인트 잔액 변경
 			String hcamPoint_sql = String.format("update hcamPoint set pnt_balance = pnt_balance %s %d where pnt_no = %d"
-							   , operSymbol, phs_historyAmt, pnt_no);
+							   , operSymbol, pntHistory.getPhs_historyAmt(), pntHistory.getPnt_no());
 			stmt.executeUpdate(hcamPoint_sql);
 			
 		} catch (SQLException e) {
@@ -343,4 +346,64 @@ public class CommonDAO {
 			e.printStackTrace();
 		} 
 	}
+	
+	/* 예약,주문 취소로 인한 포인트 복구 */
+	public void setBackPoint(String phs_kubun, int phs_kubunNo) {
+		
+		PntHistoryDTO pntHistory = new PntHistoryDTO();
+		int resultAmt = 0;	// 포인트 최종 합산 금액
+		
+		try {
+			
+			// 1.이전 포인트 정보 조회
+			String beforePnt_sql = String.format("select * from pntHistory where phs_kubun = '%s' and phs_kubunNo = %d;"
+								, phs_kubun, phs_kubunNo);
+			rs = stmt.executeQuery(beforePnt_sql);
+			
+			while(rs.next()) {
+				
+				pntHistory.setPhs_no(rs.getInt("phs_no"));
+				pntHistory.setPnt_no(rs.getInt("pnt_no"));
+				pntHistory.setPhs_kind(rs.getString("phs_kind"));
+				pntHistory.setPhs_historyAmt(rs.getInt("phs_historyAmt"));
+				
+				// 연산기호 PNT01004: 적립 취소 / PNT01005: 사용 취소
+				String phs_kind = "";
+				if(pntHistory.getPhs_kind().equals("PNT01002")) {
+					phs_kind = "PNT01004";
+					resultAmt -= pntHistory.getPhs_historyAmt(); 
+				}	
+				else if(pntHistory.getPhs_kind().equals("PNT01003")) {
+					phs_kind = "PNT01005";
+					resultAmt += pntHistory.getPhs_historyAmt();
+				}
+
+				Statement stmt02 = conn.createStatement();
+				Statement stmt03 = conn.createStatement();
+				
+				// 2.이전 포인트 히스토리 phs_kind, pntHistory 빈값으로 변경
+				String beforePhs_sql = String.format("update pntHistory set phs_kubunNo = 0 where phs_no = %d "
+										, pntHistory.getPhs_no());
+				stmt02.execute(beforePhs_sql);
+				
+				// 3.포인트 히스토리 추가
+				String pntHistory_sql = String.format("insert into pntHistory(pnt_no, phs_kind, phs_historyAmt, phs_comment) "
+									  + "values(%d, '%s', %d, '%s');"
+									    , pntHistory.getPnt_no(), phs_kind, pntHistory.getPhs_historyAmt(), "포인트 이용내역 취소");
+				stmt03.execute(pntHistory_sql);
+				
+			}
+			
+			// 4.포인트 잔액 변경
+			String hcamPoint_sql = String.format("update hcamPoint set pnt_balance = pnt_balance + %d where pnt_no = %d"
+							   , resultAmt, pntHistory.getPnt_no());
+			stmt.executeUpdate(hcamPoint_sql);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	
 }

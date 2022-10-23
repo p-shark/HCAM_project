@@ -52,15 +52,21 @@
 	
 	<select id="myPagePointInfo" parameterType="int" resultType="map">
 		select FORMAT(pnt_balance,0) as pnt_balance
-			  ,(select FORMAT(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kubun = 'PNT01001') as depo_pnt
-		      ,(select FORMAT(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kubun = 'PNT01002') as save_pnt
-		      ,(select FORMAT(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kubun = 'PNT01003') as use_pnt
+			  ,(select ifnull(FORMAT(sum(phs_historyAmt),0),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kind = 'PNT01001') as depo_pnt
+		      ,FORMAT((select ifnull(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kind = 'PNT01002') 
+		        -
+		       (select ifnull(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kind = 'PNT01004'),0)
+		      as save_pnt
+		      ,FORMAT((select ifnull(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kind = 'PNT01003') 
+		        -
+		       (select ifnull(sum(phs_historyAmt),0) from pntHistory where pnt_no = pnt.pnt_no and phs_kind = 'PNT01005'),0)
+		      as use_pnt
 		  from hcamPoint pnt
 		 where pnt_no = #{pnt_no};
 	</select>
 	
 	<select id="myPagePntHistory" parameterType="int" resultType="vo.PntHistoryDTO">
-		select phs_kubun
+		select phs_kind
 			  ,phs_historyAmt
 		      ,phs_comment
 		      ,date_format(phs_date, '%Y-%m-%d %H:%i') as phs_date
@@ -104,6 +110,10 @@
 		insert into racBooking(car_no, mem_no, cbk_rlpName, cbk_rlpEmail, cbk_rlpNation, cbk_rlpPhone, cbk_chkInDate, cbk_chkOutDate, cbk_chkInTime, cbk_chkOutTime, cbk_rentTerm, cbk_rlpCarPrice, cbk_totalPrice)
 		values(#{car_no}, #{mem_no}, #{cbk_rlpName}, #{cbk_rlpEmail}, #{cbk_rlpNation}, #{cbk_rlpPhone}, #{cbk_chkInDate}, #{cbk_chkOutDate}, #{cbk_chkInTime}, #{cbk_chkOutTime}, #{cbk_rentTerm}, #{cbk_rlpCarPrice}, #{cbk_totalPrice});
 	</insert>
+	
+	<delete id="carCancelBooking" parameterType="int">
+		delete from racBooking where cbk_no = #{cbk_no};
+	</delete>
 	
 	<select id="carBookingInfo" parameterType="int" resultType="vo.RacBookingDTO">
 		select cbk_no, car_no, mem_no, cbk_rlpName, cbk_rlpEmail, cbk_rlpNation, cbk_rlpPhone, cbk_chkInDate, cbk_chkOutDate

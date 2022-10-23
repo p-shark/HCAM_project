@@ -240,6 +240,32 @@ public class HotelService {
 		return htb_no;
 	}
 	
+	/* 호텔 예약 취소 */
+	public int cancelHtlBooking(int htb_no) {
+		
+		int deleteCount=0;
+		
+		// db connection
+		Connection conn = getConnection();
+		
+		HotelDAO hotelDAO = HotelDAO.getInstance();
+		hotelDAO.setConnection(conn);
+		
+		/* 호텔 예약 취소 */
+		deleteCount = hotelDAO.cancelHtlBooking(htb_no);
+		
+		if(deleteCount > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return deleteCount;
+	}
+	
 	/* 호텔 예약 정보 */
 	public HotelBookingDTO getHtlBookingInfo(int htb_no) {
 		

@@ -15,6 +15,7 @@ import vo.HcamPointDTO;
 import vo.HotelBookingDTO;
 import vo.HotelDTO;
 import vo.HotelRoomDTO;
+import vo.PntHistoryDTO;
 
 public class HotelBookingSuccessAction implements Action{
 
@@ -95,10 +96,22 @@ public class HotelBookingSuccessAction implements Action{
 			/* 호텔 예약 정보 */
 			htlBooking = hotelsvc.getHtlBookingInfo(htb_no);
 			
+			PntHistoryDTO pntHistory = new PntHistoryDTO();
+			
 			/* 포인트 차감 */
-			commonDao.updatePoint(point.getPnt_no(), "PNT01003", htlBooking.getHtb_totalPrice(), "포인트 사용: 호텔 예약");
+			pntHistory.setPnt_no(point.getPnt_no());
+			pntHistory.setPhs_kubun("htb");
+			pntHistory.setPhs_kubunNo(htb_no);
+			pntHistory.setPhs_kind("PNT01003");
+			pntHistory.setPhs_historyAmt(htlBooking.getHtb_totalPrice());
+			pntHistory.setPhs_comment("(호텔 예약) " + hotel.getHtl_name());
+			commonDao.updatePoint(pntHistory);
+			
 			/* 포인트 적립 */
-			commonDao.updatePoint(point.getPnt_no(), "PNT01002", accum_point, "포인트 적립: 호텔 예약");
+			pntHistory.setPhs_kind("PNT01002");
+			pntHistory.setPhs_historyAmt(accum_point);
+			pntHistory.setPhs_comment("(호텔 예약 적립) " + hotel.getHtl_name());
+			commonDao.updatePoint(pntHistory);
 			
 			commonDao.dbClose();
 			

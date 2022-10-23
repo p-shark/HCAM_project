@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.HotelBookingAction;
+import action.HotelBookingCancelAction;
 import action.HotelBookingSuccessAction;
 import action.HotelListTotalAction;
 import action.HotelMainBySearchingAction;
@@ -91,6 +92,14 @@ public class HaFrontController extends HttpServlet {
 		}
 		else if(command.equals("/hotelBookingSuccess.ho")){
 			action = new HotelBookingSuccessAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/hotelBookingCancel.ho")) {
+			action = new HotelBookingCancelAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {

@@ -488,6 +488,14 @@
 							.point_history_title table tr td:nth-child(4) {
 								width: 120px;
 							}
+							.point_color_green {
+								font-weight: bold;
+								color: var(--color-green);
+							}
+							.point_color_red {
+								font-weight: bold;
+								color: var(--color-red);
+							}
 		/* 회원정보 title */
 		.div_member_title {
 			padding: 30px 20px;

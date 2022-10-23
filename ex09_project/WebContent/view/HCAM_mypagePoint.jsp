@@ -88,14 +88,14 @@
 							<div>사용 포인트: </div>
 							<div>
 								<span>₩</span>
-								<span><%=pointInfo.get(0).get("use_pnt") %></span>
+								<span><%=String.valueOf(pointInfo.get(0).get("use_pnt")) %></span>
 							</div>
 						</div>
 						<div class="point_balance_text">
 							<div>적립 포인트: </div>
 							<div>
 								<span>₩</span>
-								<span><%=pointInfo.get(0).get("save_pnt") %></span>
+								<span><%=String.valueOf(pointInfo.get(0).get("save_pnt")) %></span>
 							</div>
 						</div>
 						<div class="point_balance_btn">
@@ -114,12 +114,26 @@
 								<td>포인트 상세내역</td>
 								<td>포인트 금액</td>
 							</tr>
-							<% for(int i=0; i<pntHistory.size(); i++) { %>
+							<% 
+								for(int i=0; i<pntHistory.size(); i++) {
+									String operSymbol = "";
+									String classColor= "";
+									if("PNT01001".equals(pntHistory.get(i).getPhs_kind()) 
+									|| "PNT01002".equals(pntHistory.get(i).getPhs_kind())
+									|| "PNT01005".equals(pntHistory.get(i).getPhs_kind())) {
+										operSymbol = "+";
+										classColor = "point_color_green";
+									}
+									else {
+										operSymbol = "-";
+										classColor = "point_color_red";
+									}
+							%>
 								<tr>
-									<td><%=commonDao.getCodeName(pntHistory.get(i).getPhs_kubun()) %></td>
+									<td><%=commonDao.getCodeName(pntHistory.get(i).getPhs_kind()) %></td>
 									<td><%=pntHistory.get(i).getPhs_date() %></td>
 									<td><%=pntHistory.get(i).getPhs_comment() %></td>
-									<td><%=df.format(pntHistory.get(i).getPhs_historyAmt()) %></td>
+									<td class="<%=classColor %>"><%=operSymbol %> <%=df.format(pntHistory.get(i).getPhs_historyAmt()) %></td>
 								</tr>
 							<% } %>
 						</table>

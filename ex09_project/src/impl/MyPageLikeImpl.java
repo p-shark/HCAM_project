@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.CommandInter;
 import model.MypageModel;
-import vo.PntHistoryDTO;
 
 public class MyPageLikeImpl implements CommandInter{
 
