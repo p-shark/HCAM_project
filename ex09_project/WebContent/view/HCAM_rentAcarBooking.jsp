@@ -175,6 +175,8 @@
 		var title = "popupOpener";
 		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=470,height=500,top=100,left=500";
 		window.open(url, title, "width=470, height=500, top=100, left=500");
+		//var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=470,height=500,top=50,left=2250";
+		//window.open(url, title, "width=470, height=500, top=50, left=2250");
 		
 	}
 	

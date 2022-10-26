@@ -86,8 +86,8 @@
 	function fn_carDetailPopup(car_no, booking_cnt) {
 		var url = "carDetail.do?command=carDetailPopup&car_no=" + car_no + "&booking_cnt=" + booking_cnt;
 		var title = "popupOpener";
-		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=800,height=730,top=100,left=500";
-		window.open(url, title, "width=800, height=730, top=100, left=500");
+		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=800,height=730,top=50,left=2050";
+		window.open(url, title, "width=800, height=730, top=50, left=2050");
 	}
 	
 	/* popup에서 선택 시 display 상태 변경 */

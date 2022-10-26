@@ -73,9 +73,9 @@
 						<li id="comment"><div>${mem_name} 님 환영합니다.</div></li>
 						
 						<% if("mem".equals(memg_kubun)) { %>
-							<li class="btn_mypage"><a onclick="location.href='mypage.do?command=mypageMain'">마이페이지</a></li>
+							<li class="btn_mypage"><a href="mypage.do?command=mypageMain">마이페이지</a></li>
 						<% }else { %>
-							<li class="btn_mypage"><a onclick="">데이터분석차트</a></li>
+							<li class="btn_mypage"><a href="mgrpage.do?command=mgrpageMain">데이터분석차트</a></li>
 						<% } %>
 						<li class="btn_mypage" onclick="fn_logout();"><a>로그아웃</a></li>
 					<% }else { %>

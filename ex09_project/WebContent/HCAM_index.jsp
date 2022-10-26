@@ -79,7 +79,7 @@
 					z-index: -1;
 				}
 				#btn_main a:hover {
-					color: var(--color-white);
+					color: white;
 				}
 				#btn_main a:hover::before {
 					box-shadow: inset 0 0 0 10em #ee3769;
@@ -142,7 +142,7 @@
 							letter-spacing: 0.5px;
 							font-size: 15pt;
 							line-height: 20px;
-							color: var(--color-white);
+							color: white;
 						}
 							/*#panel_inner_div ul div li div {
 								width: 100%;
