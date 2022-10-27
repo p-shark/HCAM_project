@@ -120,4 +120,31 @@
 		, cbk_chkInTime, cbk_chkOutTime, cbk_rentTerm, cbk_rlpCarPrice, cbk_totalPrice, date_format(cbk_date, '%Y-%m-%d %H:%i') as cbk_date from racBooking where cbk_no = #{cbk_no};
 	</select>
 	
+	<select id="mgrPagePeroidBooking" parameterType="map" resultType="map">
+		select <if test = 'date_kubun.equals("day")'> 'day'</if>
+		 		as date_kubun
+			   ,kubun
+		       ,date_format(booking_date, '%Y') as fmt_year
+		       ,date_format(booking_date, '%m') as fmt_month
+		       ,date_format(booking_date, '%m/%d') as fmt_date
+		       ,cast(count(*) as char(10)) as cnt
+		  from (select 'hotel' as kubun
+					   ,htb_date as booking_date
+				  from hotel htl
+					  ,htlBooking htb
+				 where htl.htl_no = htb.htl_no
+				   and htl.mgr_no = #{mgr_no}
+				union all
+				select 'car' as kubun
+					   ,cbk_date as booking_date
+				  from rentAcar car
+					  ,racBooking rbk
+				 where car.car_no = rbk.car_no
+				   and car.mgr_no = #{mgr_no}
+				) as tab
+		group by <if test = 'date_kubun.equals("day")'>day</if>(booking_date)
+		order by booking_date
+		;
+	</select>
+	
 </mapper>

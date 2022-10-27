@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import impl.MarketImpl;
 import impl.MgrPageMainImpl;
+import impl.MgrPagePeroidBookingImpl;
 import impl.MyPageBookingImpl;
 import impl.MyPageLikeImpl;
 import impl.MyPageMainImpl;
@@ -111,6 +112,12 @@ public class ControllerServlet extends HttpServlet{
 			}
 			else if(command.equals("mgrpageMain")) {
 				inter = MgrPageMainImpl.instance();
+				viewName = inter.showData(request, response);
+				viewName = "view/"+viewName;
+				request.getRequestDispatcher(viewName).forward(request, response);
+			}
+			else if(command.equals("peroidBooking")){
+				inter = MgrPagePeroidBookingImpl.instance();
 				viewName = inter.showData(request, response);
 				viewName = "view/"+viewName;
 				request.getRequestDispatcher(viewName).forward(request, response);

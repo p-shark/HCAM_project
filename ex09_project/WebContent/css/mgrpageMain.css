@@ -1,0 +1,615 @@
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@300&display=swap');
+
+#div_content {
+	margin: 0 auto;
+	margin-bottom: 100px;
+	width: 1100px;
+}
+	/* 왼쪽 영역 */
+	#div_content #left_content {
+		display: inline-block;
+		vertical-align: top;
+		width: 245px;
+	}
+		.left_tab_tit {
+			padding-top:20px;
+		}
+		.left_tab_tit::after {
+			content:''; 
+			display:block; 
+			clear:both;
+		}
+			.left_tab_tit li {
+				padding-left: 10px;
+				width: 240px;
+				height: 50px;
+				line-height: 50px; 
+				cursor:pointer;
+				
+			}
+			.left_tab_tit li::after {
+				float: right;
+				content:''; 
+				display:none;
+				height: 100%;
+				border-right: 3px solid var(--color-blue);
+			}
+			.left_tab_tit li.on {
+				background: linear-gradient(90deg,#f8f7f9,#fff)
+			}
+			.left_tab_tit li.on::after {
+				display:block;
+				background-color: black;
+			}
+				.left_tab_tit .left_tab_icon {
+					font-size: 12pt;
+					color: var(--color-blue);
+				}
+				.left_tab_tit .left_tab_title {
+					font-size: 12pt;
+					color: var(--color-blue);
+				}
+	
+	/* 오른쪽 영역 */
+	#div_content #right_content {
+		display: inline-block;
+		vertical-align: top;
+		width: 850px;
+	}
+		#right_content .right_inner {
+			padding: 20px 0 0 20px;
+		}
+			.right_inner .right_top {
+				display: flex;
+				position: absolute;
+				width: 800px;
+				height: 76px;
+				background: rgb(56, 67, 90);
+				box-shadow: 0 4px 10px 0 #bec2c9;
+				border-radius: 8px;
+			}
+				.inner_top_left {
+					height: auto;
+					min-width: 270px;
+					background: url(../image/vip-banner-agoji-non-vip.svg) 26% center / auto 100% no-repeat;
+				}
+					.inner_top_left div {
+						margin-top: 29px;
+						margin-left: 127px;
+						width: 47px;
+						font-size: 14pt;
+						color: var(--color-white);
+						background: #2A2A3A;
+						font-family: 'Gemunu Libre', sans-serif;
+					}
+				.inner_top_right {
+					margin-top: 18px;
+					margin-left: 15px;
+					height: auto;
+					min-width: 270px;
+					color: var(--color-white);
+					font-weight: bold;
+				}
+					.inner_top_right div:first-child {
+						font-size: 11pt;
+					}
+					.inner_top_right div:last-child {
+						margin-top: 2px;
+						font-size: 10.5pt;
+					}
+	/* tab 영역 */
+	.inner_content {
+		margin-top: 80px;
+		width: 510px;
+	}
+		/* tab 영역 */
+		.inner_content .tab_navi {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+			.inner_tab_tit {
+				padding-top:20px;
+				border-bottom:1px solid #dddfe2;
+			}
+			.inner_tab_tit::after {
+				content:''; 
+				display:block; 
+				clear:both;
+			}
+				.inner_tab_tit li {
+					float: left;
+					width: 170px;
+					height: 45px;
+					line-height: 45px; 
+					color: var(--color-darkgray);
+					cursor:pointer;
+				}
+				.inner_tab_tit li::after {
+					content:''; 
+					display:none;
+					width:100%;
+					border-bottom:2px solid var(--color-blue);
+				}
+				.inner_tab_tit li.inner_on {
+					color: var(--color-blue);
+					font-weight: bold;
+					background: #f8f7f9;
+				}
+				.inner_tab_tit li.inner_on::after {
+					display:block;
+					background-color: black;
+				}
+					.inner_tab_tit .inner_tab_icon {
+						padding-left: 20px;
+						font-size: 11pt;
+					}
+					.inner_tab_tit .inner_tab_title {
+						font-size: 11pt;
+					}
+		
+		/* tab_content 영역 */
+		.inner_content .tab_content {
+			vertical-align: top;
+			padding: 5px 0;
+			width: 800px;
+		}
+			/* tab 메뉴 클릭시 */
+			.inner_cnt {
+				display:none; 
+			}
+			.inner_cnt.inner_on {
+				display:block; 
+			}
+			/* 호텔 예약 정보 */
+			.tab_hotel_content {
+				margin: 0 auto;
+				margin-bottom: 40px;
+				width: 760px;
+			}
+				.tab_hotel_bookingDate {
+					color: #808080;
+				}
+				.tab_hotelBooingInfo {
+					margin-top: 10px;
+					width: 760px;
+					border: 1px solid rgb(221, 223, 226);
+					border-radius: 3px;
+				}
+					.tab_hotel_top {
+						height: 200px;
+						border-bottom: 1px solid rgb(221, 223, 226);
+					}
+						/* 호텔 사진 영역 */
+						.tab_hotel_left {
+							display: inline-block;
+							vertical-align: top;
+							margin-bottom: -3px;
+							width: 200px;	
+						}
+							.tab_hotel_left img {
+								width: 200px;
+								height: 200px;
+								border-radius: 3px 0 0 0;
+							}
+						/* 렌터카 사진 영역 */
+						.tab_car_left {
+							display: inline-block;
+							vertical-align: top;
+							margin-bottom: -3px;
+							width: 300px;	
+						}
+							.tab_car_left img {
+								width: 300px;
+								height: 200px;
+								border-radius: 3px 0 0 0;
+							}
+						/* 호텔 정보 */
+						.tab_hotel_center {
+							display: inline-block;
+							vertical-align: top;
+							padding: 15px 30px 10px 10px;
+							width: 345px;
+							color: var(--color-darkgray);
+						}
+						/* 렌터카 정보 */
+						.tab_car_center {
+							display: inline-block;
+							vertical-align: top;
+							padding: 15px 30px 10px 10px;
+							width: 245px;
+							color: var(--color-darkgray);
+						}
+							.tab_hotelCnter_top {
+								height: 110px;
+							}
+							.tab_hotel_name {
+								font-size: 12pt;
+								font-weight: bold;
+							}
+							.tab_hotel_no {
+								margin-top: 5px;
+							}
+								.tab_hotel_no span:last-child {
+									font-weight: bold;
+								}
+							.tab_hotelComple {
+								margin-top: 5px;
+								font-size: 13pt;
+								font-weight: bold;
+							}
+								.tab_hotelBlue {
+									color: var(--color-blue);
+								}
+								.tab_hotelGreen {
+									color: var(--color-green);
+								}
+						.tab_room_name {
+							font-weight: bold;
+						}
+						.tab_car_location {
+							font-weight: bold;
+						}
+							.tab_car_location span {
+								font-size: 11pt;
+								color: var(--color-blue);
+							}
+						.tab_brfk_amt {
+							margin-top: 5px;
+						}
+							.tab_brfk_amt span:last-child {
+								color: #E12D33;
+								font-weight: bold;
+							}
+						.tab_car_option {
+							margin-top: 5px;
+						}
+							.tab_car_option span {
+								font-weight: bold;
+							}
+						/* 체크인아웃, 총 금액 */
+						.tab_hotel_right {
+							display: inline-block;
+							vertical-align: top;
+							width: 165px;
+						}
+							/* 체크인아웃 */
+							.tab_hotel_chkInOut {
+								margin-top: 15px;
+								height: 120px;
+								color: #808080;
+							}
+								.tab_hotel_chk {
+									display: inline-block;
+									vertical-align: top;
+									width: 76px;
+								}
+								.border_left {
+									margin-right: 5px;
+									border-right: 1px solid rgb(221, 223, 226);
+								}
+									.tab_chk_title {
+										font-size: 8pt;
+									}
+									.tab_chk_date {
+										color: var(--color-green);
+									}
+										.tab_chk_day {
+											display: inline-block;
+											font-size: 23pt;
+										}
+										.tab_chk_monYr {
+											display: inline-block;
+											font-size: 8pt;
+										}
+									.tab_chk_time {
+										text-align: center;
+										color: var(--color-green);
+										font-size: 13pt;
+									}
+							/* 총 금액 */
+							.tab_hotel_totalAmt {
+								margin-right: 16px;
+								color: #E12D33;
+								font-size: 18pt;
+								text-align: right;
+							}		
+					.tab_hotel_btn {
+						margin-top: 8px;
+						margin-right: 14px;
+						height: 40px;
+					}
+						.tab_hotelBtn_detail {
+							float: right;
+							margin-left: 10px;
+							padding: 7px 12px;
+							font-weight: bold;
+							border-radius: 4px;
+							color: var(--color-white);
+							background-color: var(--color-blue);
+						}
+						.tab_hotelBtn_cancel {
+							float: right;
+							padding: 7px 12px;
+							font-weight: bold;
+							border-radius: 4px;
+							color: var(--color-white);
+							background-color: var(--color-green);
+						}
+	/* 단일 영역 */
+	.inner_single_content {
+		margin-top: 80px;
+		width: 800px;
+	}
+		/* 포인트 title */
+		.div_point_title {
+			padding: 30px 20px;
+			color: #2a2a2e;
+			font-size: 15pt;
+		}
+			/* 포인트 */
+			.div_point_title .fa-product-hunt {
+				font-size: 18pt;
+				color: var(--color-purple);
+			}
+				.div_point_title span:nth-child(2){
+					margin: 0 2px;
+					color: var(--color-purple);
+					font-weight: bold;
+				}
+				.div_point_title span:nth-child(3){
+					margin: 0 5px;
+					border: 1px solid #bec2c9;
+				}
+				.div_point_title span:nth-child(4){
+					margin: 0 5px;
+					
+				}
+		/* 포인트내역 */
+		.div_point_content {
+			border: 1px solid rgb(221, 223, 226);
+		}
+			/* 포인트 잔액,사용 내역 */
+			.div_point_top {
+				color: var(--color-darkgray);
+			}
+				.point_image {
+					display: inline-block;
+					vertical-align: top;
+					margin: 30px 10px 30px 20px;
+					width: 320px;
+					height: 200px;
+					border: 1px solid rgb(221, 223, 226);
+					border-radius: 10px;
+				}
+					.point_image img {
+						position: absolute;
+						width: 320px;
+						height: 200px;
+						border-radius: 10px;
+					}
+					.point_image div {
+						position: absolute;
+						margin-left: 100px;
+						margin-top: 170px;
+						width: 120px;
+						height: 20px;
+						background-color: #FFFFFF;
+					}
+				.point_balance {
+					display: inline-block;
+					vertical-align: top;
+					margin: 30px 20px 20px 10px;
+					width: 410px;
+				}
+					.point_balance_text {
+						margin-bottom: 10px;
+						border-bottom: 1px solid rgb(221, 223, 226);
+					}
+						.point_balance_text div {
+							display: inline-block;
+							vertical-align: top;
+							font-size: 11pt;
+						}
+						.point_balance_text_red {
+							font-weight: bold;
+							color: #E12D33;
+						}
+						.point_balance_text div:first-child {
+							width: 300px;
+							height: 30px;
+						}
+						.point_balance_text div:last-child {
+							width: 105px;
+							height: 30px;
+						}
+							.point_balance_text div span:first-child {
+								padding: 0 10px;
+								text-align: right;
+							}
+							.point_balance_text div span:last-child {
+								float: right;
+								padding: 0 5px 0 5px;
+							}
+					.point_balance_btn {
+						margin-top: 25px;
+					}
+						.point_balance_btn a {
+							float: right;
+							padding: 8px 10px;
+							border-radius: 3px;
+							color: var(--color-white);
+							background-color: var(--color-purple);
+						}
+			/* line */
+			.div_line {
+				margin: 0 0 8px 0;
+				min-width: 1px;
+			    width: 800px;
+			    height: 1px;
+			    flex: 1 1 0%;
+			    border-bottom: 1px solid rgb(221, 223, 226);
+			}
+			/* 포인트 사용내역 */
+			.div_point_history {
+				margin: 30px 10px 50px 20px;
+				color: var(--color-darkgray);
+			}
+				.point_history_top {
+					font-size: 11pt;
+					font-weight: bold;
+				}
+				.point_history_title {
+					margin-top: 25px;
+				}
+					.point_history_title table {
+						border-top: 1px solid var(--color-darkgray);
+   						border-collapse: collapse;
+					}
+						.point_history_title_top {
+							font-weight: bold;
+						}
+						.point_history_title table tr {
+							border-bottom: 1px solid #444444;
+						}
+							.point_history_title table tr td {
+								text-align: center;
+								border-bottom: 1px solid #444444;
+							}
+							.point_history_title table tr td:nth-child(1) {
+								padding: 20px 0;
+								width: 120px;
+							}
+							.point_history_title table tr td:nth-child(2) {
+								width: 150px;
+							}
+							.point_history_title table tr td:nth-child(3) {
+								width: 360px;
+							}
+							.point_history_title table tr td:nth-child(4) {
+								width: 120px;
+							}
+							.point_color_green {
+								font-weight: bold;
+								color: var(--color-green);
+							}
+							.point_color_red {
+								font-weight: bold;
+								color: var(--color-red);
+							}
+		/* 회원정보 title */
+		.div_member_title {
+			padding: 30px 20px;
+			color: #2a2a2e;
+			font-size: 15pt;
+		}
+			.div_member_title .fa-circle-user {
+				font-size: 18pt;
+				color: var(--color-blue);
+			}
+			.div_member_title span:nth-child(2){
+					margin: 0 2px;
+					color: var(--color-blue);
+					font-weight: bold;
+				}
+			.div_member_title a {
+				margin-left: 482px;
+				padding: 7px 12px;
+				font-size: 10pt;
+				border-radius: 3px;
+				color: var(--color-white);
+				background-color: var(--color-blue);
+			}
+		/* 수정 내역 */
+		.div_member_content {
+			margin-left: 20px;
+			padding-bottom: 20px;
+			width: 745px;
+			color: var(--color-darkgray);
+			border: 1px solid rgb(221, 223, 226);
+		}
+			.div_memberInfo {
+				margin-left: 30px;
+			}
+				.div_memberInfo div:first-child{
+					height: 45px;
+					line-height: 45px;
+					font-weight: bold;
+				}
+				.div_memberInfo div input {
+					padding-left: 10px;
+					width: 465px;
+					height: 35px;
+					line-height: 35px;
+					border: 1px solid #ced0d4;
+					border-radius: 3px;
+					outline: none;
+				}
+			.div_addr_memberInfo {
+				margin-left: 30px;
+			}
+				.div_addr_memberInfo div:first-child {
+					height: 45px;
+					line-height: 45px;
+					font-weight: bold;
+				}
+					.member_addr01 input:first-child {
+						padding-left: 10px;
+						width: 100px;
+						height: 35px;
+						line-height: 35px;
+						border: 1px solid #ced0d4;
+						border-radius: 3px;
+						outline: none;
+					}
+					.member_addr01 input:last-child {
+						margin-left: 5px;
+						padding-left: 10px;
+						width: 350px;
+						height: 35px;
+						line-height: 35px;
+						border: 1px solid #ced0d4;
+						border-radius: 3px;
+						outline: none;
+					}
+					.member_addr02 {
+						margin-top: 10px;
+					}
+						.member_addr02 input {
+							padding-left: 10px;
+							width: 465px;
+							height: 35px;
+							line-height: 35px;
+							border: 1px solid #ced0d4;
+							border-radius: 3px;
+							outline: none;
+						}
+				
+				/* .inner_cnt h2 {
+					font-size:20px; 
+					font-weight:800;
+				}
+				.inner_cnt ul {
+					padding:20px 0px;
+				}
+				.inner_cnt ul li {
+					line-height:22px;
+				}
+				.inner_cnt ul li::before {
+					content: '';
+					display: inline-block;
+					margin-top: 9px;
+					margin-right: 9px;
+					width: 5px;
+					height: 5px;
+					background: #2f4394;
+					border-radius: 50%;
+					vertical-align: top;
+				} */
+					
+					
+					
+					
+					
+					
+					
+					
