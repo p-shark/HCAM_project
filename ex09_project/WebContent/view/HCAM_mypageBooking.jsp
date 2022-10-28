@@ -48,6 +48,23 @@
 	
 		})
 	});
+	
+	/* 예약 취소 */
+	function fn_cancelBooking(kubun, kubun_no) {
+		var pnt_flag = confirm("예약 취소하시겠습니까?");
+		event.preventDefault();	// confirm 창 띄우고나면 submit 자동으로 돼서 막음 
+		
+		if(!pnt_flag){	//확인 버튼 클릭 true 
+			return;
+		}
+		
+		if(kubun == "htb") {
+			location.href = "hotelBookingCancel.ho?htb_no=" + kubun_no;
+		}
+		else {
+			location.href = "car.do?command=carBookingCancel&cbk_no=" + kubun_no;
+		}
+	}
 </script>
 <body>
 	<div class="right_inner">
@@ -143,7 +160,7 @@
 								<div class="tab_hotel_btn">
 									<a class="tab_hotelBtn_detail">자세히 보기</a>
 									<% if("N".equals(htlBooking.get(i).get("bookingComple"))) { %>
-										<a class="tab_hotelBtn_cancel" href="hotelBookingCancel.ho?htb_no=<%=String.valueOf(htlBooking.get(i).get("htb_no")) %>">예약취소</a>
+										<a class="tab_hotelBtn_cancel" onclick="fn_cancelBooking('htb', <%=String.valueOf(htlBooking.get(i).get("htb_no")) %>);">예약취소</a>
 									<% } %>
 								</div>
 							</div>
@@ -240,7 +257,7 @@
 								<div class="tab_hotel_btn">
 									<a class="tab_hotelBtn_detail">자세히 보기</a>
 									<% if("N".equals(carBooking.get(i).get("bookingComple"))) { %>
-										<a class="tab_hotelBtn_cancel" href="car.do?command=carBookingCancel&cbk_no=<%=String.valueOf(carBooking.get(i).get("cbk_no")) %>">예약취소</a>
+										<a class="tab_hotelBtn_cancel" onclick="fn_cancelBooking('cbk', <%=String.valueOf(carBooking.get(i).get("cbk_no")) %>);">예약취소</a>
 									<% } %>
 								</div>
 							</div>

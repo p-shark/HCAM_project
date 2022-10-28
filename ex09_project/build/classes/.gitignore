@@ -1,8 +1,4 @@
-/model/
 /mybatis/
 /impl/
 /controller/
-/vo/
-/dao/
-/action/
-/service/
+/model/

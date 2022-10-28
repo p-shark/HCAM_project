@@ -20,9 +20,6 @@
 		mem_name = String.valueOf(session.getAttribute("mem_name"));
 	}
 	
-	/* 코드별 공통코드 전체 조회 */
-	TreeMap<String, String> commCodes = commonDao.getCodeAllByCode("CHT01");
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -33,7 +30,7 @@
 <script>
 	/* init window */
 	$(document).ready(function(){
-		fn_callPdRight();
+		fn_callMcRight();
 	});
 
 	$(function() {
@@ -50,24 +47,14 @@
 	});
 	
 	/* 콤보박스 클릭 시 오른쪽 영역 재호출 */
-	function fn_callPdRight() {
-		var pdCtgy = document.getElementsByName("pdCtgy")[0];
-		var pdCtgy_value = "day";
-		
-		if(pdCtgy.value == "CHT01001") {
-			pdCtgy_value = "day";
-		}
-		else if(pdCtgy.value == "CHT01002") {
-			pdCtgy_value = "month";
-		}
+	function fn_callMcRight() {
 		
 		$.ajax({
-			url: "view/HCAM_mgrpagePeroidRight.jsp",
+			url: "view/HCAM_mgrpageMemCountryRight.jsp",
 			type:'POST',
 			dataType: "text",
+			data: "mgr_no=" + <%=mem_no %>,
 			async:false,
-			data: "mgr_no=" + <%=mem_no %> + 
-		  	  	  "&date_kubun=" + pdCtgy_value,
 			success: function(result) {
 				$(".right_chart").html(result);
 			},
@@ -80,19 +67,8 @@
 <body>
 	<div class="right_inner">
 		<div class="right_top">
-			<div>기간별 예약내역</div>
-			<div>(<%=mem_name %> 님으로 등록된 호텔, 렌터카 예약 내역)</div>
-		</div>
-		<div class="right_pdCombo">
-			<span>(단위)</span>
-			<select name="pdCtgy" onchange="fn_callPdRight();">
-				<% 
-					for(Map.Entry<String, String> code : commCodes.entrySet()) { 
-						out.println("<option value='" + code.getKey() + "'>" + code.getValue() + "</option>");
-					}
-				%>
-			</select>
-			<span>조회조건: </span>
+			<div>회원 선호 지역</div>
+			<div>(<%=mem_name %> 님으로 등록된 호텔, 렌터카를 예약한 회원의 지역별 분포)</div>
 		</div>
 		<div class="right_chart">
 			

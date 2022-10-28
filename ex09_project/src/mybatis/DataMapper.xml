@@ -121,29 +121,75 @@
 	</select>
 	
 	<select id="mgrPagePeroidBooking" parameterType="map" resultType="map">
-		select <if test = 'date_kubun.equals("day")'> 'day'</if>
-		 		as date_kubun
-			   ,kubun
-		       ,date_format(booking_date, '%Y') as fmt_year
-		       ,date_format(booking_date, '%m') as fmt_month
-		       ,date_format(booking_date, '%m/%d') as fmt_date
-		       ,cast(count(*) as char(10)) as cnt
-		  from (select 'hotel' as kubun
-					   ,htb_date as booking_date
-				  from hotel htl
+		select date_format(booking_date, '%Y-%m-%d') as booking_date
+			  ,concat(substr(booking_date, 1,4),'년') as booking_year
+      		  ,concat(substr(booking_date, 6,2),'월') as booking_month
+			   <if test = 'date_kubun.equals("day")'>,substr(booking_date, 6,5) as booking_md</if>
+			   <if test = 'date_kubun.equals("month")'>,concat(substr(booking_date, 6,2),'월') as booking_md</if>
+			  ,(select count(*)
+				  from htlBooking
+				 <if test = 'date_kubun.equals("day")'>where STR_TO_DATE(htb_chkIn, '%Y%m%d') = booking_date</if>
+				 <if test = 'date_kubun.equals("month")'>where month(STR_TO_DATE(htb_chkIn, '%Y%m%d')) = month(booking_date)</if>
+			   ) as htl_cnt
+			  ,(select count(*)
+				  from racBooking
+				 <if test = 'date_kubun.equals("day")'>where STR_TO_DATE(cbk_chkInDate, '%Y%m%d') = booking_date</if>
+				 <if test = 'date_kubun.equals("month")'>where month(STR_TO_DATE(cbk_chkInDate, '%Y%m%d')) = month(booking_date)</if>
+			   ) as car_cnt
+		  from (select STR_TO_DATE(htb_chkIn, '%Y%m%d') as booking_date
+		          from hotel htl
 					  ,htlBooking htb
 				 where htl.htl_no = htb.htl_no
-				   and htl.mgr_no = #{mgr_no}
+		           and htl.mgr_no = #{mgr_no}
 				union all
-				select 'car' as kubun
-					   ,cbk_date as booking_date
-				  from rentAcar car
+			    select STR_TO_DATE(cbk_chkInDate, '%Y%m%d') as booking_date
+		          from rentAcar car
 					  ,racBooking rbk
 				 where car.car_no = rbk.car_no
-				   and car.mgr_no = #{mgr_no}
-				) as tab
-		group by <if test = 'date_kubun.equals("day")'>day</if>(booking_date)
+		           and car.mgr_no = #{mgr_no}
+			   ) as booking_table
+		group by <if test = 'date_kubun.equals("day")'>day</if><if test = 'date_kubun.equals("month")'>month</if>(booking_date)
+		<if test = 'date_kubun.equals("day")'>having month(booking_date) = 10</if>
 		order by booking_date
+		;
+	
+	</select>
+	
+	<select id="mgrpageMemberAgeData" resultType="map">
+		select concat(floor((year(now())-year(mem_birth))/10)*10, '대') as kubun
+			  ,count(mem_birth) as cnt
+		  from hcamMem
+		 where mem_birth != '' 
+		group by kubun;
+	</select>
+	
+	<select id="mgrpageMemberGenderData" resultType="map">
+		select (case when mem_gender = 'female' then '여성'
+				else '남성' end) as kubun
+			  ,count(mem_gender) as cnt
+		  from hcamMem
+		 where mem_gender != ''
+		group by mem_gender;
+	</select>
+	
+	<select id="mgrpagememberCountry" parameterType="int" resultType="map">
+		select mem.mem_nation as mem_nation
+			  ,count(*) as cnt
+		  from hcamMem mem
+		      ,(select htb.mem_no as mem_no
+		          from hotel htl
+					  ,htlBooking htb
+				 where htl.htl_no = htb.htl_no
+		           and htl.mgr_no = #{mgr_no}
+				union all
+			    select rbk.mem_no as mem_no
+		          from rentAcar car
+					  ,racBooking rbk
+				 where car.car_no = rbk.car_no
+		           and car.mgr_no = #{mgr_no}
+			   ) as btb
+		 where mem.mem_no = btb.mem_no
+		group by mem.mem_nation
 		;
 	</select>
 	

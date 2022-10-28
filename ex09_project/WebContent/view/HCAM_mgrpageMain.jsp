@@ -41,8 +41,7 @@
 	/* init window */
 	$(document).ready(function(){
 		/* 탭 메뉴 오른쪽 화면 호출 */
-		//go_tabPage("mypage.do?command=mpBooking");
-		//go_tabPage("mypage.do?command=mpPoint");
+		go_tabPage("mgrpage.do?command=peroidBooking");
 	});
 
 	$(function() {
@@ -100,15 +99,15 @@
 				</li>
 				<li data-tab="mgrpage.do?command=memberData">
 					<span class="left_tab_icon"><i class="fa-solid fa-heart"></i></span>
-					<span class="left_tab_title">회원 데이터</span>
+					<span class="left_tab_title">HCAM 회원 데이터</span>
 				</li>
-				<li data-tab="mgrpage.do?command=memberPoint">
+				<li data-tab="mgrpage.do?command=memberCountry">
 					<span class="left_tab_icon"><i class="fa-brands fa-product-hunt"></i></span>
-					<span class="left_tab_title">회원별 포인트내역</span>
+					<span class="left_tab_title">회원 지역별 분포</span>
 				</li>
 				<li data-tab="mgrpage.do?command=expectedProfit">
 					<span class="left_tab_icon"><i class="fa-solid fa-circle-user"></i></span>
-					<span class="left_tab_title">기대수익 차트</span>
+					<span class="left_tab_title">수익률</span>
 				</li>
 			</ul>
 		</div>
