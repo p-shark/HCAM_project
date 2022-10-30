@@ -39,8 +39,10 @@
 		
 		var url = "${pageContext.request.contextPath}/view/HCAM_pointDeposit.jsp";
 		var title = "popupOpener";
-		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=470,height=500,top=100,left=500";
-		window.open(url, title, "width=470, height=500, top=100, left=500");
+		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=470,height=500,top=260,left=715";
+		window.open(url, title, "width=470, height=500, top=260, left=715");
+		//var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=470,height=500,top=100,left=500";
+		//window.open(url, title, "width=470, height=500, top=100, left=500");
 		
 	}
 	

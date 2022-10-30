@@ -31,8 +31,8 @@
 	else {
 		colNameArray.add(peroidBooking.get(0).get("booking_year"));
 	}
-	colNameArray.add("hotel");
-	colNameArray.add("car");
+	colNameArray.add("호텔");
+	colNameArray.add("렌터카");
 
 	jsnArr.add(colNameArray);
 	

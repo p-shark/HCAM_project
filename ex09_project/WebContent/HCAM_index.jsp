@@ -448,18 +448,18 @@
 				<a href="HCAM_camping_page.html">
 					<div>
 						<li>
-							<span>Camping</span><br>
-							<span>가족, 친구와 함께</span><br>
-							<span>떠나는 힐링여행</span>
+							<span>RentAcar</span><br>
+							<span>예약과 이동을 편리하게</span><br>
+							<span>카셰어링 서비스</span>
 						</li>
 					</div>
 				</a>
 				<a href="">
 					<div>
 						<li>
-							<span>Activity</span><br>
-							<span>호텔 고객을 위한</span><br>
-							<span>다양한 즐길거리</span>
+							<span>Camping</span><br>
+							<span>가족, 친구와 함께</span><br>
+							<span>떠나는 힐링여행</span>
 						</li>
 					</div>
 				</a>

@@ -67,7 +67,7 @@
 <body>
 	<div class="right_inner">
 		<div class="right_top">
-			<div>회원 선호 지역</div>
+			<div>예약 회원의 지역별 분포</div>
 			<div>(<%=mem_name %> 님으로 등록된 호텔, 렌터카를 예약한 회원의 지역별 분포)</div>
 		</div>
 		<div class="right_chart">

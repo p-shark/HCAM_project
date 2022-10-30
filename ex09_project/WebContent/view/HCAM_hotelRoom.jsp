@@ -520,6 +520,11 @@
 			
 			<% for(int i=0; i<htlRoomList.size(); i++) { %>
 				<div id="room_each" class="div_border <% if(htlRoomList.get(i).getBooking_cnt() > 0) out.print("chgOpacity"); %>">
+					<% if(htlRoomList.get(i).getBooking_cnt() > 0) { %>
+						<div id="room_condition">
+							<div>예약 완료</div>
+						</div>
+					<% } %>
 					<div id="room_name"><%=htlRoomList.get(i).getHrm_name() %></div>
 					<div id="room_total">
 						<div id="room_title">

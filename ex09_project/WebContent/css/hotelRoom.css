@@ -372,8 +372,35 @@
 			font-weight: bold;
 		}
 		#div_room #room_each {
+			position: relative;
 			margin-top: 20px;
 		}
+			/* 예약완료인 경우 예약완료 표시 */
+			#room_each #room_condition {
+				color: inherit;
+			    fill: inherit;
+			    display: flex;
+			    position: absolute;
+			    top: 150px;
+			    left: 450px;
+			    z-index: 1;
+			}
+				#room_condition div {
+					background: rgb(255, 255, 255);
+				    fill: inherit;
+				    cursor: pointer;
+				    top: 12px;
+				    left: 0px;
+				    right: 16px;
+				    z-index: 1;
+				    width: 300px;
+				    height: 100px;
+				    line-height: 60px;
+				    font-size: 50pt;
+				    font-weight: bold;
+				    color: #006600;
+				}
+		
 			/* 객실명 */
 			#room_each #room_name {
 				padding: 10px 0 10px 10px;
@@ -733,8 +760,6 @@
 	.chgOpacity {
 		opacity: 0.3;
 	}
-		
-		
 		
 /* The Modal (background) */
 .modal {

@@ -19,7 +19,7 @@
 
 	// 컬럼 타이틀
 	colNameArray.add("Country");
-	colNameArray.add("Popularity");
+	colNameArray.add("예약자 수");
 
 	jsnArr.add(colNameArray);
 	

@@ -40,7 +40,7 @@
 	/* 그래프 데이터 json 방식 */
 	function fn_callInitChart() {
 		var mgr_no = $("input[name='mgr_no']").val();			// 매니저 번호
-		alert(111);
+		
 		$.ajax({
 			type : 'POST',
 			url : 'view/HCAM_mgrpageMemCountryChart.jsp',

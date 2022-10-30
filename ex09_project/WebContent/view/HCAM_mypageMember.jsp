@@ -38,7 +38,7 @@
 		var id = $("input[name='id']").val();
 		var email = $("input[name='email']").val();
 		
-		var url = "HCAM_memberFindPwResult01.jsp?kubun=" + kubun + "&id=" + id + "&email=" + email;
+		var url = "view/HCAM_memberFindPwResult01.jsp?kubun=" + kubun + "&id=" + id + "&email=" + email;
 		var title = "popupOpener";
 		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=500,height=300,top=100,left=500";
 		
