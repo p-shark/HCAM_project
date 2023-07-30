@@ -12,4 +12,4 @@
 
 🔸 개발환경, ERD, 진행과정, 주요기능
 ------------
-* URL       : <https://lim-sooyeon.github.io/Java/hcam.html>   
+* URL       : https://p-shark.github.io
