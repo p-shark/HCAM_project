@@ -12,4 +12,5 @@
 
 🔸 개발환경, ERD, 진행과정, 주요기능
 ------------
-* URL       : https://p-shark.github.io
+* URL        : https://p-shark.github.io
+* 구현 동영상 : https://realprogrammer.tistory.com/233
